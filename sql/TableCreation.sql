@@ -1,0 +1,12 @@
+CREATE SCHEMA IF NOT EXISTS PlantGame;
+CREATE TABLE IF NOT EXISTS PlantGame.User (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(45) NULL ,
+  `LastName` VARCHAR(45) NULL ,
+  `dob` VARCHAR(45) NULL ,
+  `email` VARCHAR(45) NULL ,
+  `phone` VARCHAR(45) NULL ,
+  `password` VARCHAR(45) NOT NULL ,
+  `username` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`));
+

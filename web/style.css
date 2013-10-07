@@ -1,0 +1,20 @@
+/* 
+    Document   : syle
+    Created on : Oct 7, 2013, 8:53:03 AM
+    Author     : Derek
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    background-color: #DDDDDD;
+   
+}
+
+* {
+    color: black;
+}
