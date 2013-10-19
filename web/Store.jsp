@@ -4,6 +4,7 @@
     Author     : tyler
 --%>
 
+<%@page import="plantgame.utils.Constants"%>
 <%@page import="plantgame.utils.GameItemsEnum"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,9 +55,9 @@
   </head>
   <body>
     <label id="storeHeading" class="pageHeading">Welcome to the Store</label>
-    
+    <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->
-    <form action="" method="POST">
+    <form action="<%=Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET%>" method="POST">
       <table class="displayTable" >
         <tr>
           <th>Item</th>
@@ -98,7 +99,7 @@
           <td colspan="4">            
           </td>          
           <td>
-            <input type="button" value="Purchase">
+            <input type="submit" value="Purchase">
           </td>
         </tr>
       </table>

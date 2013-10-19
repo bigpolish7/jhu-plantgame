@@ -27,7 +27,9 @@ public class FrontController extends HttpServlet {
         else if(action.equals(Constants.REGISTER)) {
             url = Constants.REGISTER;
         }
-        
+        else if(action.equals(Constants.STORE_SERVLET)){
+          url = Constants.STORE_SERVLET;
+        }
         RequestDispatcher requestDispatcher = getServletContext().getNamedDispatcher(url);
         requestDispatcher.forward(request, response);
     }

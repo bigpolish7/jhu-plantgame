@@ -12,6 +12,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>plantgame.controllers.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Store</servlet-name>
+        <servlet-class>plantgame.controllers.Store</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/FrontController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Store</servlet-name>
+        <url-pattern>/Store</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
