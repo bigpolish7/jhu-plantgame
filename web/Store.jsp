@@ -54,6 +54,7 @@
     
   </head>
   <body>
+    <%@ include file="/NavPageHeader.jsp" %>
     <label id="storeHeading" class="pageHeading">Welcome to the Store</label>
     <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->

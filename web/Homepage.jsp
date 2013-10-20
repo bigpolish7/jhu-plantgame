@@ -14,6 +14,7 @@
          <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
+        <%@ include file="/NavPageHeader.jsp" %>
         <h1>Welcome to your dashboard, <%= user.getUserName() %> </h1>
     </body>
 </html>
