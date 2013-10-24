@@ -36,6 +36,10 @@ public enum GameItemsEnum {
     return name;
   }
   
+  public int getMaxNumber(){
+    return maxNumberOfItem;
+  }
+  
   public int getPrice(int numberOfItem){
     return (maxNumberOfItem-numberOfItem+1)*baseCost;
   }

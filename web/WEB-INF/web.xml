@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>Store</servlet-name>
-        <servlet-class>plantgame.controllers.Store</servlet-class>
+        <servlet-class>plantgame.controllers.StoreServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>

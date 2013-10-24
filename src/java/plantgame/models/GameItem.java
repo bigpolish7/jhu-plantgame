@@ -12,9 +12,17 @@ package plantgame.models;
 public class GameItem {
   
   private String name;
+  private int baseCost;
+
+  public GameItem(String n, int c){
+    name = n;
+    baseCost = c;
+    
+  }
   
   public void GameItem(){
     name = "";
+    baseCost = 0;
   }
   
   public void setName(String n){
@@ -24,4 +32,13 @@ public class GameItem {
   public String getName(){
     return name;
   }
+  
+  public void setBaseCost(int n){
+    baseCost = n;
+  }
+  
+  public int getBaseCost(){
+    return baseCost;
+  }
+  
 }

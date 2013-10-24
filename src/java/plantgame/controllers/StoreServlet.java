@@ -21,7 +21,7 @@ import plantgame.utils.Constants;
  * 
  * This servlet will control the store portion of the web application
  */
-public class Store extends HttpServlet {
+public class StoreServlet extends HttpServlet {
 
   /**
    * Processes requests for both HTTP
