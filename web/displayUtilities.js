@@ -5,13 +5,13 @@
 
 //This function will take a HTML select and
 //add numbers up to maxNumber
-function fillInNumericSelect(id)
+function fillInNumericSelect(id, num)
 {
   var selectBox= document.getElementById(id);
   var infoLabel = document.getElementById("infoLabel");
   
   
-  for (var i = 1; i <= 9 ; i++)
+  for (var i = 1; i <= num ; i++)
   {
     var option=document.createElement("option");
  

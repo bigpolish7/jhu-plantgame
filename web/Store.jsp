@@ -4,9 +4,13 @@
     Author     : tyler
 --%>
 
+<%@page import="plantgame.models.Store"%>
 <%@page import="plantgame.utils.Constants"%>
 <%@page import="plantgame.utils.GameItemsEnum"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+  Store store = Store.getInstance();
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,8 +24,10 @@
       window.onload=function() {
         <%
           for (GameItemsEnum item : GameItemsEnum.values() ){
+            //DEBUG
+            System.out.println("Store.jsp there are "+store.getNumberOfItemInStock(item.getName())+" "+item.getName());
         %>          
-          fillInNumericSelect('<%=item.getName() + "Select"%>')
+            fillInNumericSelect('<%=item.getName() + "Select"%>', <%=store.getNumberOfItemInStock(item.getName())%>)
         <%
           }
         %>          
@@ -74,7 +80,7 @@
         %>
             <tr>
               <td><%=item.getName()%> </td>
-              <td>9</td>
+              <td><%=store.getNumberOfItemInStock(item.getName()) %></td>
               <td><%=item.getPrice(9)%> </td>
               <td>
                 <!--The number will be dynamically added-->

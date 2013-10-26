@@ -25,4 +25,22 @@ public class Constants {
     public static final String STORE_SERVLET = "Store";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
+    
+    //Delay from start of program to when store gets its first 
+    //shipment of items in ms
+    public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 
+    
+    //Delay between delivery of items to store
+    public static final long STORE_INTER_DELIVERY_DELAY = 100000;     
+    
+    //This is the number of items that will be added to the store
+    //at each deliver. Right now is just a constant but maybe can
+    //be more dynamic in the future
+    public static final int NUMBER_OF_ITEM_TO_ADD_TO_STORE = 2;
+    
+    //This is the number of each item that the store will start with
+    public static final int ITEM_NUMBER_STORE_START  = 1;
+    
+    //This is the maximum number of each item that the store can hold
+    public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
 }

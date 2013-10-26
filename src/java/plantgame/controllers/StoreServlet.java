@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import plantgame.helperBeans.StoreHelper;
+import plantgame.models.Store;
 import plantgame.models.User;
 import plantgame.utils.Constants;
 
@@ -23,6 +24,13 @@ import plantgame.utils.Constants;
  */
 public class StoreServlet extends HttpServlet {
 
+  
+  public void init(){
+    //When the servlet starts create a store object
+    //This will also start the store delivery timer
+    Store store = Store.getInstance();    
+  }
+  
   /**
    * Processes requests for both HTTP
    * <code>GET</code> and
@@ -57,6 +65,7 @@ public class StoreServlet extends HttpServlet {
       log("Store Servlet processRequest user was null");
     }
     
+            
     //have the StoreHelper class process the user's purchase request
     String purchaseResult = StoreHelper.doPurchase(user, request);
     
