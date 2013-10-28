@@ -81,10 +81,10 @@
             <tr>
               <td><%=item.getName()%> </td>
               <td><%=store.getNumberOfItemInStock(item.getName()) %></td>
-              <td><%=item.getPrice(9)%> </td>
+              <td><%=store.getItemPrice(item.getName()) %> </td>
               <td>
                 <!--The number will be dynamically added-->
-                <select id='<%=item.getName() + "Select"%>' name='<%=item.getName() + "Select"%>' onchange='updateTotals("<%=item.getName()%>"+ "SubTotal",<%=item.getPrice(9)%>,"<%=item.getName() %>"+ "Select")'>
+                <select id='<%=item.getName() + "Select"%>' name='<%=item.getName() + "Select"%>' onchange='updateTotals("<%=item.getName()%>"+ "SubTotal",<%=store.getItemPrice(item.getName()) %>,"<%=item.getName() %>"+ "Select")'>
                   <option value="0">0</option>
                 </select>
               </td>

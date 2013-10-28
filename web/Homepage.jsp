@@ -7,7 +7,7 @@
 <%@page contentType="text/html" import="java.util.*,plantgame.models.User" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   <% User user = (User) session.getAttribute("user");%>
+   <% //User user = (User) session.getAttribute("user");%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Homepage</title>

@@ -131,6 +131,24 @@ public class Store implements Runnable{
   }
   
   //TODO method for removing items from store. Should be synchronized
+  //The actual purchasing of items will be done here
+  //since this method is synchronized
+  public synchronized String purchaseItems(int[] selectedItems, User user){
+    
+    return "Hi";
+  }
   
-  //TODO method for getting price of an item
+  //method for getting price of an item
+  public int getItemPrice(String itemName){
+    StoreItem s = storeItems.get(itemName);
+    
+    return s.itemType.getPrice(s.numberOfItem);
+  }
+  
+  //Convenience method for getting an item's price without having
+  //to actually get a store object
+  public static int getItemPriceStatic(String itemName){
+    Store s = Store.getInstance();
+    return s.getItemPrice(itemName);
+  }
 }

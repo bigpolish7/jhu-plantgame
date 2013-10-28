@@ -18,6 +18,7 @@ public class User {
     private String phone;
     private Integer id;
     private String userName;
+    private int money;
     
     public Integer getId() {
         return id;
@@ -84,6 +85,12 @@ public class User {
         this.phone = phone;
     }
     
+    public void setMoney(int m){
+      money = m;
+    }
     
+    public int getMoney(){
+      return money;
+    }
     
 }

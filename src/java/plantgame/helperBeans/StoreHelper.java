@@ -5,8 +5,10 @@
 package plantgame.helperBeans;
 
 import javax.servlet.http.HttpServletRequest;
+import plantgame.models.Store;
 import plantgame.models.User;
 import plantgame.utils.Constants;
+import plantgame.utils.GameItemsEnum;
 
 /**
  *
@@ -32,8 +34,49 @@ public class StoreHelper {
   //and the user's items will be updated.
   public static String doPurchase(User user, HttpServletRequest request){
     
-    //TODO: make this method
-    return Constants.NOT_ENOUGH_MONEY;
+    int selectedValue[] = new int[GameItemsEnum.values().length];
+    int total = 0;
+    int price;
+    int index = 0;
+    
+    //First determine how many of each item the user selected to buy
+    //from the request and determine the total price
+    for (GameItemsEnum item : GameItemsEnum.values()){
+      //Get the value selected for each item
+      selectedValue[index] = Integer.parseInt(request.getParameter(item.getName()+"Select"));
+      
+      //Get the price per item
+      price = Store.getItemPriceStatic(item.getName());
+      
+      //DEBUG
+      System.out.println("StoreHelper parameter "+item.getName()+"Select is "+selectedValue[index]);
+      
+      //Calculate the cost of the items selected by the user
+      total = total + price*selectedValue[index];
+      
+      //DEBUG
+      System.out.println("StoreHelper price for "+item.getName()+" is "+price);
+      
+      index++;
+    }
+    
+    //DEBUG
+    System.out.println("StoreHelper User has $"+ user.getMoney());
+    
+    //Check to make sure the user has enough money
+    if (total > user.getMoney()){
+      //DEBUG
+      System.out.println("StoreHelper Not Enough Money");
+      
+      return Constants.NOT_ENOUGH_MONEY;
+    }
+    
+    Store store = Store.getInstance();
+    
+    //The store object actually does the removing items from the store and
+    //adding them to the user's stock in a synchronized method
+    return store.purchaseItems(selectedValue, user);
+    
   }
   
   
