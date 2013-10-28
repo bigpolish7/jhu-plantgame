@@ -4,6 +4,10 @@
  */
 package plantgame.models;
 
+import java.util.HashMap;
+import plantgame.utils.Constants;
+import plantgame.utils.GameItemsEnum;
+
 /**
  *
  * @author Derek
@@ -19,7 +23,21 @@ public class User {
     private Integer id;
     private String userName;
     private int money;
+    private HashMap <String, UserItem> items;
     
+    public void User(){
+      items = new HashMap<String, UserItem>();
+      UserItem userItem;
+      
+      //This initializes the user's stock of items
+      for(GameItemsEnum item:GameItemsEnum.values()){
+        userItem = new UserItem();
+        userItem.setType(item);
+        userItem.setNumberOfItem(Constants.USER_START_NUMBER_OF_ITEMS);
+        items.put(item.getName(), userItem);
+      }
+    }
+
     public Integer getId() {
         return id;
     }
@@ -93,4 +111,11 @@ public class User {
       return money;
     }
     
+    public void setItems(HashMap<String, UserItem> m){
+      items = m;
+    }
+    
+    public HashMap<String, UserItem> getItems(){
+      return items;
+    }
 }

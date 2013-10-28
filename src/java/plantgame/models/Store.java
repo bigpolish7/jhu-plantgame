@@ -130,12 +130,50 @@ public class Store implements Runnable{
     return storeItems.get(itemName).numberOfItem;
   }
   
-  //TODO method for removing items from store. Should be synchronized
+  //method for removing items from store. Should be synchronized
   //The actual purchasing of items will be done here
   //since this method is synchronized
   public synchronized String purchaseItems(int[] selectedItems, User user){
+    int index = 0;
+    HashMap<String, StoreItem> storeItemsCopy = this.storeItems;
+    HashMap<String, UserItem> userItemsCopy = user.getItems();
+    int total = 0;
+    StoreItem storeItem;
+    UserItem userItem;
     
-    return "Hi";
+    //Check that there are enough items in the store
+    for (GameItemsEnum item: GameItemsEnum.values()){
+      total = total+selectedItems[index]*this.getItemPrice(item.getName());
+      
+      if (this.getNumberOfItemInStock(item.getName()) < selectedItems[index]){
+        return Constants.NOT_ENOUGH_ITEMS_IN_STORE;
+      }
+      else{
+        //Remove items from copy of store's items
+        storeItem = storeItemsCopy.get(item.getName());
+        storeItem.numberOfItem=storeItem.numberOfItem-selectedItems[index];
+        //Add items to copy of user's stock
+        userItem = userItemsCopy.get(item.getName());
+        userItem.setNumberOfItem(userItem.getNumberOfItem()+selectedItems[index]);
+      }
+      index++;
+    }
+    
+    if (total > user.getMoney()){
+      return Constants.NOT_ENOUGH_MONEY;
+    }
+    //At this point it has been verified that the store has enough items and
+    //the user has enough money for the purchase     
+    
+    //Subtract user's money
+    user.setMoney(user.getMoney()-total);
+    
+    //set store's stock to the copy of the store's stock
+    this.storeItems = storeItemsCopy;
+    //set user's stock to the copy of the user's stock
+    user.setItems(userItemsCopy);
+    
+    return Constants.PURCHASE_COMPLETE;
   }
   
   //method for getting price of an item

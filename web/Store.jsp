@@ -64,7 +64,7 @@
     <label id="storeHeading" class="pageHeading">Welcome to the Store</label>
     <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->
-    <form action="<%=Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET%>" method="POST">
+    <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">
       <table class="displayTable" >
         <tr>
           <th>Item</th>

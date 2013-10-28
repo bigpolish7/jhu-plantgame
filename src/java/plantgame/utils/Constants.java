@@ -15,6 +15,7 @@ public class Constants {
     
     public static final String NOT_ENOUGH_MONEY = "NEM";
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";
+    public static final String PURCHASE_COMPLETE = "PC";
     public static final String USER = "user";
     public static final String PURCHASE_RESULT = "PR";
     public static final String APPLICATION = "/PlantGame";
@@ -43,4 +44,6 @@ public class Constants {
     
     //This is the maximum number of each item that the store can hold
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
+    
+    public static final int USER_START_NUMBER_OF_ITEMS = 1;
 }

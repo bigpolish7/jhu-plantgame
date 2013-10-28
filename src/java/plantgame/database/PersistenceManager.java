@@ -73,7 +73,7 @@ public class PersistenceManager {
               user.setPhone("none");
               user.setPassword("test");
               user.setUserName("test");
-              user.setMoney(1000);
+              user.setMoney(10000);
               return user;
             }
             
