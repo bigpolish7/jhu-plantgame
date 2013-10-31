@@ -18,7 +18,6 @@
          <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
-        <div class="center" style="background-color: lightgreen;">
         <h2><%= errorMessage %></h2>
         <div id="signIn">
             <form action="FrontController" method="POST">
@@ -41,7 +40,6 @@
             <hr>
             <br>
             <a href="Register.jsp">Not a user? I'm sorry, sign up now and play!</a>
-        </div>
         </div>
     </body>
 </html>

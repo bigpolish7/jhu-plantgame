@@ -12,8 +12,4 @@ public class Constants {
     
     public static final String LOGIN = "Login";
     public static final String REGISTER = "Register";
-    
-    // Fruits
-    public static final String APPLE = "apple";
-    public static final String ORANGE = "orange";
 }
