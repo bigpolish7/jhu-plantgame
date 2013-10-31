@@ -11,10 +11,31 @@ root {
 }
 
 body {
-    background-color: #DDDDDD;
-   
+    background-image:url('images/orange-orchard.jpg');
+    background-repeat: no-repeat;
+    /*background-color: #DDDDDD;*/
+    background-size:cover;
 }
 
 * {
     color: black;
+}
+
+p.t1 /* Bold Title */
+{
+font-weight: bold;
+color: green;
+font-family: Verdana, Geneva, Arial, sans-serif;
+}
+
+.center /* This can be used as defualt center all body contents for all jsp and html*/
+{    
+margin:auto;
+width:70%;
+border:3px solid whitesmoke;
+width:680px;
+font-family: Verdana, Geneva, Arial, sans-serif;
+color: #330000;
+padding: 2em;
+position:relative;top:100px;
 }
