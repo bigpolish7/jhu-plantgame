@@ -28,15 +28,11 @@ public class Store implements Runnable{
       itemType = e;
       maxNumberOfItem = e.getMaxNumber();
     }
-    
-    
   }
   
   //Private class extending TimerTask. This will be used by the addItemsToStoreTimer
   //object to add items to the store.
   private class StoreDeliver extends TimerTask{
-    
-
     public StoreDeliver(){
       super();
     }

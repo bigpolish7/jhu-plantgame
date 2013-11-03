@@ -36,7 +36,6 @@
 
     <script>
       function updateTotals(subTotalLabelID, itemPrice, selectBoxID){
-        
         updateItemSubTotals(subTotalLabelID, itemPrice, selectBoxID);
         document.getElementById("totalPriceLabel").innerHTML="Updating";
         var total = 0;
@@ -44,11 +43,9 @@
         <%
           for (GameItemsEnum item : GameItemsEnum.values() ){
         %>  
-
             var selectBox= document.getElementById("<%=item.getName() %>"+ "Select");
             var numberSelected = selectBox.options[selectBox.selectedIndex].text;
             subTotal = itemPrice*numberSelected;   
-
             total = total + subTotal;
         <%
           }
@@ -61,7 +58,7 @@
   </head>
   <body>
     <%@ include file="/NavPageHeader.jsp" %>
-    <label id="storeHeading" class="pageHeading">Welcome to the Store</label>
+    <label id="storeHeading" class="pageHeading">Welcome to the Store <jsp:getProperty name="user" property="userName"/> </label>
     <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->
     <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">

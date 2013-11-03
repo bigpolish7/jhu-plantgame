@@ -32,11 +32,8 @@ function fillInNumericSelect(id, num)
         }
         catch(e3){
         }
-        
       }
-      
     }
-    
   }
 }
 

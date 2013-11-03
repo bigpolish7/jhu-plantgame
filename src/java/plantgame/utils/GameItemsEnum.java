@@ -41,6 +41,7 @@ public enum GameItemsEnum {
   }
   
   public int getPrice(int numberOfItem){
+    // numberOfItem: the number of items available for sale at store
     return (maxNumberOfItem-numberOfItem+1)*baseCost;
   }
 }
