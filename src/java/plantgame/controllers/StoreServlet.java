@@ -65,14 +65,11 @@ public class StoreServlet extends HttpServlet {
       log("Store Servlet processRequest user was null");
     }
     
-            
     //have the StoreHelper class process the user's purchase request
     String purchaseResult = StoreHelper.doPurchase(user, request);
     
     //Add the purchase results to the request
     request.setAttribute(Constants.PURCHASE_RESULT, purchaseResult);
-    
-
     
     //DEBUG
     System.out.println("Store Servlet forwarding request to "+Constants.STORE_JSP);

@@ -15,9 +15,6 @@ import plantgame.utils.GameItemsEnum;
  * @author tyler
  */
 public class StoreHelper {
-  
-  
-  
   public void StoreHelper(){
     
   }

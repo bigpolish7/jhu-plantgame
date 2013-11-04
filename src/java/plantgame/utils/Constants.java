@@ -24,6 +24,7 @@ public class Constants {
     public static final String MARKET_JSP = "/Market.jsp";    
     public static final String NAV_PAGE_HEADER = "/NavPageHeader.jsp";
     public static final String STORE_SERVLET = "Store";
+    public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
     
@@ -46,4 +47,8 @@ public class Constants {
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
     
     public static final int USER_START_NUMBER_OF_ITEMS = 1;
+    // Each user can purchase extra plots of land for this amount of money
+    public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
+    // Each user can own up to a maximum number of plots of land
+    public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
 }

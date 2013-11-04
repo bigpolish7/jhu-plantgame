@@ -19,13 +19,16 @@ public class Store implements Runnable{
   //StoreItem will be an internal class to Store that holds an item type
   //and the number of that item which the store contains
   private class StoreItem{
+    //numberOfItem: number of items in stock
     public int numberOfItem;
     public GameItemsEnum itemType;
     public int maxNumberOfItem;
     
     public StoreItem(GameItemsEnum e, int num){
+      // num: ITEM_NUMBER_STORE_START
       numberOfItem = num;
       itemType = e;
+      // maxNumberOfItem: MAX_NUMBER_OF_ITEM_IN_STORE
       maxNumberOfItem = e.getMaxNumber();
     }
   }
@@ -62,8 +65,6 @@ public class Store implements Runnable{
       StoreItem newStoreItem = new StoreItem(item, Constants.ITEM_NUMBER_STORE_START);
       storeItems.put(item.getName(), newStoreItem);
     }
-    
-
   }
   
   @Override
@@ -124,6 +125,7 @@ public class Store implements Runnable{
   //Method for getting the number of items in stock for a particular item
   public int getNumberOfItemInStock(String itemName){
     return storeItems.get(itemName).numberOfItem;
+    //storeItems.get(itemName): return a StoreItem object
   }
   
   //method for removing items from store. Should be synchronized
@@ -197,7 +199,6 @@ public class Store implements Runnable{
   //method for getting price of an item
   public int getItemPrice(String itemName){
     StoreItem s = storeItems.get(itemName);
-    
     return s.itemType.getPrice(s.numberOfItem);
   }
   
