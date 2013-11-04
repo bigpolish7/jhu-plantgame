@@ -39,6 +39,9 @@ public class StoreHelper {
     int price;
     int index = 0;
     
+    //DEBUG
+    System.out.println("StoreHelper User's name is "+user.getUserName());
+    
     //First determine how many of each item the user selected to buy
     //from the request and determine the total price
     for (GameItemsEnum item : GameItemsEnum.values()){
