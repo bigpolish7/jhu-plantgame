@@ -58,7 +58,7 @@
   </head>
   <body>
     <%@ include file="/NavPageHeader.jsp" %>
-    <label id="storeHeading" class="pageHeading">Welcome to the Store <jsp:getProperty name="user" property="userName"/> </label>
+    <label id="storeHeading" class="pageHeading">Welcome to the Store, <jsp:getProperty name="user" property="userName"/> </label>
     <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->
     <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">
@@ -76,16 +76,16 @@
           for (GameItemsEnum item : GameItemsEnum.values() ){
         %>
             <tr>
-              <td><%=item.getName()%> </td>
-              <td><%=store.getNumberOfItemInStock(item.getName()) %></td>
-              <td><%=store.getItemPrice(item.getName()) %> </td>
-              <td>
+              <td style="border:1px solid black;"><%=item.getName()%> </td>
+              <td style="border:1px solid black;"><%=store.getNumberOfItemInStock(item.getName()) %></td>
+              <td style="border:1px solid black;"><%=store.getItemPrice(item.getName()) %> </td>
+              <td style="border:1px solid black;">
                 <!--The number will be dynamically added-->
                 <select id='<%=item.getName() + "Select"%>' name='<%=item.getName() + "Select"%>' onchange='updateTotals("<%=item.getName()%>"+ "SubTotal",<%=store.getItemPrice(item.getName()) %>,"<%=item.getName() %>"+ "Select")'>
                   <option value="0">0</option>
                 </select>
               </td>
-              <td>
+              <td style="border:1px solid black;">
                 <label id='<%=item.getName() + "SubTotal"%>' name='<%=item.getName() + "SubTotal"%>'></label>
               </td>
             </tr>  
@@ -95,7 +95,7 @@
         <tr>
           <td colspan="4">       
           </td>
-          <td >
+          <td>
             Total: <label id="totalPriceLabel" name="totalPriceLabel"></label>
           </td>          
         </tr>        
