@@ -32,7 +32,7 @@ public class Constants {
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 
     
     //Delay between delivery of items to store
-    public static final long STORE_INTER_DELIVERY_DELAY = 100000;     
+    public static final long STORE_INTER_DELIVERY_DELAY = 5000000;     
     
     //This is the number of items that will be added to the store
     //at each deliver. Right now is just a constant but maybe can

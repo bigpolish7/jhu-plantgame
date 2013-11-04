@@ -130,9 +130,28 @@ public class Store implements Runnable{
   //The actual purchasing of items will be done here
   //since this method is synchronized
   public synchronized String purchaseItems(int[] selectedItems, User user){
+    
+    //DEBUG
+    System.out.println("Store User's name is "+user.getUserName());
+    
+    //DEBUG
+    if (user.getItems() == null){
+      System.out.println("Store the User's items are null");
+    }
+    else{
+      for (GameItemsEnum item : GameItemsEnum.values()){
+        if (user.getItems().containsKey(item.getName())  ){
+          System.out.println("Store The user has "+item.getName());
+        }
+        else{
+          System.out.println("Store The user does not have "+item.getName());
+        }
+      }
+    }
+    
     int index = 0;
-    HashMap<String, StoreItem> storeItemsCopy = this.storeItems;
-    HashMap<String, UserItem> userItemsCopy = user.getItems();
+    HashMap<String, StoreItem> storeItemsCopy = new HashMap<String,StoreItem>(this.storeItems);
+    HashMap<String, UserItem> userItemsCopy = new HashMap<String, UserItem>(user.getItems());
     int total = 0;
     StoreItem storeItem;
     UserItem userItem;
@@ -145,6 +164,9 @@ public class Store implements Runnable{
         return Constants.NOT_ENOUGH_ITEMS_IN_STORE;
       }
       else{
+        //DEBUG
+        System.out.println("Store purchasing "+item.getName());
+        
         //Remove items from copy of store's items
         storeItem = storeItemsCopy.get(item.getName());
         storeItem.numberOfItem=storeItem.numberOfItem-selectedItems[index];

@@ -65,6 +65,9 @@ public class PersistenceManager {
             
             //TODO: this should be removed. It's just here for testing
             if (userName.equals("test") && password.equals("test")){
+              //DEBUG
+              System.out.println("PersistanceManager creating test user");
+              
               User user = new User();
               user.setFirstName("Tester");
               user.setLastName("Tester");

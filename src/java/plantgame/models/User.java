@@ -25,9 +25,12 @@ public class User {
     private int money;
     private HashMap <String, UserItem> items;
     
-    public void User(){
+    public User(){
       items = new HashMap<String, UserItem>();
       UserItem userItem;
+      
+      //DEBUG
+      System.out.println("User adding items");
       
       //This initializes the user's stock of items
       for(GameItemsEnum item:GameItemsEnum.values()){
@@ -35,6 +38,8 @@ public class User {
         userItem.setType(item);
         userItem.setNumberOfItem(Constants.USER_START_NUMBER_OF_ITEMS);
         items.put(item.getName(), userItem);
+        //DEBUG
+        System.out.println("User added "+item.getName());        
       }
     }
 
