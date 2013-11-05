@@ -11,15 +11,20 @@ root {
 }
 
 body {
+<<<<<<< HEAD
     background-image:url('images/orange-orchard.jpg');
     background-repeat: no-repeat;
     /*background-color: #DDDDDD;*/
     background-size:cover;
+=======
+    background-color: #DDDDDD;   
+>>>>>>> 39bc6047aff951e40945ddcf35026bea034d4eef
 }
 
 * {
     color: black;
 }
+<<<<<<< HEAD
 
 p.t1 /* Bold Title */
 {
