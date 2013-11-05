@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import plantgame.models.Store;
 
 import plantgame.utils.Constants;
 
@@ -20,12 +21,24 @@ public class FrontController extends HttpServlet {
         
         String action =  request.getParameter("action");        
         String url = "";
+        
+        System.out.println("Front Controller action =" + action);
+        
 
+
+        
+        
         if (action.equals(Constants.LOGIN)) {
             url = Constants.LOGIN;
         }
         else if(action.equals(Constants.REGISTER)) {
             url = Constants.REGISTER;
+        }
+        else if(action.equals(Constants.STORE_SERVLET)){
+          url = Constants.STORE_SERVLET;
+        }
+        else{
+          url = action;
         }
         
         RequestDispatcher requestDispatcher = getServletContext().getNamedDispatcher(url);

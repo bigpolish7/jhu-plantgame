@@ -4,8 +4,13 @@
     Author     : tyler
 --%>
 
+<%@page import="plantgame.models.Store"%>
+<%@page import="plantgame.utils.Constants"%>
 <%@page import="plantgame.utils.GameItemsEnum"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+  Store store = Store.getInstance();
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,8 +24,10 @@
       window.onload=function() {
         <%
           for (GameItemsEnum item : GameItemsEnum.values() ){
+            //DEBUG
+            System.out.println("Store.jsp there are "+store.getNumberOfItemInStock(item.getName())+" "+item.getName());
         %>          
-          fillInNumericSelect('<%=item.getName() + "Select"%>')
+            fillInNumericSelect('<%=item.getName() + "Select"%>', <%=store.getNumberOfItemInStock(item.getName())%>)
         <%
           }
         %>          
@@ -29,7 +36,6 @@
 
     <script>
       function updateTotals(subTotalLabelID, itemPrice, selectBoxID){
-        
         updateItemSubTotals(subTotalLabelID, itemPrice, selectBoxID);
         document.getElementById("totalPriceLabel").innerHTML="Updating";
         var total = 0;
@@ -37,11 +43,9 @@
         <%
           for (GameItemsEnum item : GameItemsEnum.values() ){
         %>  
-
             var selectBox= document.getElementById("<%=item.getName() %>"+ "Select");
             var numberSelected = selectBox.options[selectBox.selectedIndex].text;
             subTotal = itemPrice*numberSelected;   
-
             total = total + subTotal;
         <%
           }
@@ -53,10 +57,11 @@
     
   </head>
   <body>
-    <label id="storeHeading" class="pageHeading">Welcome to the Store</label>
-    
+    <%@ include file="/NavPageHeader.jsp" %>
+    <label id="storeHeading" class="pageHeading">Welcome to the Store, <jsp:getProperty name="user" property="userName"/> </label>
+    <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
     <!-- This will display the different items a user can purchase -->
-    <form action="" method="POST">
+    <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">
       <table class="displayTable" >
         <tr>
           <th>Item</th>
@@ -71,16 +76,16 @@
           for (GameItemsEnum item : GameItemsEnum.values() ){
         %>
             <tr>
-              <td><%=item.getName()%> </td>
-              <td>9</td>
-              <td><%=item.getPrice(9)%> </td>
-              <td>
+              <td style="border:1px solid black;"><%=item.getName()%> </td>
+              <td style="border:1px solid black;"><%=store.getNumberOfItemInStock(item.getName()) %></td>
+              <td style="border:1px solid black;"><%=store.getItemPrice(item.getName()) %> </td>
+              <td style="border:1px solid black;">
                 <!--The number will be dynamically added-->
-                <select id='<%=item.getName() + "Select"%>' name='<%=item.getName() + "Select"%>' onchange='updateTotals("<%=item.getName()%>"+ "SubTotal",<%=item.getPrice(9)%>,"<%=item.getName() %>"+ "Select")'>
+                <select id='<%=item.getName() + "Select"%>' name='<%=item.getName() + "Select"%>' onchange='updateTotals("<%=item.getName()%>"+ "SubTotal",<%=store.getItemPrice(item.getName()) %>,"<%=item.getName() %>"+ "Select")'>
                   <option value="0">0</option>
                 </select>
               </td>
-              <td>
+              <td style="border:1px solid black;">
                 <label id='<%=item.getName() + "SubTotal"%>' name='<%=item.getName() + "SubTotal"%>'></label>
               </td>
             </tr>  
@@ -90,7 +95,7 @@
         <tr>
           <td colspan="4">       
           </td>
-          <td >
+          <td>
             Total: <label id="totalPriceLabel" name="totalPriceLabel"></label>
           </td>          
         </tr>        
@@ -98,7 +103,7 @@
           <td colspan="4">            
           </td>          
           <td>
-            <input type="button" value="Purchase">
+            <input type="submit" value="Purchase">
           </td>
         </tr>
       </table>

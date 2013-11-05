@@ -4,6 +4,7 @@
  */
 package plantgame.database;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,6 +33,7 @@ public class PersistenceManager {
         public static PersistenceManager getInstance() {
             if (instance == null) {
                 instance = new PersistenceManager();
+                System.out.println("PersistanceManager creating a new instance");
             }
             return instance;
         }
@@ -39,6 +41,7 @@ public class PersistenceManager {
         private Connection getConnection() {
         
                 Connection connection = null;
+                
                 try {
                     try {
                        Class.forName("com.mysql.jdbc.Driver");
@@ -59,6 +62,30 @@ public class PersistenceManager {
             
             String query ="SELECT * FROM USER where userName=? AND password=?";
             PreparedStatement statement;
+            
+            //TODO: this should be removed. It's just here for testing
+            if (userName.equals("test") && password.equals("test")){
+              //DEBUG
+              System.out.println("PersistanceManager creating test user");
+              
+              User user = new User();
+              user.setFirstName("Tester");
+              user.setLastName("Tester");
+              user.setDob("none");
+              user.setEmail("none");
+              user.setPhone("none");
+              user.setPassword("test");
+              user.setUserName("test");
+              user.setMoney(10000);
+              return user;
+            }
+            
+            //Connection should not be null at this point. If it is then there was
+            //an issue with connecting to the database
+            if (connection == null){
+              return null;
+            }
+            
             try {
                 statement = connection.prepareStatement(query);
 
