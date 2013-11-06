@@ -4,7 +4,11 @@
     Author     : tyler
 --%>
 
+<%@page import="plantgame.utils.GameItemsEnum"%>
 <%@page import="plantgame.utils.Constants"%>
+<%@page import="plantgame.models.UserItem"%>
+<%@page import="java.util.HashMap"%>
+
 <jsp:useBean id="user" scope="session" class="plantgame.models.User"/>
 <table id="NavPageHeaderTable" class="NavPageHeaderTable">
   <tr class="NavPageHeaderTableRow">
@@ -20,18 +24,23 @@
     <td class ="NavPageHeaderTableDataItem">
       <a href="<%=response.encodeURL(Constants.APPLICATION+Constants.STORE_JSP)%>">Store</a>
     </td>     
-    <!-- TODO
-  //Set the base costs, names, and max number for the items here
-  SHOVEL(10, "Shovel", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  WATERING_CAN(10, "Watering Can", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  SPADE(10, "Spade", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  SEED(10, "Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  WATER(10, "Water", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  FERTILIZER(10, "Fertilizer", Constants.MAX_NUMBER_OF_ITEM_IN_STORE);
-    -->
+
     <td>
       Money <jsp:getProperty name="user" property="money"/>
     </td>
+    
+    <%
+      HashMap<String, UserItem> userItems = user.getItems();
+      
+      for(GameItemsEnum item : GameItemsEnum.values()){
+        
+        %>
+        <td class ="NavPageHeaderTableDataItem">
+          <%= item.getName() %> <%= (userItems.get(item.getName())).getNumberOfItem() %>
+        </td>
+        <%
+      }
+    %>
   </tr>
   
 </table>
