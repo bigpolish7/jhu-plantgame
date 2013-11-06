@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" media = "all">
     </head>
     <body>
+        <%@ include file="/NavPageHeader.jsp" %>
         <center>
             <%
                 //User user = (User) session.getAttribute("user");  

@@ -4,6 +4,8 @@
  */
 package plantgame.utils;
 
+import java.util.Timer;
+
 /**
  *
  * @author aadu
@@ -42,5 +44,14 @@ public class Fruits {
         NumberOfTimesFertilize = num;
     }
     
-    
+
+    public void run(){
+      //DEBUG
+      System.out.println("Fruits creating thread");
+      
+      Timer plantGrowingTimer = new Timer();
+      
+      //Schedule the plant to reach fruition at a given delay
+      plantGrowingTimer.schedule(null, fruitId);
+    }
 }
