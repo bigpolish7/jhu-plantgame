@@ -6,8 +6,11 @@ package plantgame.models;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import plantgame.database.PersistenceManager;
 import plantgame.utils.Fruits;
+=======
+>>>>>>> 7680a77551b705b43a564d0c448a43b412a4d60a
 
 /**
  *
