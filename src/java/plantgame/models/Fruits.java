@@ -2,10 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package plantgame.utils;
+package plantgame.models;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import plantgame.utils.FruitsEnum;
+import plantgame.utils.QualitiesEnum;
 
 /**
  *

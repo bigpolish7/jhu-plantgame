@@ -6,7 +6,6 @@ package plantgame.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import plantgame.utils.Fruits;
 
 /**
  *
