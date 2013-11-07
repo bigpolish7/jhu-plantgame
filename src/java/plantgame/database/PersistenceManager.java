@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import plantgame.models.User;
-import plantgame.utils.Fruits;
+import plantgame.models.Fruits;
 /**
  *
  * @author Derek
@@ -194,10 +194,10 @@ public class PersistenceManager {
                     
                     while(rs.next()){
                         // pulpulate fruit
-                        tmp.setFruitType(rs.getString("NAME"));
-                        tmp.setFruitId(rs.getInt("ID"));
+                        //tmp.setFruitType(rs.getString("NAME"));
+                        //tmp.setFruitId(rs.getInt("ID"));
                         tmp.setNumberOfTimesFertilize(rs.getInt("FERTILIZE_COUNT"));
-                        tmp.setNumberOfTimesWater(rs.getInt("WETER_COUNT"));
+                        tmp.setNumberOfTimesWater(rs.getInt("WATER_COUNT"));
                         // add fruit to fruit list to be returned.
                         fruits.add(tmp);
                     }

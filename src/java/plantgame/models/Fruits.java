@@ -23,7 +23,7 @@ public class Fruits extends TimerTask{
     private QualitiesEnum quality;
     private boolean isGrown;
     
-    Fruits(FruitsEnum type, int id)
+    public Fruits(FruitsEnum type, int id)
     {
         fruitId = id;
         fruitType = type;
@@ -31,6 +31,10 @@ public class Fruits extends TimerTask{
         //When fruits object is created it is not grown yet
         isGrown = false;
         quality = QualitiesEnum.ROTTEN;
+    }
+    
+    public Fruits()
+    {
     }
     
     public int getNumberOfTimesWater()
