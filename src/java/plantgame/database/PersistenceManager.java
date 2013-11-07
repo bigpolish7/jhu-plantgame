@@ -10,13 +10,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import plantgame.models.User;
+import plantgame.utils.Fruits;
 /**
  *
  * @author Derek
+ */
+/*
+    File History
+    * 11/06/2013 - added API's for Market use 
+ * 
  */
 public class PersistenceManager {
     
@@ -160,6 +168,53 @@ public class PersistenceManager {
             
              return null;
         }
+         
+        public List<Fruits> getUsersFruits(int uid) {
+            
+            List<Fruits> fruits = new ArrayList<Fruits>();
+            Fruits tmp = new Fruits();
+            String query ="SELECT * FROM FRUITS USERID=?";
+            PreparedStatement statement;
+            
+            //Connection should not be null at this point. If it is then there was
+            //an issue with connecting to the database
+            if (connection == null){
+              return null;
+            }
+            
+            try {
+                statement = connection.prepareStatement(query);
+                statement.setInt(1, uid);
+                ResultSet rs =  statement.executeQuery();
+             
+                if (rs.next()) {
+                       
+                    System.out.println("we got stuff...");
+                    rs.previous(); // move cursor back one position
+                    
+                    while(rs.next()){
+                        // pulpulate fruit
+                        tmp.setFruitType(rs.getString("NAME"));
+                        tmp.setFruitId(rs.getInt("ID"));
+                        tmp.setNumberOfTimesFertilize(rs.getInt("FERTILIZE_COUNT"));
+                        tmp.setNumberOfTimesWater(rs.getInt("WETER_COUNT"));
+                        // add fruit to fruit list to be returned.
+                        fruits.add(tmp);
+                    }
+                    
+                      
+                      return fruits;
+                  }
+                else {
+                    System.out.println("got nothing....");
+                     
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             return null;
+        } 
         
         
         

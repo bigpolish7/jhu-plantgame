@@ -15,6 +15,9 @@ body {
     background-repeat: no-repeat;
     /*background-color: #DDDDDD;*/
     background-size:cover;
+    margin:0;
+    padding:0;
+    line-height: 1.5em;
 }
 
 * {
@@ -24,6 +27,7 @@ body {
 p.t1 /* Bold Title */
 {
 font-weight: bold;
+font-size: x-large;
 color: green;
 font-family: Verdana, Geneva, Arial, sans-serif;
 }
@@ -50,5 +54,82 @@ position:relative;top:100px;
     border-width: 1px;
     border-collapse: collapse;
     border-color: black;
+}
+
+/*Styles used in Market.jsp*/
+#maincontainer{
+width: 70%; /*Width of main container*/
+margin: 0 auto; /*Center container on page*/
+}
+
+#topsection{
+background: mintcream;
+height: 90px; /*Height of top section*/
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+}
+
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+}
+
+#container3 {
+    float:left;
+    width:100%;
+    background: greenyellow;
+    overflow:hidden;
+    position:relative;
+    
+    
+}
+#container2 {
+    float:left;
+    width:100%;
+    background: mediumseagreen;
+    position:relative;
+    right:70%;
+    border-style: solid;
+    border-width: thin;
+    border-color: orange;
+}
+
+#col2 {
+    float:left;
+    width:40%;
+    position:relative;
+    left:70%;
+}
+#col3 {
+    float:left;
+    width:30%;
+    position:relative;
+    left:70%;
+}
+
+#tab{
+    margin-left:3em
+}
+
+.tableMkt{
+    float:left;
+    margin-top: 3em;
+    border-style: none;
+    border-collapse:collapse;
+    margin-bottom:2em;
+    
+}
+
+.tableMkt.td{
+    border:1px solid black;
 }
 

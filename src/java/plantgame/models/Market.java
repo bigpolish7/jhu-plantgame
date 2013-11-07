@@ -6,6 +6,7 @@ package plantgame.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import plantgame.database.PersistenceManager;
 import plantgame.utils.Fruits;
 
 /**
@@ -15,36 +16,24 @@ import plantgame.utils.Fruits;
 public class Market {
     
     List<Fruits> mktFruitsList = null;
+    PersistenceManager pm = null;
     
     public Market()
     {
         mktFruitsList =new ArrayList<Fruits>();
+        pm = PersistenceManager.getInstance();
     } 
     
-    /*
-     * This API will retrive all the fruits that can
-     * be sold on the market. It will pull this from 
-     * the DB
-     */
-    public List<Fruits> getMarketFruits()
-    {
-        // TODO pull list from DB
-        
-        return mktFruitsList;
-    }
     
      /*
-     * This API will retrive all the fruits own by
+     * This API will retrive all the fruits owned by
      * a particuler user at a given moment that can
      * be sold on the market. It will pull this from 
      * the DB
      */
     public List<Fruits> getUserFruits(int uid)
     {
-        List<Fruits> usrFruitsList =new ArrayList<Fruits>();
-        // TODO pull list of fruits for user from DB
-        
-        return usrFruitsList;
+        return pm.getUsersFruits(uid);
     }
     
      /*
