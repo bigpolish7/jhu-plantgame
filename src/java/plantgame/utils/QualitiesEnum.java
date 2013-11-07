@@ -32,7 +32,7 @@ public enum QualitiesEnum {
   }
   
   public int getMinFertilizers(){
-    return minWaterings;
+    return minFertilizers;
   }
   
   public double getPriceCoefficient(){
@@ -41,5 +41,24 @@ public enum QualitiesEnum {
   
   public String getName(){
     return name;
+  }
+  
+  //This method will return a quality for a given number of waterings and
+  //fertilizerings
+  public static QualitiesEnum getQuality(int waterings, int fertilizers){
+    
+    QualitiesEnum qtemp = QualitiesEnum.ROTTEN;
+    
+    for (QualitiesEnum q : QualitiesEnum.values()){
+      if (qtemp.minFertilizers < q.minFertilizers && 
+              qtemp.minWaterings < q.minWaterings &&
+              waterings > q.minWaterings &&
+              fertilizers > q.minFertilizers){
+        qtemp = q;
+      }     
+    }
+    
+    return qtemp;
+    
   }
 }

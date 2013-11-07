@@ -9,20 +9,22 @@ package plantgame.utils;
  * @author tyler
  */
 public enum FruitsEnum {
-  APPLE(1,"Apple", 100000),
-  PEAR(1,"Pear", 100000),
-  BANANA(1,"Banana", 100000),
-  MANGO(1,"Mango", 100000),
-  KIWI(1,"Kiwi", 100000);
+  APPLE(1,"Apple", 100000, 100000),
+  PEAR(1,"Pear", 100000, 100000),
+  BANANA(1,"Banana", 100000, 100000),
+  MANGO(1,"Mango", 100000, 100000),
+  KIWI(1,"Kiwi", 100000, 100000);
   
   private final int baseCost;
   private final String name;
   private final long timeToGrow; //in ms
-
-  FruitsEnum(int cost, String newName, long newTime){
+  private final long timeToRot; //in ms
+  
+  FruitsEnum(int cost, String newName, long newTime, long newRotTime){
     baseCost = cost;
     name = newName;
     timeToGrow = newTime;
+    timeToRot = newRotTime;
   }
   
   public int getBaseCost(){
@@ -37,4 +39,7 @@ public enum FruitsEnum {
     return timeToGrow;
   }
   
+  public long getTimeToRot(){
+    return timeToRot;
+  }
 }
