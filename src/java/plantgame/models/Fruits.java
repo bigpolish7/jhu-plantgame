@@ -37,6 +37,18 @@ public class Fruits extends TimerTask{
     {
     }
     
+    public FruitsEnum getType(){
+      return fruitType;
+    }
+    
+    public String getStatus(){
+      if (isGrown ){
+        return "Grown";
+      }
+      
+      return "Growing";
+    }
+    
     public int getNumberOfTimesWater()
     {
         return NumberOfTimesWater;
@@ -73,6 +85,7 @@ public class Fruits extends TimerTask{
       
       //Schedule the plant to reach fruition at a given delay
       plantGrowingTimer.schedule(this, this.fruitType.getTimeToGrow());
+      
     }
     
     @Override

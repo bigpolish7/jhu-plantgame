@@ -18,10 +18,15 @@ body {
     margin:0;
     padding:0;
     line-height: 1.5em;
+    
+  
 }
 
 * {
-    color: black;
+
+    color: #00a4ff;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 p.t1 /* Bold Title */

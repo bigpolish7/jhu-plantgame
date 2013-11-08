@@ -24,6 +24,7 @@ public class User {
     private String userName;
     private int money;
     private HashMap <String, UserItem> items;
+    private Garden garden;
     
     public User(){
       items = new HashMap<String, UserItem>();
@@ -41,6 +42,8 @@ public class User {
         //DEBUG
         System.out.println("User added "+item.getName());        
       }
+      
+      garden = new Garden();
     }
 
     public Integer getId() {
@@ -114,6 +117,14 @@ public class User {
     
     public int getMoney(){
       return money;
+    }
+    
+    public Garden getGarden(){
+      return garden;
+    }
+    
+    public void setGarden(Garden g){
+      garden = g;
     }
     
     public void setItems(HashMap<String, UserItem> m){
