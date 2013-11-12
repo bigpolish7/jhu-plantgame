@@ -16,7 +16,7 @@ import plantgame.utils.Utils;
 
 /**
  *
- * @author thuan
+ * @author minh
  */
 public class GardenServlet extends HttpServlet {
 
