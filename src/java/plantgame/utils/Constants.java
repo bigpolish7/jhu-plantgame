@@ -36,7 +36,8 @@ public class Constants {
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
-    
+    public static final String PLOT_STATUS_USED = "Seed planted";
+    public static final String PLOT_STATUS_UNUSED = "Available for gardening";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 
@@ -60,4 +61,6 @@ public class Constants {
     public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
     // Each user can own up to a maximum number of plots of land
     public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
+    public static final int USER_START_NUMBER_OF_PLOTS = 5;
+    
 }

@@ -42,8 +42,11 @@ public class User {
         //DEBUG
         System.out.println("User added "+item.getName());        
       }
-      
       garden = new Garden();
+      for (int i = 0; i < Constants.USER_START_NUMBER_OF_PLOTS; i++){
+          Plot thisPlot = new Plot(false, Constants.PLOT_STATUS_UNUSED);
+          garden.addPlot(thisPlot);
+      }
     }
 
     public Integer getId() {

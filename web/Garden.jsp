@@ -7,6 +7,7 @@
 
 <%@page import="plantgame.utils.Constants"%>
 <%@page import="plantgame.models.Fruits"%>
+<%@page import="plantgame.models.Plot"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -23,10 +24,16 @@
         <table class="displayTable">
           <tr>
             <th>
+              Plot#
+            </th>
+            <th>
+              Plot status
+            </th>
+            <th>
               Fruit
             </th>
             <th>
-              Status
+              Fruit status
             </th>
             <th>
               Quality
@@ -37,25 +44,51 @@
           </tr>
           
           <%
-            for (Fruits fruit : user.getGarden().getFruits()){
+            for (int i = 0; i < user.getGarden().getPlots().size(); i++){
+                Plot thisPlot = user.getGarden().getPlots().get(i);
           %>
               <tr>
                 <td>
-                  <%=fruit.getType().getName()%>
-                </td>
+                    <%=(i+1)%>
+                </td>  
                 <td>
-                  <%=fruit.getStatus()%>
+                    <%=thisPlot.getPlotUsage()%>
                 </td>
+                <%
+                if (thisPlot.getPlotUsage().equalsIgnoreCase(Constants.PLOT_STATUS_UNUSED)) {
+                    // there is no seed being planted in this plot; Fruit fruit is null
+                %>
                 <td>
-                  <%=fruit.getQuality().getName()%>
                 </td>     
                 <td>
-                  
                 </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <%
+                }
+                else { //get the name and quality of the fruit being planted in this plot
+                %>
+                <td>
+                    <%=thisPlot.getFruit().getType().getName()%>
+                </td>     
+                <td>
+                    <%=thisPlot.getFruit().getStatus()%>
+                </td>
+                <td>
+                    <%=thisPlot.getFruit().getQuality().getName()%>
+                </td>
+                <td>
+                </td>
+                <%
+                }
+                %>
               </tr>
           <%
             }
           %>
+          
         </table>
     </body>
 </html>
