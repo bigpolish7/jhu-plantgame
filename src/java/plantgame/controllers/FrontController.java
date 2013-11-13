@@ -22,11 +22,7 @@ public class FrontController extends HttpServlet {
         String action =  request.getParameter("action");        
         String url = "";
         
-        System.out.println("Front Controller action =" + action);
-        
-
-
-        
+        System.out.println("Front Controller action = " + action);
         
         if (action.equals(Constants.LOGIN)) {
             url = Constants.LOGIN;
@@ -36,6 +32,9 @@ public class FrontController extends HttpServlet {
         }
         else if(action.equals(Constants.STORE_SERVLET)){
           url = Constants.STORE_SERVLET;
+        }
+        else if(action.equals(Constants.GARDEN_SERVLET)){
+          url = Constants.GARDEN_SERVLET;
         }
         else{
           url = action;

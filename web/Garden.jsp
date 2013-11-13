@@ -20,7 +20,7 @@
     <body>
         <%@ include file="/NavPageHeader.jsp" %>
         <label id="gardenHeading" class="pageHeading">Welcome to your garden, <jsp:getProperty name="user" property="userName"/> </label>
-        
+        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST">
         <table class="displayTable">
           <tr>
             <th>
@@ -55,7 +55,7 @@
                     <%=thisPlot.getPlotUsage()%>
                 </td>
                 <%
-                if (thisPlot.getPlotUsage().equalsIgnoreCase(Constants.PLOT_STATUS_UNUSED)) {
+                if (thisPlot.getPlotUsage().equalsIgnoreCase(Constants.PLOT_STATUS_UNUSED) || thisPlot.getPlotUsage().equalsIgnoreCase("is plowed")) {
                     // there is no seed being planted in this plot; Fruit fruit is null
                 %>
                 <td>
@@ -64,8 +64,7 @@
                 </td>
                 <td>
                 </td>
-                <td>
-                </td>
+                
                 <%
                 }
                 else { //get the name and quality of the fruit being planted in this plot
@@ -79,16 +78,23 @@
                 <td>
                     <%=thisPlot.getFruit().getQuality().getName()%>
                 </td>
-                <td>
-                </td>
                 <%
                 }
                 %>
+                <td>
+                    <input type="submit" name="gardeningAction" value="Plow">
+                    <input type="submit" name="gardeningAction" value="Plant">
+                    <input type="submit" name="gardeningAction" value="Water">
+                    <input type="submit" name="gardeningAction" value="Fertilize">
+                    <input type="submit" name="gardeningAction" value="Harvest">
+                    <input type="hidden" name="plotNumber" value="<%=(i)%>">
+                </td>
+                
               </tr>
           <%
             }
           %>
-          
         </table>
+        </form>
     </body>
 </html>
