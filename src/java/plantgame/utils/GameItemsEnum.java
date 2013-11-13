@@ -14,10 +14,15 @@ public enum GameItemsEnum {
   SHOVEL(10, "Shovel", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
   WATERING_CAN(10, "Watering Can", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
   SPADE(10, "Spade", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  SEED(10, "Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
+  //SEED(10, "Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  APPLE_SEED(10, "Apple Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  PEAR_SEED(10, "Pear Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  BANANA_SEED(10, "Banana Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  MANGO_SEED(10, "Mango Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  KIWI_SEED(10, "Kiwi Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
   WATER(10, "Water", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
   FERTILIZER(10, "Fertilizer", Constants.MAX_NUMBER_OF_ITEM_IN_STORE);
-  
+   
   private final int baseCost;
   private final String name;
   private final int maxNumberOfItem;

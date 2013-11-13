@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Garden {
   
   private ArrayList<Fruits> fruits;
-  
+    
   public Garden(){
     fruits = new ArrayList<Fruits>();
   }
