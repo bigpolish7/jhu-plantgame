@@ -52,10 +52,10 @@
                     <%=(i+1)%>
                 </td>  
                 <td>
-                    <%=thisPlot.getPlotUsage()%>
+                    <%=thisPlot.getPlotStatus()%>
                 </td>
                 <%
-                if (thisPlot.getPlotUsage().equalsIgnoreCase(Constants.PLOT_STATUS_UNUSED) || thisPlot.getPlotUsage().equalsIgnoreCase("is plowed")) {
+                if (thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_UNPLOWED) || thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NO_SEED)) {
                     // there is no seed being planted in this plot; Fruit fruit is null
                 %>
                 <td>
@@ -82,12 +82,18 @@
                 }
                 %>
                 <td>
-                    <input type="submit" name="gardeningAction" value="Plow">
-                    <input type="submit" name="gardeningAction" value="Plant">
-                    <input type="submit" name="gardeningAction" value="Water">
-                    <input type="submit" name="gardeningAction" value="Fertilize">
-                    <input type="submit" name="gardeningAction" value="Harvest">
-                    <input type="hidden" name="plotNumber" value="<%=(i)%>">
+                    <%
+                        if (thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NO_SEED)) {
+                        // this plot has been plowed - Plow button should be disable
+                    %>
+                    <button name="actionPlow" style="background-color:transparent" disabled type="submit" value="<%=(i)%>">Plow</button>
+                    <% } else { %>
+                    <button name="actionPlow" type="submit" value="<%=(i)%>">Plow</button>
+                    <% } %>
+                    <button name="actionPlant" type="submit" value="<%=(i)%>">Plant</button>
+                    <button name="actionWater" type="submit" value="<%=(i)%>">Water</button>
+                    <button name="actionFertilize" type="submit" value="<%=(i)%>">Fertilize</button>
+                    <button name="actionHarvest" type="submit" value="<%=(i)%>">Harvest</button>
                 </td>
                 
               </tr>

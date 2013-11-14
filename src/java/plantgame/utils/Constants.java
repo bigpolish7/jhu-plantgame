@@ -36,8 +36,9 @@ public class Constants {
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
-    public static final String PLOT_STATUS_USED = "Seed planted";
-    public static final String PLOT_STATUS_UNUSED = "Available for gardening";
+    public static final String PLOT_STATUS_UNPLOWED = "Waiting to be plowed";
+    public static final String PLOT_STATUS_NO_SEED = "Waiting for seed";
+    public static final String PLOT_STATUS_SEED_PLANTED = "Tree is growing";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 

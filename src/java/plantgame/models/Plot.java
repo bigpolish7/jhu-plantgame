@@ -12,12 +12,12 @@ package plantgame.models;
  */
 public class Plot {
     private boolean isPlowed;
-    private String plotUsage;
+    private String plotStatus;
     private Fruits fruit;
     
-    public Plot(boolean thisIsPlowed, String thisPlotUsage) {
+    public Plot(boolean thisIsPlowed, String thisPlotStatus) {
         isPlowed = thisIsPlowed;
-        plotUsage = thisPlotUsage;
+        plotStatus = thisPlotStatus;
     }
     public Plot() {
     }
@@ -27,11 +27,11 @@ public class Plot {
     public void setIsPlowed(boolean thisIsPlowed) {
         isPlowed = thisIsPlowed;
     }
-    public String getPlotUsage() {
-        return plotUsage;
+    public String getPlotStatus() {
+        return plotStatus;
     }
-    public void setPlotUsage(String thisPlotUsage) {
-        plotUsage = thisPlotUsage;
+    public void setPlotStatus(String thisPlotStatus) {
+        plotStatus = thisPlotStatus;
     }
     public Fruits getFruit() {
         return fruit;

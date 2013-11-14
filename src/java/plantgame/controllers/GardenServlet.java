@@ -7,6 +7,7 @@
 package plantgame.controllers;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,19 +59,21 @@ public class GardenServlet extends HttpServlet {
         }
         System.out.println(user.getFirstName());
         
-        String gardeningAction = request.getParameter("gardeningAction");
-        String plotNumberString = request.getParameter("plotNumber");
-        int plotNumber;
-        plotNumber = Integer.parseInt("2");
-        System.out.println(gardeningAction);
-        System.out.println(plotNumberString);
-        System.out.println(plotNumber);
-        if (gardeningAction.equalsIgnoreCase("Plow")) {
+        Enumeration paramNames = request.getParameterNames();
+        while(paramNames.hasMoreElements())
+        {
+            String paramName = (String)paramNames.nextElement();
+            System.out.println(
+                paramName + " = " + request.getParameter(paramName));
+            if (paramName.equalsIgnoreCase("actionPlow")) {
+                int plotNumber = 
+                        Integer.parseInt(request.getParameter(paramName));
             // Allow user to dig
             user.getGarden().getPlots().get(plotNumber).setIsPlowed(true);
-            user.getGarden().getPlots().get(plotNumber).setPlotUsage("is plowed");
-        } 
-        
+            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NO_SEED);
+            }
+        }
+
         //Add user to the request
         request.setAttribute(Constants.USER, user);
 
