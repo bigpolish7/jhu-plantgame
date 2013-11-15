@@ -14,13 +14,16 @@ public class Constants {
     public static final String REGISTER = "Register";
     
     // Fruits
-    public static final String APPLE = "apple";
-    public static final String ORANGE = "orange";
+    public static final String APPLE = "Apple";
+    public static final String ORANGE = "Orange";
+    public static final String PEAR = "Pear";
+    public static final String BANANA = "Banana";
+    public static final String MANGO = "Mango";
+    public static final String KIWI = "Kiwi";
     
-    // Fruitb ID
+    // Fruit ID
     public static final int APPLE_ID = 1;
     public static final int ORANGE_ID = 2;
-   
 
     public static final String NOT_ENOUGH_MONEY = "NEM";
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";
@@ -36,9 +39,9 @@ public class Constants {
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
-    public static final String PLOT_STATUS_UNPLOWED = "Waiting to be plowed";
-    public static final String PLOT_STATUS_NO_SEED = "Waiting for seed";
-    public static final String PLOT_STATUS_SEED_PLANTED = "Tree is growing";
+    public static final String PLOT_STATUS_NEED_PLOW = "Waiting to a plow";
+    public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
+    public static final String PLOT_STATUS_HAS_SEED = "Tree is growing";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 

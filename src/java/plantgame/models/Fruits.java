@@ -31,6 +31,9 @@ public class Fruits extends TimerTask{
         //When fruits object is created it is not grown yet
         isGrown = false;
         quality = QualitiesEnum.ROTTEN;
+        //When fruits object is created it has not been watered or fertilized yet
+        NumberOfTimesFertilize = 0;
+        NumberOfTimesWater = 0;
     }
     
     public Fruits()

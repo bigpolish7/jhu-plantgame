@@ -8,15 +8,20 @@ package plantgame.controllers;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import plantgame.models.Fruits;
 import plantgame.models.User;
 import plantgame.models.Plot;
+import plantgame.models.UserItem;
 import plantgame.utils.Constants;
+import plantgame.utils.GameItemsEnum;
+import plantgame.utils.FruitsEnum;
 import plantgame.utils.Utils;
 
 /**
@@ -39,52 +44,78 @@ public class GardenServlet extends HttpServlet {
       
         //First get the user object from the session
         HttpSession session = request.getSession();
-    
         User user = null;
-    
         //TODO: forward to some error page or something
         if (session == null){
             System.out.println("Garden Servlet processRequest session was null");
             log("Garden Servlet processRequest session was null");
         }
         else{
-          //Get the user object from the session
-          user = (User)session.getAttribute(Constants.USER);
-        }
-    
-    
-        if (user == null){
-          System.out.println("Garden Servlet processRequest user was null");
-          log("Garden Servlet processRequest user was null");
-        }
-        System.out.println(user.getFirstName());
-        
-        Enumeration paramNames = request.getParameterNames();
-        while(paramNames.hasMoreElements())
-        {
-            String paramName = (String)paramNames.nextElement();
-            System.out.println(
-                paramName + " = " + request.getParameter(paramName));
-            if (paramName.equalsIgnoreCase("actionPlow")) {
-                int plotNumber = 
-                        Integer.parseInt(request.getParameter(paramName));
-            // Allow user to dig
-            user.getGarden().getPlots().get(plotNumber).setIsPlowed(true);
-            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NO_SEED);
+            //Get the user object from the session
+            user = (User)session.getAttribute(Constants.USER);
+            if (user == null){
+                System.out.println("Garden Servlet processRequest user was null");
+                log("Garden Servlet processRequest user was null");
+            }
+            else {
+                System.out.println(user.getFirstName());
+
+                Enumeration paramNames = request.getParameterNames();
+                while(paramNames.hasMoreElements()) {
+                    String paramName = (String)paramNames.nextElement();
+                    System.out.println(
+                    paramName + " = " + request.getParameter(paramName));
+                    if (paramName.equalsIgnoreCase("actionPlow")) {
+                        int plotNumber = 
+                            Integer.parseInt(request.getParameter(paramName));
+                        // Allow users to dig
+                        user.getGarden().getPlots().get(plotNumber).setIsPlowed(true);
+                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NEED_SEED);
+                    }
+                    // Allow users to plant
+                    if (paramName.equalsIgnoreCase("actionPlant")) {
+                        int plotNumber = 
+                            Integer.parseInt(request.getParameter(paramName));
+                        String seedToPlant =
+                            request.getParameter("seedToPlant");
+                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
+                        //userItems has 
+                        System.out.println("seedToPlant: " + seedToPlant);
+                        for(GameItemsEnum item:GameItemsEnum.values()){
+                            if (item.getName().equalsIgnoreCase(seedToPlant)) {
+                                // update the number of this seed
+                                HashMap<String, UserItem> userItems = user.getItems();
+                                UserItem userItem = userItems.get(item.getName());
+                                userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                                userItems.put(item.getName(), userItem);
+                                user.setItems(userItems);
+                                // update the fruit in this plot
+                                String fruitType = seedToPlant.replace(" Seed", "");
+                                for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
+                                    if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
+                                        // Fruits.java: Fruits() constructor: what id is for?
+                                        // set id = 1 for all fruits for now
+                                        Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                        user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                                    }
+                                }
+                            }  
+                        }   
+                    }//if (paramName.equalsIgnoreCase("actionPlant"))
+                }//while(paramNames.hasMoreElements())
+
+                //Add user to the request
+                request.setAttribute(Constants.USER, user);
+
+                //DEBUG
+                System.out.println("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
+                log("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
+
+                //Forward the request to the Store.jsp 
+                RequestDispatcher rDispatcher = getServletContext().getRequestDispatcher(Constants.GARDEN_JSP);
+                rDispatcher.forward(request, response);
             }
         }
-
-        //Add user to the request
-        request.setAttribute(Constants.USER, user);
-
-        //DEBUG
-        System.out.println("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
-        log("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
-
-        //Forward the request to the Store.jsp 
-        RequestDispatcher rDispatcher = getServletContext().getRequestDispatcher(Constants.GARDEN_JSP);
-        rDispatcher.forward(request, response);
-      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

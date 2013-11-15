@@ -14,13 +14,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Plant Game Garden</title>
+        <title>Garden</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
         <%@ include file="/NavPageHeader.jsp" %>
         <label id="gardenHeading" class="pageHeading">Welcome to your garden, <jsp:getProperty name="user" property="userName"/> </label>
         <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST">
+        
+        <%
+        for(GameItemsEnum item : GameItemsEnum.values()) {
+            if (item.getName().toLowerCase().contains("SEED".toLowerCase())) {
+        %>
+            <input type="checkbox" name="seedToPlant" value="<%=item.getName()%>"><%=item.getName()%> <%=(userItems.get(item.getName())).getNumberOfItem()%>
+        <%  } 
+        }
+        %>
         <table class="displayTable">
           <tr>
             <th>
@@ -55,8 +64,8 @@
                     <%=thisPlot.getPlotStatus()%>
                 </td>
                 <%
-                if (thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_UNPLOWED) || thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NO_SEED)) {
-                    // there is no seed being planted in this plot; Fruit fruit is null
+                if (thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW) || thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_SEED)) {
+                    // Fruit fruit is null
                 %>
                 <td>
                 </td>     
@@ -83,7 +92,7 @@
                 %>
                 <td>
                     <%
-                        if (thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NO_SEED)) {
+                        if (!(thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW))) {
                         // this plot has been plowed - Plow button should be disable
                     %>
                     <button name="actionPlow" style="background-color:transparent" disabled type="submit" value="<%=(i)%>">Plow</button>
@@ -95,7 +104,6 @@
                     <button name="actionFertilize" type="submit" value="<%=(i)%>">Fertilize</button>
                     <button name="actionHarvest" type="submit" value="<%=(i)%>">Harvest</button>
                 </td>
-                
               </tr>
           <%
             }
