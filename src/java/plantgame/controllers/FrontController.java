@@ -36,6 +36,9 @@ public class FrontController extends HttpServlet {
         else if(action.equals(Constants.GARDEN_SERVLET)){
           url = Constants.GARDEN_SERVLET;
         }
+        else if(action.equals(Constants.GARDEN_JSP)){
+          url = Constants.GARDEN_JSP;
+        }
         else{
           url = action;
         }

@@ -7,6 +7,7 @@
 package plantgame.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,6 @@ import plantgame.models.UserItem;
 import plantgame.utils.Constants;
 import plantgame.utils.GameItemsEnum;
 import plantgame.utils.FruitsEnum;
-import plantgame.utils.Utils;
 
 /**
  *
@@ -58,8 +58,8 @@ public class GardenServlet extends HttpServlet {
                 log("Garden Servlet processRequest user was null");
             }
             else {
+                ArrayList<String> errors = new ArrayList<String>();
                 System.out.println(user.getFirstName());
-
                 Enumeration paramNames = request.getParameterNames();
                 while(paramNames.hasMoreElements()) {
                     String paramName = (String)paramNames.nextElement();
@@ -76,12 +76,16 @@ public class GardenServlet extends HttpServlet {
                     if (paramName.equalsIgnoreCase("actionPlant")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
+                        if (user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW)) {
+                            // this plot has not been plowed
+                            errors.add("Error: You need to plow a plot before planting a seed");
+                        }
                         String seedToPlant =
                             request.getParameter("seedToPlant");
                         user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
                         //userItems has 
                         System.out.println("seedToPlant: " + seedToPlant);
-                        for(GameItemsEnum item:GameItemsEnum.values()){
+                        for (GameItemsEnum item:GameItemsEnum.values()){
                             if (item.getName().equalsIgnoreCase(seedToPlant)) {
                                 // update the number of this seed
                                 HashMap<String, UserItem> userItems = user.getItems();
@@ -103,16 +107,25 @@ public class GardenServlet extends HttpServlet {
                         }   
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
                 }//while(paramNames.hasMoreElements())
-
-                //Add user to the request
                 request.setAttribute(Constants.USER, user);
-
-                //DEBUG
-                System.out.println("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
-                log("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
-
-                //Forward the request to the Store.jsp 
-                RequestDispatcher rDispatcher = getServletContext().getRequestDispatcher(Constants.GARDEN_JSP);
+                RequestDispatcher rDispatcher;
+                if (errors.size() > 0) {
+                    request.setAttribute(Constants.ERROR_MESSAGE, "some errors");
+                        //DEBUG
+                    System.out.println("Garden Servlet forwarding request to " + Constants.ERROR_JSP);
+                    log("Garden Servlet forwarding request to " + Constants.ERROR_JSP);
+                    //Forward the request to the Store.jsp 
+                    rDispatcher = getServletContext().getRequestDispatcher(Constants.ERROR_JSP);
+                }
+                else {
+                    //Add user to the request
+                    request.setAttribute(Constants.USER, user);
+                    //DEBUG
+                    System.out.println("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
+                    log("Garden Servlet forwarding request to " + Constants.GARDEN_JSP);
+                    //Forward the request to the Store.jsp 
+                    rDispatcher = getServletContext().getRequestDispatcher(Constants.GARDEN_JSP);
+                }
                 rDispatcher.forward(request, response);
             }
         }

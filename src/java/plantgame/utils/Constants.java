@@ -29,6 +29,8 @@ public class Constants {
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";
     public static final String PURCHASE_COMPLETE = "PC";
     public static final String USER = "user";
+    public static final String ERROR_MESSAGE = "message";
+    public static final String ERROR_JSP = "/Error.jsp";
     public static final String PURCHASE_RESULT = "PR";
     public static final String APPLICATION = "/PlantGame";
     public static final String STORE_JSP = "/Store.jsp";
@@ -39,7 +41,7 @@ public class Constants {
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
-    public static final String PLOT_STATUS_NEED_PLOW = "Waiting to a plow";
+    public static final String PLOT_STATUS_NEED_PLOW = "Waiting for a plow";
     public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
     public static final String PLOT_STATUS_HAS_SEED = "Tree is growing";
     //Delay from start of program to when store gets its first 
