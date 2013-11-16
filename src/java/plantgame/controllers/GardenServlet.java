@@ -76,41 +76,56 @@ public class GardenServlet extends HttpServlet {
                     if (paramName.equalsIgnoreCase("actionPlant")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
-                        if (user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW)) {
+                        if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_SEED))) {
                             // this plot has not been plowed
-                            errors.add("Error: You need to plow a plot before planting a seed");
+                            errors.add(Constants.ERROR_PLOT_NOT_PLOWED);
                         }
-                        String seedToPlant =
-                            request.getParameter("seedToPlant");
-                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
-                        //userItems has 
-                        System.out.println("seedToPlant: " + seedToPlant);
-                        for (GameItemsEnum item:GameItemsEnum.values()){
-                            if (item.getName().equalsIgnoreCase(seedToPlant)) {
-                                // update the number of this seed
-                                HashMap<String, UserItem> userItems = user.getItems();
-                                UserItem userItem = userItems.get(item.getName());
-                                userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
-                                userItems.put(item.getName(), userItem);
-                                user.setItems(userItems);
-                                // update the fruit in this plot
-                                String fruitType = seedToPlant.replace(" Seed", "");
-                                for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
-                                    if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
-                                        // Fruits.java: Fruits() constructor: what id is for?
-                                        // set id = 1 for all fruits for now
-                                        Fruits fruit = new Fruits(fruitsEnumItem, 1);
-                                        user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                        else {
+                            String seedToPlant =
+                                request.getParameter("seedToPlant");
+                            System.out.println("seedToPlant: " + seedToPlant);
+                            for (GameItemsEnum item:GameItemsEnum.values()){
+                                if (item.getName().equalsIgnoreCase(seedToPlant)) {
+                                    // update the number of this seed
+                                    HashMap<String, UserItem> userItems = user.getItems();
+                                    UserItem userItem = userItems.get(item.getName());
+                                    if (userItem.getNumberOfItem() == 0) {
+                                        //users can't plant any seed of this type because they have 0 seed of this type
+                                        errors.add(Constants.ERROR_SEED_NOT_AVAILABLE);
                                     }
-                                }
-                            }  
-                        }   
+                                    else {
+                                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
+                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                                        userItems.put(item.getName(), userItem);
+                                        user.setItems(userItems);
+                                        // update the fruit in this plot
+                                        String fruitType = seedToPlant.replace(" Seed", "");
+                                        for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
+                                            if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
+                                                // Fruits.java: Fruits() constructor: what id is for?
+                                                // set id = 1 for all fruits for now
+                                                Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                                user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                                            }
+                                        }
+                                    }
+                                }  
+                            }//for (GameItemsEnum item:GameItemsEnum.values())   
+                        }
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
                 }//while(paramNames.hasMoreElements())
                 request.setAttribute(Constants.USER, user);
                 RequestDispatcher rDispatcher;
+                String message = "";
                 if (errors.size() > 0) {
-                    request.setAttribute(Constants.ERROR_MESSAGE, "some errors");
+                    // concatenating all error messages
+                    String last_message = "";
+                    for (int i = 0; i < errors.size(); i++) {
+                        String this_error = errors.get(i).concat("<br>");
+                        message = last_message.concat(this_error);
+                        last_message = message;
+                    }
+                    request.setAttribute(Constants.ERROR_MESSAGE, message);
                         //DEBUG
                     System.out.println("Garden Servlet forwarding request to " + Constants.ERROR_JSP);
                     log("Garden Servlet forwarding request to " + Constants.ERROR_JSP);
