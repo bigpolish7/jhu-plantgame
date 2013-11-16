@@ -20,7 +20,7 @@
     <body>
         <%@ include file="/NavPageHeader.jsp" %>
         <label id="gardenHeading" class="pageHeading">Welcome to your garden, <jsp:getProperty name="user" property="userName"/> </label>
-        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST">
+        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST" style="background-color:lightgreen">
         
         <%
         for(GameItemsEnum item : GameItemsEnum.values()) {
@@ -30,7 +30,7 @@
         <%  } 
         }
         %>
-        <table class="displayTable">
+        <table class="displayTable" >
           <tr>
             <th>
               Plot#

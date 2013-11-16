@@ -65,6 +65,7 @@ public class GardenServlet extends HttpServlet {
                     String paramName = (String)paramNames.nextElement();
                     System.out.println(
                     paramName + " = " + request.getParameter(paramName));
+                    
                     if (paramName.equalsIgnoreCase("actionPlow")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
@@ -72,6 +73,7 @@ public class GardenServlet extends HttpServlet {
                         user.getGarden().getPlots().get(plotNumber).setIsPlowed(true);
                         user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NEED_SEED);
                     }
+                    
                     // Allow users to plant
                     if (paramName.equalsIgnoreCase("actionPlant")) {
                         int plotNumber = 

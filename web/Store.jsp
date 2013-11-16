@@ -75,7 +75,7 @@
     
     <!-- This will display the different items a user can purchase -->
     <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">
-      <table class="displayTable" >
+      <table class="displayTable" style="background-color:lightgreen">
         <tr>
           <th>Item</th>
           <th>Number In Stock</th>

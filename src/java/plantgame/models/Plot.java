@@ -39,5 +39,11 @@ public class Plot {
     public void setFruit(Fruits thisFruit) {
         fruit = thisFruit;
     }
+    
+    public void startGrowing(){
+      if (fruit != null){
+        fruit.startGrowing();
+      }
+    }
 }
 
