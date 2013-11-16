@@ -103,6 +103,7 @@ public class GardenServlet extends HttpServlet {
                                           // Fruits.java: Fruits() constructor: what id is for?
                                           // set id = 1 for all fruits for now
                                           Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                          fruit.startGrowing();
                                           user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
                                       }
                                   }  
