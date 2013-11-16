@@ -69,4 +69,20 @@ public class Constants {
     public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
     public static final int USER_START_NUMBER_OF_PLOTS = 5;
     
+    
+    public static String getVerbosePurchaseResult(String s){
+      if (s==null || s.equals("")){
+        return "NULL";
+      }
+      
+      if (s.equals(NOT_ENOUGH_MONEY)){
+        return "Sorry you do not have enough money.";
+      }
+      else if (s.equals(NOT_ENOUGH_ITEMS_IN_STORE)){
+        return "Sorry the store does not have enough items to complete your purchase";
+      }
+
+      return "Your purchase is complete";
+
+    }
 }

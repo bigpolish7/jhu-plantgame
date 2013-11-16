@@ -69,15 +69,16 @@ public class StoreServlet extends HttpServlet {
     String purchaseResult = StoreHelper.doPurchase(user, request);
     
     //Add the purchase results to the request
-    request.setAttribute(Constants.PURCHASE_RESULT, purchaseResult);
+    session.setAttribute(Constants.PURCHASE_RESULT, purchaseResult);
     
     //DEBUG
     System.out.println("Store Servlet forwarding request to "+Constants.STORE_JSP);
     log("Store Servlet forwarding request to "+Constants.STORE_JSP);
     
     //Forward the request to the Store.jsp 
-    RequestDispatcher rDispatcher = getServletContext().getRequestDispatcher(Constants.STORE_JSP);
-    rDispatcher.forward(request, response);    
+    //RequestDispatcher rDispatcher = getServletContext().getRequestDispatcher(Constants.STORE_JSP);
+    //rDispatcher.forward(request, response);    
+    response.sendRedirect(response.encodeRedirectURL(Constants.APPLICATION+Constants.STORE_JSP));
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
