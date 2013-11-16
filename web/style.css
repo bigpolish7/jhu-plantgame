@@ -26,7 +26,7 @@ body {
 
     color: #00a4ff;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 p.t1 /* Bold Title */
@@ -39,15 +39,17 @@ font-family: Verdana, Geneva, Arial, sans-serif;
 
 .center /* This can be used as defualt center all body contents for all jsp and html*/
 {    
-margin:auto;
-width:70%;
-border:3px solid whitesmoke;
-width:680px;
-font-family: Verdana, Geneva, Arial, sans-serif;
-color: #330000;
-padding: 2em;
-position:relative;top:100px;
+  margin:auto;
+  width:70%;
+  border:3px solid whitesmoke;
+  width:680px;
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  color: #330000;
+  padding: 2em;
+  position:relative;
+  top:100px;
 }
+
 .displayTable {
     border-style: none;
     border-width: 1px;
@@ -138,3 +140,27 @@ margin-top: 0;
     border:1px solid black;
 }
 
+
+/*Styles forNavPageHeader.jsp*/
+.NavPageHeaderTable 
+{    
+  margin:auto;
+  border:3px solid whitesmoke;
+  width:680px;
+  padding: 2em;
+  position:fixed;
+  top:100px;
+  left: 50%;
+  right: 50%;
+  margin-left: -340px;  
+}
+
+
+  
+  
+.NavPageHeaderTableRow
+{
+  margin:auto;
+  width:70%;  
+  border:3px solid whitesmoke;
+}
