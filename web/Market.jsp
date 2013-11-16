@@ -10,7 +10,7 @@
 <%@page import="plantgame.models.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="plantgame.utils.Fruits"%>
+<%@page import="plantgame.models.Fruits"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,20 +18,20 @@
         <link rel="stylesheet" type="text/css" href="style.css" media = "all">
     </head>
     <body>
-<<<<<<< HEAD
+
         
         <div id="maincontainer">
-       
-            <%  
+       <!--
+            
                 // TODO: Reenable all cpmmented out code.
                 //User user = (User) session.getAttribute("user"); 
                 //List<Fruits> fruits = new ArrayList<Fruits>();
-=======
+        -->
         <%@ include file="/NavPageHeader.jsp" %>
         <center>
             <%
                 //User user = (User) session.getAttribute("user");  
->>>>>>> 7680a77551b705b43a564d0c448a43b412a4d60a
+
             %>
             <div style="margin-top: 5em"></div>
             <div id="topsection"><div class="innertube"> <center><h1><p class="t1">Welcome to the Market</p></h1>
