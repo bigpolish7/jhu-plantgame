@@ -18,20 +18,16 @@
         <link rel="stylesheet" type="text/css" href="style.css" media = "all">
     </head>
     <body>
-       
+     <%@ include file="/NavPageHeader.jsp" %>   
         <div id="maincontainer">
        <!--
             
                 // TODO: Reenable all cpmmented out code.
-                //User user = (User) session.getAttribute("user"); 
-<<<<<<< HEAD
-                //List<Fruits> fruits = new ArrayList<Fruits>();  
-=======
-                //List<Fruits> fruits = new ArrayList<Fruits>();
+                
         -->
-        <%@ include file="/NavPageHeader.jsp" %>
             <%
-                //User user = (User) session.getAttribute("user");  
+                //User user = (User) session.getAttribute("user"); 
+                //List<Fruits> fruits = new ArrayList<Fruits>(); 
 
 
             %>
@@ -78,9 +74,7 @@
                         </div>        
                         </div>
                     </div>
-                </div>
-            
-                        
+                </div>                    
                
         </div>
     </body>

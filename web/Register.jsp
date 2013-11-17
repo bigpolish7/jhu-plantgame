@@ -13,6 +13,7 @@
          <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
+        <div class="center" style="background-color: lightgreen">
         <h1>You are only a few minutes away from playing the hottest game on the market!</h1>
         <br>
         <form method="POST" action="FrontController">
@@ -66,5 +67,6 @@
             <br>
             <input type="submit" value="Join Us"/>
         </form>
+        </div>
     </body>
 </html>
