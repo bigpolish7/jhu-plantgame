@@ -91,15 +91,23 @@
                 }
                 %>
                 <td>
-                    <%
-                        if (!(thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW))) {
+                    <% if (!(thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW))) {
                         // this plot has been plowed - Plow button should be disable
                     %>
                     <button name="actionPlow" style="background-color:transparent" disabled type="submit" value="<%=(i)%>">Plow</button>
                     <% } else { %>
                     <button name="actionPlow" type="submit" value="<%=(i)%>">Plow</button>
                     <% } %>
+                    
+                    <% if (!(thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_SEED)) && !(thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_PLOW))) {
+                        // this plot has been plowed - Plow button should be disable
+                    %>
+                    <button name="actionPlant" style="background-color:transparent" disabled type="submit" value="<%=(i)%>">Plant</button>
+                    <% } else { %>
                     <button name="actionPlant" type="submit" value="<%=(i)%>">Plant</button>
+                    <% } %>
+                    
+                    
                     <button name="actionWater" type="submit" value="<%=(i)%>">Water</button>
                     <button name="actionFertilize" type="submit" value="<%=(i)%>">Fertilize</button>
                     <button name="actionHarvest" type="submit" value="<%=(i)%>">Harvest</button>
