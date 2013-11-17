@@ -131,8 +131,25 @@ public class GardenServlet extends HttpServlet {
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
                         else {
-                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesWater(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater()+1);
-                            System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
+                            for (GameItemsEnum item:GameItemsEnum.values()){
+                                if (item.getName().equalsIgnoreCase("Water")) {
+                                    // update the number of this seed
+                                    HashMap<String, UserItem> userItems = user.getItems();
+                                    UserItem userItem = userItems.get(item.getName());
+                                    if (userItem.getNumberOfItem() == 0) {
+                                        // no more water
+                                        errors.add(Constants.ERROR_NO_WATER_OR_FERTILIZER);
+                                    }
+                                    else {
+                                        user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesWater(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater()+1);                                 
+                                        System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
+                                        // update the amount of water
+                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                                        userItems.put(item.getName(), userItem);
+                                        user.setItems(userItems);
+                                    }
+                                }
+                            }
                         }
                     }//if (paramName.equalsIgnoreCase("actionWater"))
                     // Allow users to fertilize
@@ -144,8 +161,25 @@ public class GardenServlet extends HttpServlet {
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
                         else {
-                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
-                            System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
+                            for (GameItemsEnum item:GameItemsEnum.values()){
+                                if (item.getName().equalsIgnoreCase("Fertilizer")) {
+                                    // update the number of this seed
+                                    HashMap<String, UserItem> userItems = user.getItems();
+                                    UserItem userItem = userItems.get(item.getName());
+                                    if (userItem.getNumberOfItem() == 0) {
+                                        // no more fertilizer
+                                        errors.add(Constants.ERROR_NO_WATER_OR_FERTILIZER);
+                                    }
+                                    else {
+                                        user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
+                                        System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
+                                        // update the amount of fertilizer
+                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                                        userItems.put(item.getName(), userItem);
+                                        user.setItems(userItems);
+                                    }
+                                }
+                            }
                         }
                     }//if (paramName.equalsIgnoreCase("actionFertilize"))
                 }//while(paramNames.hasMoreElements())

@@ -34,6 +34,7 @@ public class Constants {
     public static final String ERROR_SEED_NOT_AVAILABLE = "Error: You currently have 0 seeds. You need to buy a seed before planting a seed";
     public static final String ERROR_SEED_NOT_SELECTED = "Error: You need to select a seed to plant";
     public static final String ERROR_PLOT_NO_SEED = "Error: You need to plant a seed before you can water or fertilize your plot";
+    public static final String ERROR_NO_WATER_OR_FERTILIZER = "Error: There is no water or fertilizer. You need to buy some water or fertilizer.";
     public static final String ERROR_JSP = "/Error.jsp";
     public static final String PURCHASE_RESULT = "PR";
     public static final String APPLICATION = "/PlantGame";
@@ -65,7 +66,6 @@ public class Constants {
     
     //This is the maximum number of each item that the store can hold
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
-    
     public static final int USER_START_NUMBER_OF_ITEMS = 1;
     // Each user can purchase extra plots of land for this amount of money
     public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
