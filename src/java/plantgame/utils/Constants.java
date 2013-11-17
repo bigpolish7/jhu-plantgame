@@ -33,6 +33,7 @@ public class Constants {
     public static final String ERROR_PLOT_NOT_PLOWED = "Error: You need to plow a plot before planting a seed";
     public static final String ERROR_SEED_NOT_AVAILABLE = "Error: You currently have 0 seeds. You need to buy a seed before planting a seed";
     public static final String ERROR_SEED_NOT_SELECTED = "Error: You need to select a seed to plant";
+    public static final String ERROR_PLOT_NO_SEED = "Error: You need to plant a seed before you can water or fertilize your plot";
     public static final String ERROR_JSP = "/Error.jsp";
     public static final String PURCHASE_RESULT = "PR";
     public static final String APPLICATION = "/PlantGame";
@@ -46,7 +47,7 @@ public class Constants {
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
     public static final String PLOT_STATUS_NEED_PLOW = "Waiting for a plow";
     public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
-    public static final String PLOT_STATUS_HAS_SEED = "Tree is growing";
+    public static final String PLOT_STATUS_HAS_SEED = "A tree is growing";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 

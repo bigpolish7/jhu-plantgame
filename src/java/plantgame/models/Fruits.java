@@ -48,7 +48,6 @@ public class Fruits {
       if (isGrown ){
         return "Grown";
       }
-      
       return "Growing";
     }
     
@@ -60,6 +59,14 @@ public class Fruits {
     public void setNumberOfTimesWater(int num)
     {
         NumberOfTimesWater = num;
+    }
+    public void increaseNumberOfTimesWater()
+    {
+        NumberOfTimesWater = NumberOfTimesWater + 1;
+    }
+    public void increaseNumberOfTimesFertilize()
+    {
+        NumberOfTimesFertilize = NumberOfTimesFertilize + 1;
     }
     
     public int getNumberOfTimesFertilize()
@@ -135,7 +142,5 @@ public class Fruits {
         //Determine the fruit's quality based on how many waterings and fertilizerings were applied
         this.quality = QualitiesEnum.getQuality(this.NumberOfTimesWater, this.NumberOfTimesFertilize);   
       }
-
-      
     }
 }

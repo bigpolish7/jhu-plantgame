@@ -112,6 +112,8 @@ public class GardenServlet extends HttpServlet {
                                                     // set id = 1 for all fruits for now
                                                     Fruits fruit = new Fruits(fruitsEnumItem, 1);
                                                     user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                                                    user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
+                                                    
                                                 }
                                             }
                                         }
@@ -120,6 +122,32 @@ public class GardenServlet extends HttpServlet {
                             }
                         }
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
+                    // Allow users to water
+                    if (paramName.equalsIgnoreCase("actionWater")) {
+                        int plotNumber = 
+                            Integer.parseInt(request.getParameter(paramName));
+                        if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
+                            // no tree has been planted in this plot
+                            errors.add(Constants.ERROR_PLOT_NO_SEED);
+                        }
+                        else {
+                            user.getGarden().getPlots().get(plotNumber).getFruit().increaseNumberOfTimesWater();
+                            System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
+                        }
+                    }//if (paramName.equalsIgnoreCase("actionWater"))
+                    // Allow users to fertilize
+                    if (paramName.equalsIgnoreCase("actionFertilize")) {
+                        int plotNumber = 
+                            Integer.parseInt(request.getParameter(paramName));
+                        if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
+                            // no tree has been planted in this plot
+                            errors.add(Constants.ERROR_PLOT_NO_SEED);
+                        }
+                        else {
+                            user.getGarden().getPlots().get(plotNumber).getFruit().increaseNumberOfTimesFertilize();
+                            System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
+                        }
+                    }//if (paramName.equalsIgnoreCase("actionFertilize"))
                 }//while(paramNames.hasMoreElements())
                 request.setAttribute(Constants.USER, user);
                 RequestDispatcher rDispatcher;
