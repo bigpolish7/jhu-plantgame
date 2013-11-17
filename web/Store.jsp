@@ -36,7 +36,11 @@
         %>   
       
         var pr = "<%=Constants.getVerbosePurchaseResult((String)session.getAttribute(Constants.PURCHASE_RESULT))%>";
-
+        
+        <%
+          session.setAttribute(Constants.PURCHASE_RESULT, null);
+        %>
+            
         if (pr!="NULL"){
           window.alert(pr);
         }   
