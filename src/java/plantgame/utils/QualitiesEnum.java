@@ -9,6 +9,7 @@ package plantgame.utils;
  * @author tyler
  */
 public enum QualitiesEnum {
+  GROWING(-1,-1,0.0,"Growing"),
   ROTTEN(0,0,0.0,"Rotten"),
   POOR(1,1,0.1,"Poor"),
   FAIR(2,2,0.3,"Fair"),
@@ -60,5 +61,5 @@ public enum QualitiesEnum {
     
     return qtemp;
     
-  }
+  } 
 }

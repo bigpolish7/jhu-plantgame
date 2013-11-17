@@ -30,7 +30,7 @@ public class Fruits {
         
         //When fruits object is created it is not grown yet
         isGrown = false;
-        quality = QualitiesEnum.ROTTEN;
+        quality = QualitiesEnum.GROWING;
         //When fruits object is created it has not been watered or fertilized yet
         NumberOfTimesFertilize = 0;
         NumberOfTimesWater = 0;
