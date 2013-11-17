@@ -30,7 +30,17 @@
             fillInNumericSelect('<%=item.getName() + "Select"%>', <%=store.getNumberOfItemInStock(item.getName())%>)
         <%
           }
-        %>          
+        
+          //DEBUG
+          System.out.println(Constants.getVerbosePurchaseResult((String)session.getAttribute(Constants.PURCHASE_RESULT)));
+        %>   
+      
+        var pr = "<%=Constants.getVerbosePurchaseResult((String)session.getAttribute(Constants.PURCHASE_RESULT))%>";
+
+        if (pr!="NULL"){
+          window.alert(pr);
+        }   
+        
       };
     </script>
 
@@ -55,14 +65,17 @@
       }
     </script>
     
+    
   </head>
   <body>
+    <!--Page Header -->
     <%@ include file="/NavPageHeader.jsp" %>
     <label id="storeHeading" class="pageHeading">Welcome to the Store, <jsp:getProperty name="user" property="userName"/> </label>
-    <label id="purchaseResult" class ="info"><%=request.getAttribute(Constants.PURCHASE_RESULT)%></label>
+     
+    
     <!-- This will display the different items a user can purchase -->
     <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.STORE_SERVLET)%>" method="POST">
-      <table class="displayTable" >
+      <table class="displayTable" style="background-color:lightgreen">
         <tr>
           <th>Item</th>
           <th>Number In Stock</th>

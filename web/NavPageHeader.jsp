@@ -10,7 +10,7 @@
 <%@page import="java.util.HashMap"%>
 
 <jsp:useBean id="user" scope="session" class="plantgame.models.User"/>
-<table id="NavPageHeaderTable" class="NavPageHeaderTable">
+<table id="NavPageHeaderTable" class="NavPageHeaderTable" style="background-color: lightgreen">
   <tr class="NavPageHeaderTableRow">
     <td class ="NavPageHeaderTableDataItem">
       <a href="<%=response.encodeURL(Constants.APPLICATION+Constants.HOME_PAGE_JSP)%>">Home</a>
@@ -24,7 +24,10 @@
     <td class ="NavPageHeaderTableDataItem">
       <a href="<%=response.encodeURL(Constants.APPLICATION+Constants.STORE_JSP)%>">Store</a>
     </td>     
-
+  </tr>
+</table>
+<table id="NavPageHeaderTable2" class="NavPageHeaderTable" style="background-color: lightgreen">  
+  <tr class="NavPageHeaderTableRow">
     <td>
       Money <jsp:getProperty name="user" property="money"/>
     </td>

@@ -18,13 +18,21 @@
         <link rel="stylesheet" type="text/css" href="style.css" media = "all">
     </head>
     <body>
-        
-        <div id="maincontainer">
        
-            <%  
+        <div id="maincontainer">
+       <!--
+            
                 // TODO: Reenable all cpmmented out code.
                 //User user = (User) session.getAttribute("user"); 
+<<<<<<< HEAD
                 //List<Fruits> fruits = new ArrayList<Fruits>();  
+=======
+                //List<Fruits> fruits = new ArrayList<Fruits>();
+        -->
+        <%@ include file="/NavPageHeader.jsp" %>
+            <%
+                //User user = (User) session.getAttribute("user");  
+
 
             %>
             <div style="margin-top: 5em"></div>

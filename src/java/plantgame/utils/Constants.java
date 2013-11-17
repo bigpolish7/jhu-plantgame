@@ -14,18 +14,28 @@ public class Constants {
     public static final String REGISTER = "Register";
     
     // Fruits
-    public static final String APPLE = "apple";
-    public static final String ORANGE = "orange";
+    public static final String APPLE = "Apple";
+    public static final String ORANGE = "Orange";
+    public static final String PEAR = "Pear";
+    public static final String BANANA = "Banana";
+    public static final String MANGO = "Mango";
+    public static final String KIWI = "Kiwi";
     
-    // Fruitb ID
+    // Fruit ID
     public static final int APPLE_ID = 1;
     public static final int ORANGE_ID = 2;
-   
 
     public static final String NOT_ENOUGH_MONEY = "NEM";
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";
     public static final String PURCHASE_COMPLETE = "PC";
     public static final String USER = "user";
+    public static final String ERROR_MESSAGE = "message";
+    public static final String ERROR_PLOT_NOT_PLOWED = "Error: You need to plow a plot before planting a seed";
+    public static final String ERROR_SEED_NOT_AVAILABLE = "Error: You currently have 0 seeds. You need to buy a seed before planting a seed";
+    public static final String ERROR_SEED_NOT_SELECTED = "Error: You need to select a seed to plant";
+    public static final String ERROR_PLOT_NO_SEED = "Error: You need to plant a seed before you can water or fertilize your plot";
+    public static final String ERROR_NO_WATER_OR_FERTILIZER = "Error: There is no water or fertilizer. You need to buy some water or fertilizer.";
+    public static final String ERROR_JSP = "/Error.jsp";
     public static final String PURCHASE_RESULT = "PR";
     public static final String APPLICATION = "/PlantGame";
     public static final String STORE_JSP = "/Store.jsp";
@@ -36,7 +46,9 @@ public class Constants {
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
-    
+    public static final String PLOT_STATUS_NEED_PLOW = "Waiting for a plow";
+    public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
+    public static final String PLOT_STATUS_HAS_SEED = "A tree is growing";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 
@@ -54,10 +66,27 @@ public class Constants {
     
     //This is the maximum number of each item that the store can hold
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
-    
     public static final int USER_START_NUMBER_OF_ITEMS = 1;
     // Each user can purchase extra plots of land for this amount of money
     public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
     // Each user can own up to a maximum number of plots of land
     public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
+    public static final int USER_START_NUMBER_OF_PLOTS = 5;
+    
+    
+    public static String getVerbosePurchaseResult(String s){
+      if (s==null || s.equals("")){
+        return "NULL";
+      }
+      
+      if (s.equals(NOT_ENOUGH_MONEY)){
+        return "Sorry you do not have enough money.";
+      }
+      else if (s.equals(NOT_ENOUGH_ITEMS_IN_STORE)){
+        return "Sorry the store does not have enough items to complete your purchase";
+      }
+
+      return "Your purchase is complete";
+
+    }
 }

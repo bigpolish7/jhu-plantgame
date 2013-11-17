@@ -15,12 +15,14 @@ public enum FruitsEnum {
   MANGO(1,"Mango", 100000, 100000),
   KIWI(1,"Kiwi", 100000, 100000);
   
+  
   private final int baseCost;
   private final String name;
   private final long timeToGrow; //in ms
   private final long timeToRot; //in ms
   
   FruitsEnum(int cost, String newName, long newTime, long newRotTime){
+  
     baseCost = cost;
     name = newName;
     timeToGrow = newTime;

@@ -7,6 +7,7 @@
 package plantgame.models;
 
 import java.util.ArrayList;
+import plantgame.utils.Constants;
 
 /**
  *
@@ -14,13 +15,15 @@ import java.util.ArrayList;
  */
 public class Garden {
   
-  private ArrayList<Fruits> fruits;
-  
+  //private ArrayList<Fruits> fruits;
+  private ArrayList<Plot> plots;
+    
   public Garden(){
-    fruits = new ArrayList<Fruits>();
+    //fruits = new ArrayList<Fruits>();
+    plots = new ArrayList<Plot>(Constants.USER_START_NUMBER_OF_PLOTS);
   }
   
-  
+  /*
   //Add a fruit to the garden
   public void addFruit(Fruits newFruit){
     fruits.add(newFruit);
@@ -29,6 +32,13 @@ public class Garden {
   public ArrayList<Fruits> getFruits(){
     return fruits;
   }
+  */
+  //Add plots to the garden
+  public void addPlot(Plot newPlot){
+    plots.add(newPlot);
+  }
   
-  
+  public ArrayList<Plot> getPlots(){
+    return plots;
+  }
 }

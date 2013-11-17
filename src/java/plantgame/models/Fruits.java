@@ -13,7 +13,7 @@ import plantgame.utils.QualitiesEnum;
  *
  * @author aadu
  */
-public class Fruits extends TimerTask{
+public class Fruits {
     
     private FruitsEnum fruitType = null;
     private int fruitId;
@@ -31,10 +31,24 @@ public class Fruits extends TimerTask{
         //When fruits object is created it is not grown yet
         isGrown = false;
         quality = QualitiesEnum.ROTTEN;
+        //When fruits object is created it has not been watered or fertilized yet
+        NumberOfTimesFertilize = 0;
+        NumberOfTimesWater = 0;
     }
     
     public Fruits()
     {
+    }
+    
+    public FruitsEnum getType(){
+      return fruitType;
+    }
+    
+    public String getStatus(){
+      if (isGrown ){
+        return "Grown";
+      }
+      return "Growing";
     }
     
     public int getNumberOfTimesWater()
@@ -46,7 +60,7 @@ public class Fruits extends TimerTask{
     {
         NumberOfTimesWater = num;
     }
-    
+        
     public int getNumberOfTimesFertilize()
     {
         return NumberOfTimesFertilize;
@@ -67,16 +81,41 @@ public class Fruits extends TimerTask{
     
     public void startGrowing(){
       //DEBUG
-      System.out.println("Fruits creating new timer");
+      System.out.println("Fruits creating new timers "+this.fruitType.getTimeToGrow());
       
-      Timer plantGrowingTimer = new Timer();
+      try{
+        Timer plantGrowingTimer = new Timer();
+        Timer plantRottingTimer = new Timer();
+        
+        
+        //Schedule the plant to reach fruition at a given delay and then
+        //rot after a delay
+        plantGrowingTimer.schedule(
+                new TimerTask(){
+                  public void run(){
+                    timerExpire();
+                  }
+                }
+                ,this.fruitType.getTimeToGrow());
+                
+         plantGrowingTimer.schedule(
+                new TimerTask(){
+                  public void run(){
+                    timerExpire();
+                  }
+                }
+                ,this.fruitType.getTimeToGrow() + this.fruitType.getTimeToRot());               
+
+      }
+      catch (Exception e){
+        //DEBUG
+        System.out.println("Fruits grow timer terminated with exception");
+        System.out.println(e.getStackTrace());
+      }
       
-      //Schedule the plant to reach fruition at a given delay
-      plantGrowingTimer.schedule(this, this.fruitType.getTimeToGrow());
     }
     
-    @Override
-    public void run(){
+    private void timerExpire(){
       //TODO this happens when the fruit finishes growing
       //need to add code 
       
@@ -94,12 +133,6 @@ public class Fruits extends TimerTask{
 
         //Determine the fruit's quality based on how many waterings and fertilizerings were applied
         this.quality = QualitiesEnum.getQuality(this.NumberOfTimesWater, this.NumberOfTimesFertilize);   
-        
-        //Start a new timer that will count down until the fruit is rotten
-        Timer plantRottingTimer = new Timer();
-        plantRottingTimer.schedule(this, this.fruitType.getTimeToRot());
       }
-
-      
     }
 }

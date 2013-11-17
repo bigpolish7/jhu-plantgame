@@ -24,6 +24,7 @@ public class User {
     private String userName;
     private int money;
     private HashMap <String, UserItem> items;
+    private Garden garden;
     
     public User(){
       items = new HashMap<String, UserItem>();
@@ -40,6 +41,11 @@ public class User {
         items.put(item.getName(), userItem);
         //DEBUG
         System.out.println("User added "+item.getName());        
+      }
+      garden = new Garden();
+      for (int i = 0; i < Constants.USER_START_NUMBER_OF_PLOTS; i++){
+          Plot thisPlot = new Plot(false, Constants.PLOT_STATUS_NEED_PLOW);
+          garden.addPlot(thisPlot);
       }
     }
 
@@ -114,6 +120,14 @@ public class User {
     
     public int getMoney(){
       return money;
+    }
+    
+    public Garden getGarden(){
+      return garden;
+    }
+    
+    public void setGarden(Garden g){
+      garden = g;
     }
     
     public void setItems(HashMap<String, UserItem> m){

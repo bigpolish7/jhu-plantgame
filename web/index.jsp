@@ -18,7 +18,7 @@
          <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
-        <div class="center" style="background-color: lightgreen;">
+        <div class="center" style="background-color: lightgreen">
         <h2><%= errorMessage %></h2>
         <div id="signIn">
             <form action="FrontController" method="POST">
