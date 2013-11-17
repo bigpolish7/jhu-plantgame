@@ -86,33 +86,38 @@ public class GardenServlet extends HttpServlet {
                             String seedToPlant =
                                 request.getParameter("seedToPlant");
                             System.out.println("seedToPlant: " + seedToPlant);
-                            for (GameItemsEnum item:GameItemsEnum.values()){
-                                if (item.getName().equalsIgnoreCase(seedToPlant)) {
-                                    // update the number of this seed
-                                    HashMap<String, UserItem> userItems = user.getItems();
-                                    UserItem userItem = userItems.get(item.getName());
-                                    if (userItem.getNumberOfItem() == 0) {
-                                        //users can't plant any seed of this type because they have 0 seed of this type
-                                        errors.add(Constants.ERROR_SEED_NOT_AVAILABLE);
-                                    }
-                                    else {
-                                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
-                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
-                                        userItems.put(item.getName(), userItem);
-                                        user.setItems(userItems);
-                                        // update the fruit in this plot
-                                        String fruitType = seedToPlant.replace(" Seed", "");
-                                        for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
-                                            if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
-                                                // Fruits.java: Fruits() constructor: what id is for?
-                                                // set id = 1 for all fruits for now
-                                                Fruits fruit = new Fruits(fruitsEnumItem, 1);
-                                                user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                            if (seedToPlant == null) {
+                                errors.add(Constants.ERROR_SEED_NOT_SELECTED);
+                            }
+                            else {
+                                for (GameItemsEnum item:GameItemsEnum.values()){
+                                    if (item.getName().equalsIgnoreCase(seedToPlant)) {
+                                        // update the number of this seed
+                                        HashMap<String, UserItem> userItems = user.getItems();
+                                        UserItem userItem = userItems.get(item.getName());
+                                        if (userItem.getNumberOfItem() == 0) {
+                                            //users can't plant any seed of this type because they have 0 seed of this type
+                                            errors.add(Constants.ERROR_SEED_NOT_AVAILABLE);
+                                        }
+                                        else {
+                                            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
+                                            userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                                            userItems.put(item.getName(), userItem);
+                                            user.setItems(userItems);
+                                            // update the fruit in this plot
+                                            String fruitType = seedToPlant.replace(" Seed", "");
+                                            for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
+                                                if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
+                                                    // Fruits.java: Fruits() constructor: what id is for?
+                                                    // set id = 1 for all fruits for now
+                                                    Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                                    user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                                                }
                                             }
                                         }
-                                    }
-                                }  
-                            }//for (GameItemsEnum item:GameItemsEnum.values())   
+                                    }  
+                                }//for (GameItemsEnum item:GameItemsEnum.values())   
+                            }
                         }
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
                 }//while(paramNames.hasMoreElements())
