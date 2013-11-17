@@ -60,15 +60,7 @@ public class Fruits {
     {
         NumberOfTimesWater = num;
     }
-    public void increaseNumberOfTimesWater()
-    {
-        NumberOfTimesWater = NumberOfTimesWater + 1;
-    }
-    public void increaseNumberOfTimesFertilize()
-    {
-        NumberOfTimesFertilize = NumberOfTimesFertilize + 1;
-    }
-    
+        
     public int getNumberOfTimesFertilize()
     {
         return NumberOfTimesFertilize;

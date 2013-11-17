@@ -131,7 +131,7 @@ public class GardenServlet extends HttpServlet {
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
                         else {
-                            user.getGarden().getPlots().get(plotNumber).getFruit().increaseNumberOfTimesWater();
+                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesWater(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater()+1);
                             System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
                         }
                     }//if (paramName.equalsIgnoreCase("actionWater"))
@@ -144,7 +144,7 @@ public class GardenServlet extends HttpServlet {
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
                         else {
-                            user.getGarden().getPlots().get(plotNumber).getFruit().increaseNumberOfTimesFertilize();
+                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
                             System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
                         }
                     }//if (paramName.equalsIgnoreCase("actionFertilize"))
