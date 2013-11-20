@@ -9,11 +9,11 @@ package plantgame.utils;
  * @author tyler
  */
 public enum FruitsEnum {
-  APPLE(1,"Apple", 100000, 100000),
-  PEAR(1,"Pear", 100000, 100000),
-  BANANA(1,"Banana", 100000, 100000),
-  MANGO(1,"Mango", 100000, 100000),
-  KIWI(1,"Kiwi", 100000, 100000);
+  APPLE(1,"Apple", Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  PEAR(1,"Pear", Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  BANANA(1,"Banana", Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  MANGO(1,"Mango", Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  KIWI(1,"Kiwi", Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT);
   
   
   private final int baseCost;
@@ -40,6 +40,7 @@ public enum FruitsEnum {
   public long getTimeToGrow(){
     return timeToGrow;
   }
+  
   
   public long getTimeToRot(){
     return timeToRot;

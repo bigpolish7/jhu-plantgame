@@ -66,13 +66,16 @@ public class Constants {
     
     //This is the maximum number of each item that the store can hold
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
-    public static final int USER_START_NUMBER_OF_ITEMS = 1;
+    public static final int USER_START_NUMBER_OF_ITEMS = 50;
     // Each user can purchase extra plots of land for this amount of money
     public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
     // Each user can own up to a maximum number of plots of land
     public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
     public static final int USER_START_NUMBER_OF_PLOTS = 5;
-    
+    //testing
+    public static final int FRUIT_TIME_TO_GROW = 10000;
+    public static final int FRUIT_TIME_TO_ROT = 10000;
+    //public static final int FRUIT_TIME_TO_ROT = 100000;
     
     public static String getVerbosePurchaseResult(String s){
       if (s==null || s.equals("")){
