@@ -113,7 +113,7 @@ public class GardenServlet extends HttpServlet {
                                                     Fruits fruit = new Fruits(fruitsEnumItem, 1);
                                                     user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
                                                     user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
-                                                    
+                                                    user.getGarden().getPlots().get(plotNumber).getFruit().setStartingTimeToGrow();
                                                 }
                                             }
                                         }

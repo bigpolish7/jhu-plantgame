@@ -15,6 +15,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Garden</title>
+        <%
+        String currentUrl = (request.getRequestURL()).toString();
+        %>
+        <!-- setting time to refresh the page in seconds so that the Fruit status update can be seen-->
+        
         <link rel="stylesheet" type="text/css" href="style.css"/>
         
     </head>
@@ -124,66 +129,70 @@
                     <% if ((thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED)) && 
                             (thisPlot.getFruit().getStatus().equalsIgnoreCase("Growing"))) {
                         // adding a time to grow timer if a fruit is growing in this plot
-                        String growTimerId = "growTimer" + i;
-                        String growTimerName = "growCountDown" + i + "()";
-                        String growSec = "growSec" + i;
-                        String growMin = "growMin" + i;
+                            String growTimerId = "growTimer" + i;
+                            String growTimerName = "growCountDown" + i + "()";
+                            String growSec = "growSec" + i;
+                            String growMin = "growMin" + i;
+                            long remainingTimeToGrow = Constants.FRUIT_TIME_TO_GROW - (System.currentTimeMillis() - thisPlot.getFruit().getStartingTimeToGrow());
                     %>
-                    
-                    <script type="text/javascript">
-                                  
-                        var <%=growSec%> = <%=(Constants.FRUIT_TIME_TO_GROW/1000)%60%>;   // set the seconds
-                        var <%=growMin%> = <%=(Constants.FRUIT_TIME_TO_GROW/1000)/60%>;   // set the minutes
+                        <script type="text/javascript">
 
-                        function <%=growTimerName%> {
-                            <%=growSec%>--;
-                            if (<%=growSec%> == -01) {
-                              <%=growSec%> = 59;
-                              <%=growMin%> = <%=growMin%> - 1;
-                            } else {
-                              <%=growMin%> = <%=growMin%>;
+                            var <%=growSec%> = <%=(remainingTimeToGrow/1000)%60%>;   // set the seconds
+                            var <%=growMin%> = <%=(remainingTimeToGrow/1000)/60%>;   // set the minutes
+
+                            function <%=growTimerName%> {
+                                <%=growSec%>--;
+                                if (<%=growSec%> < 0) {
+                                  <%=growSec%> = 59;
+                                  <%=growMin%> = <%=growMin%> - 1;
+                                } else {
+                                  <%=growMin%> = <%=growMin%>;
+                                }
+                                
+                                if (<%=growMin%> < 0 || (<%=growMin%> == 0 && <%=growSec%> == 0)) {
+                                    <%=growTimerId%>.innerHTML = "done";
+                                    return;
+                                }
+                                time = (<%=growMin%> <= 9 ? "0" : "") + <%=growMin%> + " min and " + (<%=growSec%> <= 9 ? "0" : "") + <%=growSec%>;
+                                if (document.getElementById("<%=growTimerId%>")) { <%=growTimerId%>.innerHTML = time; }
+                                window.setTimeout("<%=growTimerName%>;", 1000);
                             }
-                            if (<%=growSec%><=9) { <%=growSec%> = "0" + <%=growSec%>; }
-                              time = (<%=growMin%><=9 ? "0" + <%=growMin%> : <%=growMin%>) + " min and " + <%=growSec%> + " sec ";
-                            if (document.getElementById("<%=growTimerId%>")) { <%=growTimerId%>.innerHTML = time; }
-                              SD=window.setTimeout("<%=growTimerName%>;", 1000);
-                            if (<%=growMin%> == '00' && <%=growSec%> == '00') { <%=growSec%> = "00"; window.clearTimeout(SD); }
-                        }
 
-                        function addLoadEvent(func) {
-                            var oldonload = window.onload;
-                            if (typeof window.onload != 'function') {
-                                window.onload = func;
-                            } else {
-                                window.onload = function() {
-                                    if (oldonload) {
-                                        oldonload();
+                            function addLoadEvent(func) {
+                                var oldonload = window.onload;
+                                if (typeof window.onload != 'function') {
+                                    window.onload = func;
+                                } else {
+                                    window.onload = function() {
+                                        if (oldonload) {
+                                            oldonload();
+                                        }
+                                        func();
                                     }
-                                    func();
                                 }
                             }
-                        }
-                        addLoadEvent(function() {
-                            <%=growTimerName%>;
-                        });
-                    </script>
-                    <span id="<%=growTimerId%>" class="timeClass"></span>
-                    <% }
+                            addLoadEvent(function() {
+                                <%=growTimerName%>;
+                            });
+                        </script>
+                        <span id="<%=growTimerId%>" class="timeClass"></span>
+                    <%  
+                        } // add a growTimer if this plot has a fruit
                     %>
-                    
                 </td>
                 <td>
                     <% if ((thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED)) && 
-                            (thisPlot.getFruit().getStatus().equalsIgnoreCase("Grown"))) {
+                            (thisPlot.getFruit().getStatus().equalsIgnoreCase("Growing"))) {
                         // adding a time to rot timer if this fruit is grown
                         String rotTimerId = "rotTimer" + i;
                         String rotTimerName = "rotCountDown" + i + "()";
                         String rotSec = "rotSec" + i;
                         String rotMin = "rotMin" + i;
+                        long remainingTimeToRot = (Constants.FRUIT_TIME_TO_GROW+Constants.FRUIT_TIME_TO_ROT) - (System.currentTimeMillis() - thisPlot.getFruit().getStartingTimeToGrow());
                     %>
                     <script type="text/javascript">
-                        var <%=rotSec%> = <%=(Constants.FRUIT_TIME_TO_ROT/1000)%60%>;   // set the seconds
-                        var <%=rotMin%> = <%=(Constants.FRUIT_TIME_TO_ROT/1000)/60%>;   // set the minutes
+                        var <%=rotSec%> = <%=(remainingTimeToRot/1000)%60%>;   // set the seconds
+                        var <%=rotMin%> = <%=(remainingTimeToRot/1000)/60%>;   // set the minutes
                         function <%=rotTimerName%> {
                             <%=rotSec%>--;
                             if (<%=rotSec%> == -01) {

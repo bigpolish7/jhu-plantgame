@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import plantgame.utils.FruitsEnum;
 import plantgame.utils.QualitiesEnum;
+import plantgame.utils.Constants;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Fruits {
     private int NumberOfTimesFertilize;
     private QualitiesEnum quality;
     private boolean isGrown;
+    private long startingTimeToGrow;
     
     public Fruits(FruitsEnum type, int id)
     {
@@ -34,6 +36,7 @@ public class Fruits {
         //When fruits object is created it has not been watered or fertilized yet
         NumberOfTimesFertilize = 0;
         NumberOfTimesWater = 0;
+        startingTimeToGrow = 0;
     }
     
     public Fruits()
@@ -64,6 +67,12 @@ public class Fruits {
     public int getNumberOfTimesFertilize()
     {
         return NumberOfTimesFertilize;
+    }
+    public long getStartingTimeToGrow() {
+        return startingTimeToGrow;
+    }
+    public void setStartingTimeToGrow() {
+        startingTimeToGrow = System.currentTimeMillis();
     }
     
     public void setNumberOfTimesFertilize(int num)
