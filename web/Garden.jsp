@@ -182,7 +182,7 @@
                 </td>
                 <td>
                     <% if ((thisPlot.getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED)) && 
-                            (thisPlot.getFruit().getStatus().equalsIgnoreCase("Growing"))) {
+                            (thisPlot.getFruit().getStatus().equalsIgnoreCase("Growing") || thisPlot.getFruit().getStatus().equalsIgnoreCase("Grown"))) {
                         // adding a time to rot timer if this fruit is grown
                         String rotTimerId = "rotTimer" + i;
                         String rotTimerName = "rotCountDown" + i + "()";
@@ -195,17 +195,21 @@
                         var <%=rotMin%> = <%=(remainingTimeToRot/1000)/60%>;   // set the minutes
                         function <%=rotTimerName%> {
                             <%=rotSec%>--;
-                            if (<%=rotSec%> == -01) {
+                            if (<%=rotSec%> < 0) {
                               <%=rotSec%> = 59;
                               <%=rotMin%> = <%=rotMin%> - 1;
                             } else {
                               <%=rotMin%> = <%=rotMin%>;
                             }
-                            if (<%=rotSec%><=9) { <%=rotSec%> = "0" + <%=rotSec%>; }
-                              time = (<%=rotMin%><=9 ? "0" + <%=rotMin%> : <%=rotMin%>) + " min and " + <%=rotSec%> + " sec";
-                            if (document.getElementById("<%=rotTimerId%>")) { <%=rotTimerId%>.innerHTML = time; }
-                              SD=window.setTimeout("<%=rotTimerName%>;", 1000);
-                            if (<%=rotMin%> == '00' && <%=rotSec%> == '00') { <%=rotSec%> = "00"; window.clearTimeout(SD); }
+                                if (<%=rotMin%> < 0 || (<%=rotMin%> == 0 && <%=rotSec%> == 0)) {
+                                    <%=rotTimerId%>.innerHTML = "done";
+                                    return;
+                                }
+                                time = (<%=rotMin%> <= 9 ? "0" : "") + <%=rotMin%> + " min and " + (<%=rotSec%> <= 9 ? "0" : "") + <%=rotSec%>;
+                                if (document.getElementById("<%=rotTimerId%>")) { <%=rotTimerId%>.innerHTML = time; }
+                                window.setTimeout("<%=rotTimerName%>;", 1000);
+                            
+                            
                         }
 
                         function addLoadEvent(func) {
