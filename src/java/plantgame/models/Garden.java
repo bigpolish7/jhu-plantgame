@@ -34,7 +34,7 @@ public class Garden {
   }
   */
   //Add plots to the garden
-  public void addPlot(Plot newPlot){
+  public void addOnePlot(Plot newPlot){
     plots.add(newPlot);
   }
   

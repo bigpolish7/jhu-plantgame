@@ -4,9 +4,14 @@
  */
 package plantgame.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
 import plantgame.utils.Constants;
+import plantgame.utils.FruitsEnum;
 import plantgame.utils.GameItemsEnum;
+import plantgame.utils.QualitiesEnum;
 
 /**
  *
@@ -25,6 +30,8 @@ public class User {
     private int money;
     private HashMap <String, UserItem> items;
     private Garden garden;
+    // <fruit name, <quality type, quantity>>
+    Hashtable<String, Hashtable<String, Integer>> harvestedFruits;
     
     public User(){
       items = new HashMap<String, UserItem>();
@@ -44,8 +51,16 @@ public class User {
       }
       garden = new Garden();
       for (int i = 0; i < Constants.USER_START_NUMBER_OF_PLOTS; i++){
-          Plot thisPlot = new Plot(false, Constants.PLOT_STATUS_NEED_PLOW);
-          garden.addPlot(thisPlot);
+          Plot thisPlot = new Plot(Constants.PLOT_STATUS_NEED_PLOW);
+          garden.addOnePlot(thisPlot);
+      }
+      harvestedFruits = new Hashtable<String, Hashtable<String, Integer>>();
+      for (FruitsEnum fruitItem:FruitsEnum.values()){
+          Hashtable<String, Integer> qualityQuantity = new Hashtable<String, Integer>();
+          for (QualitiesEnum qualityItem:QualitiesEnum.values()) {
+              qualityQuantity.put(qualityItem.getName(), 0);
+          }
+          harvestedFruits.put(fruitItem.getName(), qualityQuantity);
       }
     }
 
@@ -136,5 +151,8 @@ public class User {
     
     public HashMap<String, UserItem> getItems(){
       return items;
+    }
+    public Hashtable<String, Hashtable<String, Integer>> getHarvestedFruits(){
+        return harvestedFruits;
     }
 }

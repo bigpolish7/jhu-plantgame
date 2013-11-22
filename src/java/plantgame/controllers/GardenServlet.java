@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -70,12 +71,11 @@ public class GardenServlet extends HttpServlet {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
                         // Allow users to dig
-                        user.getGarden().getPlots().get(plotNumber).setIsPlowed(true);
                         user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NEED_SEED);
                     }
                     
                     // Allow users to plant
-                    if (paramName.equalsIgnoreCase("actionPlant")) {
+                    else if (paramName.equalsIgnoreCase("actionPlant")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_SEED))) {
@@ -123,7 +123,7 @@ public class GardenServlet extends HttpServlet {
                         }
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
                     // Allow users to water
-                    if (paramName.equalsIgnoreCase("actionWater")) {
+                    else if (paramName.equalsIgnoreCase("actionWater")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
@@ -153,7 +153,7 @@ public class GardenServlet extends HttpServlet {
                         }
                     }//if (paramName.equalsIgnoreCase("actionWater"))
                     // Allow users to fertilize
-                    if (paramName.equalsIgnoreCase("actionFertilize")) {
+                    else if (paramName.equalsIgnoreCase("actionFertilize")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
@@ -182,6 +182,34 @@ public class GardenServlet extends HttpServlet {
                             }
                         }
                     }//if (paramName.equalsIgnoreCase("actionFertilize"))
+                    else if (paramName.equalsIgnoreCase("actionHarvest")) {
+                        int plotNumber = 
+                            Integer.parseInt(request.getParameter(paramName));
+                        if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
+                            // no tree has been planted in this plot
+                            errors.add(Constants.ERROR_PLOT_NO_FRUIT_TO_HARVEST);
+                        }
+                        else if (user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED) &&
+                                user.getGarden().getPlots().get(plotNumber).getFruit().getStatus().equalsIgnoreCase("Growing")) {
+                            // fruit is still growing
+                            errors.add(Constants.ERROR_PLOT_NO_FRUIT_TO_HARVEST);
+                        }
+                        else {
+                            // update the harvestedFruit
+                            String fruitQuality = user.getGarden().getPlots().get(plotNumber).getFruit().getQuality().getName();
+                            String fruitName = user.getGarden().getPlots().get(plotNumber).getFruit().getType().getName();
+                            System.out.println("Harvest: quality: " + fruitQuality + "; name: " + fruitName);
+                            Hashtable<String, Integer> qualityQuantity = new Hashtable<String, Integer>();
+                            qualityQuantity = user.getHarvestedFruits().get(fruitName);
+                            qualityQuantity.put(fruitQuality, qualityQuantity.get(fruitQuality) + 1);
+                            user.getHarvestedFruits().put(fruitName, qualityQuantity);
+                            // set this plot to the initial status
+                            Plot thisPlot = new Plot(Constants.PLOT_STATUS_NEED_PLOW);
+                            user.getGarden().getPlots().set(plotNumber, thisPlot);
+                            
+                        }
+                        
+                    } // if (paramName.equalsIgnoreCase("actionHarvest"))
                 }//while(paramNames.hasMoreElements())
                 request.setAttribute(Constants.USER, user);
                 RequestDispatcher rDispatcher;

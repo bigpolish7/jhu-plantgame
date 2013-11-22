@@ -11,21 +11,14 @@ package plantgame.models;
  * @author minh
  */
 public class Plot {
-    private boolean isPlowed;
     private String plotStatus;
     private Fruits fruit;
     
-    public Plot(boolean thisIsPlowed, String thisPlotStatus) {
-        isPlowed = thisIsPlowed;
+    public Plot(String thisPlotStatus) {
         plotStatus = thisPlotStatus;
+        fruit = new Fruits();
     }
     public Plot() {
-    }
-    public boolean getIsPlowed() {
-        return isPlowed;
-    }
-    public void setIsPlowed(boolean thisIsPlowed) {
-        isPlowed = thisIsPlowed;
     }
     public String getPlotStatus() {
         return plotStatus;
