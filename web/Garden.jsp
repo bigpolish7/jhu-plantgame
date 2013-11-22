@@ -30,11 +30,21 @@
         <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST" style="background-color:lightgreen">
         
         <%
+        int counter = 0;
         for(GameItemsEnum item : GameItemsEnum.values()) {
             if (item.getName().toLowerCase().contains("SEED".toLowerCase())) {
+                if (counter == 0) {
         %>
-            <input type="checkbox" name="seedToPlant" value="<%=item.getName()%>"><%=item.getName()%> <%=(userItems.get(item.getName())).getNumberOfItem()%>
-        <%  } 
+                    <input type="radio" name="seedToPlant" checked value="<%=item.getName()%>"><%=item.getName()%> <%=(userItems.get(item.getName())).getNumberOfItem()%>
+        <%
+                }
+                else {
+        %>
+                    <input type="radio" name="seedToPlant" value="<%=item.getName()%>"><%=item.getName()%> <%=(userItems.get(item.getName())).getNumberOfItem()%>
+        <%  
+                }
+                counter = counter + 1;
+            }
         }
         %>
         
@@ -153,7 +163,7 @@
                                     <%=growTimerId%>.innerHTML = "done";
                                     return;
                                 }
-                                time = (<%=growMin%> <= 9 ? "0" : "") + <%=growMin%> + " min and " + (<%=growSec%> <= 9 ? "0" : "") + <%=growSec%>;
+                                time = (<%=growMin%> <= 9 ? "0" : "") + <%=growMin%> + " minute(s) and " + (<%=growSec%> <= 9 ? "0" : "") + <%=growSec%> + " second(s)";
                                 if (document.getElementById("<%=growTimerId%>")) { <%=growTimerId%>.innerHTML = time; }
                                 window.setTimeout("<%=growTimerName%>;", 1000);
                             }
@@ -205,7 +215,7 @@
                                     <%=rotTimerId%>.innerHTML = "done";
                                     return;
                                 }
-                                time = (<%=rotMin%> <= 9 ? "0" : "") + <%=rotMin%> + " min and " + (<%=rotSec%> <= 9 ? "0" : "") + <%=rotSec%>;
+                                time = (<%=rotMin%> <= 9 ? "0" : "") + <%=rotMin%> + " minute(s) and " + (<%=rotSec%> <= 9 ? "0" : "") + <%=rotSec%> + " second(s)";
                                 if (document.getElementById("<%=rotTimerId%>")) { <%=rotTimerId%>.innerHTML = time; }
                                 window.setTimeout("<%=rotTimerName%>;", 1000);
                             
