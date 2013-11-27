@@ -47,7 +47,7 @@ public class Constants {
     public static final String ERROR_NO_SPADE = "Error: You have no spades.";
     public static final String ERROR_PLOT_NO_FRUIT_TO_HARVEST = "Error: No grown fruit to harvest";
     public static final String ERROR_PLOT_NOT_PLOWED = "Error: You need to plow a plot before planting a seed";
-    public static final String ERROR_SEED_NOT_AVAILABLE = "Error: You currently have 0 seeds. You need to buy a seed before planting a seed";
+    public static final String ERROR_NO_SEED = "Error: There are 0 seeds.";
     public static final String ERROR_SEED_NOT_SELECTED = "Error: You need to select a seed to plant";
     public static final String ERROR_PLOT_NO_SEED = "Error: You need to plant a seed before you can water or fertilize your plot";
     public static final String ERROR_NO_WATER = "Error: There is no water.";

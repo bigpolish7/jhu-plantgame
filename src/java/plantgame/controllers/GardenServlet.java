@@ -88,46 +88,38 @@ public class GardenServlet extends HttpServlet {
                     else if (paramName.equalsIgnoreCase("actionPlant")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
+                        UserItem userItemSpade = userItems.get(Constants.SPADE);
+                        String seedToPlant = request.getParameter("seedToPlant");
+                        System.out.println("seedToPlant: " + seedToPlant);
+                        UserItem userItemSeed = userItems.get(seedToPlant);
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_NEED_SEED))) {
                             // this plot has not been plowed
                             errors.add(Constants.ERROR_PLOT_NOT_PLOWED);
                         }
-                        else {
-                            String seedToPlant =
-                                request.getParameter("seedToPlant");
-                            System.out.println("seedToPlant: " + seedToPlant);
-                            if (seedToPlant == null) {
-                                errors.add(Constants.ERROR_SEED_NOT_SELECTED);
-                            }
-                            else {
-                                for (GameItemsEnum item:GameItemsEnum.values()){
-                                    if (item.getName().equalsIgnoreCase(seedToPlant)) {
-                                        // update the number of this seed
-                                        UserItem userItem = userItems.get(item.getName());
-                                        if (userItem.getNumberOfItem() == 0) {
-                                            //users can't plant any seed of this type because they have 0 seed of this type
-                                            errors.add(Constants.ERROR_SEED_NOT_AVAILABLE);
-                                        }
-                                        else {
-                                            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
-                                            userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
-                                            userItems.put(item.getName(), userItem);
-                                            user.setItems(userItems);
-                                            // update the fruit in this plot
-                                            String fruitType = seedToPlant.replace(" Seed", "");
-                                            for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
-                                                if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
-                                                    // Fruits.java: Fruits() constructor: what id is for?
-                                                    // set id = 1 for all fruits for now
-                                                    Fruits fruit = new Fruits(fruitsEnumItem, 1);
-                                                    user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
-                                                    user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
-                                                    user.getGarden().getPlots().get(plotNumber).getFruit().setStartingTimeToGrow();
-                                                }
-                                            }
-                                        }
-                                    }  
-                                }//for (GameItemsEnum item:GameItemsEnum.values())   
+                        if (userItemSpade.getNumberOfItem() == 0) {
+                            errors.add(Constants.ERROR_NO_SPADE);
+                        }
+                        if (userItemSeed.getNumberOfItem() == 0) {
+                            errors.add(Constants.ERROR_NO_SEED);
+                        }
+                        if (errors.size() == 0) {
+                            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_HAS_SEED);
+                            userItemSpade.setNumberOfItem(userItemSpade.getNumberOfItem() - 1);
+                            userItems.put(Constants.SPADE, userItemSpade);
+                            userItemSeed.setNumberOfItem(userItemSeed.getNumberOfItem() - 1);
+                            userItems.put(seedToPlant, userItemSeed);
+                            user.setItems(userItems);
+                            // update the fruit in this plot
+                            String fruitType = seedToPlant.replace(" Seed", "");
+                            for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
+                                if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
+                                    // Fruits.java: Fruits() constructor: what id is for?
+                                    // set id = 1 for all fruits for now
+                                    Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                    user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
+                                    user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
+                                    user.getGarden().getPlots().get(plotNumber).getFruit().setStartingTimeToGrow();
+                                }
                             }
                         }
                     }//if (paramName.equalsIgnoreCase("actionPlant"))
@@ -160,31 +152,24 @@ public class GardenServlet extends HttpServlet {
                     }//if (paramName.equalsIgnoreCase("actionWater"))
                     // Allow users to fertilize
                     else if (paramName.equalsIgnoreCase("actionFertilize")) {
+                        UserItem userItemFertilizer = userItems.get(Constants.ITEM_FERTILIZER);
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
                             // no tree has been planted in this plot
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
-                        else {
-                            for (GameItemsEnum item:GameItemsEnum.values()){
-                                if (item.getName().equalsIgnoreCase("Fertilizer")) {
-                                    // update the number of this seed
-                                    UserItem userItem = userItems.get(item.getName());
-                                    if (userItem.getNumberOfItem() == 0) {
-                                        // no more fertilizer
-                                        errors.add(Constants.ERROR_NO_FERTILIZER);
-                                    }
-                                    else {
-                                        user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
-                                        System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
-                                        // update the amount of fertilizer
-                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
-                                        userItems.put(item.getName(), userItem);
-                                        user.setItems(userItems);
-                                    }
-                                }
-                            }
+                        if (userItemFertilizer.getNumberOfItem() == 0) {
+                            // no more fertilizer
+                            errors.add(Constants.ERROR_NO_FERTILIZER);
+                        }
+                        if (errors.size() == 0) {
+                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
+                            System.out.println("number of times fertilizing: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize());
+                            // update the amount of fertilizer
+                            userItemFertilizer.setNumberOfItem(userItemFertilizer.getNumberOfItem()-1);
+                            userItems.put(Constants.ITEM_FERTILIZER, userItemFertilizer);
+                            user.setItems(userItems);
                         }
                     }//if (paramName.equalsIgnoreCase("actionFertilize"))
                     else if (paramName.equalsIgnoreCase("actionHarvest")) {
