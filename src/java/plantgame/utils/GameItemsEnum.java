@@ -11,8 +11,7 @@ package plantgame.utils;
 //Use this enum to configure the items available for purchase at the store
 public enum GameItemsEnum {
   //Set the base costs, names, and max number for the items here
-  SHOVEL(10, "Shovel", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  WATERING_CAN(10, "Watering Can", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
+  BUCKET(10, "Bucket", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
   SPADE(10, "Spade", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
   //SEED(10, "Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
   APPLE_SEED(10, "Apple Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
