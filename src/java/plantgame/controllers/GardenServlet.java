@@ -60,6 +60,7 @@ public class GardenServlet extends HttpServlet {
             }
             else {
                 ArrayList<String> errors = new ArrayList<String>();
+                HashMap<String, UserItem> userItems = user.getItems();
                 System.out.println(user.getFirstName());
                 Enumeration paramNames = request.getParameterNames();
                 while(paramNames.hasMoreElements()) {
@@ -68,7 +69,6 @@ public class GardenServlet extends HttpServlet {
                     paramName + " = " + request.getParameter(paramName));
                     
                     if (paramName.equalsIgnoreCase("actionPlow")) {
-                        HashMap<String, UserItem> userItems = user.getItems();
                         UserItem userItem = userItems.get(Constants.SPADE);
                         if (userItem.getNumberOfItem() == 0) {
                             errors.add(Constants.ERROR_NO_SPADE);
@@ -103,7 +103,6 @@ public class GardenServlet extends HttpServlet {
                                 for (GameItemsEnum item:GameItemsEnum.values()){
                                     if (item.getName().equalsIgnoreCase(seedToPlant)) {
                                         // update the number of this seed
-                                        HashMap<String, UserItem> userItems = user.getItems();
                                         UserItem userItem = userItems.get(item.getName());
                                         if (userItem.getNumberOfItem() == 0) {
                                             //users can't plant any seed of this type because they have 0 seed of this type
@@ -136,30 +135,27 @@ public class GardenServlet extends HttpServlet {
                     else if (paramName.equalsIgnoreCase("actionWater")) {
                         int plotNumber = 
                             Integer.parseInt(request.getParameter(paramName));
+                        UserItem userItemBucket = userItems.get(Constants.BUCKET);
+                        UserItem userItemWater = userItems.get(Constants.ITEM_WATER);
                         if (!(user.getGarden().getPlots().get(plotNumber).getPlotStatus().equalsIgnoreCase(Constants.PLOT_STATUS_HAS_SEED))) {
                             // no tree has been planted in this plot
                             errors.add(Constants.ERROR_PLOT_NO_SEED);
                         }
-                        else {
-                            for (GameItemsEnum item:GameItemsEnum.values()){
-                                if (item.getName().equalsIgnoreCase("Water")) {
-                                    // update the number of this seed
-                                    HashMap<String, UserItem> userItems = user.getItems();
-                                    UserItem userItem = userItems.get(item.getName());
-                                    if (userItem.getNumberOfItem() == 0) {
-                                        // no more water
-                                        errors.add(Constants.ERROR_NO_WATER_OR_FERTILIZER);
-                                    }
-                                    else {
-                                        user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesWater(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater()+1);                                 
-                                        System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
-                                        // update the amount of water
-                                        userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
-                                        userItems.put(item.getName(), userItem);
-                                        user.setItems(userItems);
-                                    }
-                                }
-                            }
+                        if (userItemBucket.getNumberOfItem() == 0) {
+                            errors.add(Constants.ERROR_NO_BUCKET);
+                        }
+                        if (userItemWater.getNumberOfItem() == 0) {
+                            errors.add(Constants.ERROR_NO_WATER);
+                        }
+                        if (errors.size() == 0) {
+                            user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesWater(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater()+1);                                 
+                            System.out.println("number of times watering: " + user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesWater());
+                            // reduce the number of water and bucket by 1
+                            userItemBucket.setNumberOfItem(userItemBucket.getNumberOfItem() - 1);
+                            userItemWater.setNumberOfItem(userItemWater.getNumberOfItem() - 1);
+                            userItems.put(Constants.ITEM_WATER, userItemWater);
+                            userItems.put(Constants.BUCKET, userItemBucket);
+                            user.setItems(userItems);
                         }
                     }//if (paramName.equalsIgnoreCase("actionWater"))
                     // Allow users to fertilize
@@ -174,11 +170,10 @@ public class GardenServlet extends HttpServlet {
                             for (GameItemsEnum item:GameItemsEnum.values()){
                                 if (item.getName().equalsIgnoreCase("Fertilizer")) {
                                     // update the number of this seed
-                                    HashMap<String, UserItem> userItems = user.getItems();
                                     UserItem userItem = userItems.get(item.getName());
                                     if (userItem.getNumberOfItem() == 0) {
                                         // no more fertilizer
-                                        errors.add(Constants.ERROR_NO_WATER_OR_FERTILIZER);
+                                        errors.add(Constants.ERROR_NO_FERTILIZER);
                                     }
                                     else {
                                         user.getGarden().getPlots().get(plotNumber).getFruit().setNumberOfTimesFertilize(user.getGarden().getPlots().get(plotNumber).getFruit().getNumberOfTimesFertilize()+1);
