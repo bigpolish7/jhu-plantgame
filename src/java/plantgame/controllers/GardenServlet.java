@@ -68,10 +68,20 @@ public class GardenServlet extends HttpServlet {
                     paramName + " = " + request.getParameter(paramName));
                     
                     if (paramName.equalsIgnoreCase("actionPlow")) {
-                        int plotNumber = 
-                            Integer.parseInt(request.getParameter(paramName));
-                        // Allow users to dig
-                        user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NEED_SEED);
+                        HashMap<String, UserItem> userItems = user.getItems();
+                        UserItem userItem = userItems.get(Constants.SPADE);
+                        if (userItem.getNumberOfItem() == 0) {
+                            errors.add(Constants.ERROR_NO_SPADE);
+                        }
+                        else {
+                            int plotNumber = Integer.parseInt(request.getParameter(paramName));
+                            // Allow users to dig
+                            user.getGarden().getPlots().get(plotNumber).setPlotStatus(Constants.PLOT_STATUS_NEED_SEED);
+                            // reduce the number of spades by 1
+                            userItem.setNumberOfItem(userItem.getNumberOfItem()-1);
+                            userItems.put(Constants.SPADE, userItem);
+                            user.setItems(userItems);
+                        }
                     }
                     
                     // Allow users to plant

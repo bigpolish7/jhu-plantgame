@@ -21,6 +21,20 @@ public class Constants {
     public static final String MANGO = "Mango";
     public static final String KIWI = "Kiwi";
     
+    public static final String BUCKET = "Bucket";
+    public static final String SPADE = "Spade";
+    public static final String SEED_APPLE = "Apple Seed";
+    public static final String SEED_PEAR = "Pear Seed";
+    public static final String SEED_BANANA = "Banana Seed";
+    public static final String SEED_MANGO = "Mango Seed";
+    public static final String SEED_KIWI = "Kiwi Seed";
+    public static final String ITEM_WATER = "Water";
+    public static final String ITEM_FERTILIZER = "Fertilizer";
+    
+    
+    
+    
+    
     // Fruit ID
     public static final int APPLE_ID = 1;
     public static final int ORANGE_ID = 2;
@@ -30,6 +44,7 @@ public class Constants {
     public static final String PURCHASE_COMPLETE = "PC";
     public static final String USER = "user";
     public static final String ERROR_MESSAGE = "message";
+    public static final String ERROR_NO_SPADE = "You have no spades.";
     public static final String ERROR_PLOT_NO_FRUIT_TO_HARVEST = "This plot has no grown fruit to harvest yet";
     public static final String ERROR_PLOT_NOT_PLOWED = "Error: You need to plow a plot before planting a seed";
     public static final String ERROR_SEED_NOT_AVAILABLE = "Error: You currently have 0 seeds. You need to buy a seed before planting a seed";

@@ -11,16 +11,15 @@ package plantgame.utils;
 //Use this enum to configure the items available for purchase at the store
 public enum GameItemsEnum {
   //Set the base costs, names, and max number for the items here
-  BUCKET(10, "Bucket", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  SPADE(10, "Spade", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  //SEED(10, "Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  APPLE_SEED(10, "Apple Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  PEAR_SEED(10, "Pear Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  BANANA_SEED(10, "Banana Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  MANGO_SEED(10, "Mango Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  KIWI_SEED(10, "Kiwi Seed", Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
-  WATER(10, "Water", Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
-  FERTILIZER(10, "Fertilizer", Constants.MAX_NUMBER_OF_ITEM_IN_STORE);
+  BUCKET(10, Constants.BUCKET, Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
+  SPADE(10, Constants.SPADE, Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
+  APPLE_SEED(10, Constants.SEED_APPLE, Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  PEAR_SEED(10, Constants.SEED_PEAR, Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  BANANA_SEED(10, Constants.SEED_BANANA, Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  MANGO_SEED(10, Constants.SEED_MANGO, Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  KIWI_SEED(10, Constants.SEED_KIWI, Constants.MAX_NUMBER_OF_ITEM_IN_STORE),
+  WATER(10, Constants.ITEM_WATER, Constants.MAX_NUMBER_OF_ITEM_IN_STORE), 
+  FERTILIZER(10, Constants.ITEM_FERTILIZER, Constants.MAX_NUMBER_OF_ITEM_IN_STORE);
    
   private final int baseCost;
   private final String name;
