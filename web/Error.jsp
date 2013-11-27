@@ -14,12 +14,28 @@
     </head>
     <body>
         <%@ include file="/NavPageHeader.jsp" %>
-        <label id="gardenHeading" class="pageHeading">Oops, some errors occurred, <jsp:getProperty name="user" property="userName"/> </label>
         <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_JSP)%>" method="POST">
-            <%
-                String message = (String) request.getAttribute(Constants.ERROR_MESSAGE);
-            %>
-            <p><b><%= message %></b></p>
+            
+            <table class="NavPageHeaderTable" style="background-color: lightgreen">
+                <tr>
+                    <td>
+                        Oops, some errors occurred, <jsp:getProperty name="user" property="userName"/>
+                    </td>    
+                </tr>
+            
+            </table>
+            
+            <table class="NavPageHeaderTable" style="background-color: lightgreen">
+                <tr>
+                    <td>
+                <%
+                    String message = (String) request.getAttribute(Constants.ERROR_MESSAGE);
+                %>
+                <%= message %>
+                    </td>    
+                </tr>
+            
+            </table>
         </form>        
     </body>
 </html>

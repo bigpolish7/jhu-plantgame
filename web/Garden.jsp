@@ -49,7 +49,7 @@
         %>
         
 
-        <table class="displayTable" >
+        <table class="displayTable">
           <tr>
             <th>
               Plot#
