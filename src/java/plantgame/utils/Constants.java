@@ -52,6 +52,8 @@ public class Constants {
     public static final String ERROR_PLOT_NO_SEED = "Error: You need to plant a seed before you can water or fertilize your plot";
     public static final String ERROR_NO_WATER = "Error: There is no water.";
     public static final String ERROR_NO_BUCKET = "Error: There are no buckets.";
+    public static final String ERROR_NOT_ENOUGH_MONEY = "Error: You don't have enough money to buy more plots of land.";
+    public static final String ERROR_MAX_NUMBER_OF_PLOTS_REACHED = "Error: You currently have the maximum number of plots. No more plots can be added.";
     public static final String ERROR_NO_FERTILIZER = "Error: There is no fertilizer.";
     public static final String ERROR_JSP = "/Error.jsp";
     public static final String PURCHASE_RESULT = "PR";
@@ -86,9 +88,9 @@ public class Constants {
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
     public static final int USER_START_NUMBER_OF_ITEMS = 50;
     // Each user can purchase extra plots of land for this amount of money
-    public static final int MONEY_FOR_ONE_PLOT_OF_LAND = 10;
+    public static final int MONEY_FOR_ONE_PLOT = 10;
     // Each user can own up to a maximum number of plots of land
-    public static final int MAX_NUMBER_OF_PLOTS_OF_LAND = 10;
+    public static final int MAX_NUMBER_OF_PLOTS = 10;
     public static final int USER_START_NUMBER_OF_PLOTS = 5;
     //testing
     public static final int FRUIT_TIME_TO_GROW = 10000;

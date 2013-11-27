@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import plantgame.models.Fruits;
 import plantgame.models.User;
 import plantgame.models.Plot;
+import plantgame.models.Garden;
 import plantgame.models.UserItem;
 import plantgame.utils.Constants;
 import plantgame.utils.GameItemsEnum;
@@ -200,6 +201,25 @@ public class GardenServlet extends HttpServlet {
                         }
                         
                     } // if (paramName.equalsIgnoreCase("actionHarvest"))
+                    else if (paramName.equalsIgnoreCase("actionAddOnePlot")) {
+                        if (user.getMoney() < Constants.MONEY_FOR_ONE_PLOT) {
+                            errors.add(Constants.ERROR_NOT_ENOUGH_MONEY);
+                        }
+                        if (user.getGarden().getPlots().size() == Constants.MAX_NUMBER_OF_PLOTS) {
+                            errors.add(Constants.ERROR_MAX_NUMBER_OF_PLOTS_REACHED);
+                        }
+                        if (errors.size() == 0) {
+                            Plot thisPlot = new Plot(Constants.PLOT_STATUS_NEED_PLOW);
+                            Garden thisGarden = user.getGarden();
+                            thisGarden.addOnePlot(thisPlot);
+                            user.setGarden(thisGarden);
+                            /*
+                            user.getGarden().getPlots();
+                            user.getGarden().addOnePlot(thisPlot);
+                            */
+                            user.setMoney(user.getMoney() - Constants.MONEY_FOR_ONE_PLOT);
+                        }
+                    } // if (paramName.equalsIgnoreCase("actionAddOnePlot"))
                 }//while(paramNames.hasMoreElements())
                 request.setAttribute(Constants.USER, user);
                 RequestDispatcher rDispatcher;

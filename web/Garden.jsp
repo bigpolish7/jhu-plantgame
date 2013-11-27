@@ -248,6 +248,8 @@
             }//for each plot
           %>
         </table>
+        
+        <button name="actionAddOnePlot" type="submit">Add one plot</button>
         </form>
     </body>
 </html>
