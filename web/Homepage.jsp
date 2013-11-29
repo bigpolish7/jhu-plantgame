@@ -15,7 +15,7 @@
     </head>
     <body>
         <%@ include file="/NavPageHeader.jsp" %>
-        <h1>Welcome to your dashboard, <%= user.getUserName() %> </h1>
+        <h1 style="color: ghostwhite">Welcome to your dashboard, <%= user.getUserName() %> </h1>
 
     </body>
 </html>

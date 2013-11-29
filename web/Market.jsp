@@ -11,6 +11,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="plantgame.models.Fruits"%>
+<%@page import="plantgame.models.Plot"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,9 +27,9 @@
                 
         -->
             <%
-                //User user = (User) session.getAttribute("user"); 
-                //List<Fruits> fruits = new ArrayList<Fruits>(); 
-
+                User user = (User) session.getAttribute("user"); 
+                ArrayList<Plot> plots = user.getGarden().getPlots();
+                
 
             %>
             <div style="margin-top: 5em"></div>
@@ -54,18 +55,17 @@
                             </tr>
                             <tr>
                                 <%
-                                /*fruits = market.getUserFruits(user.getId());
-                                Fruits f;
-                                for(int i = 0; i<fruits.size(); i++)
-                                                                       {
-                                    f = fruits.get(i);*/
+                                
+                                for(int i = 0; i<plots.size(); i++)
+                                {
+                                    
                                     %>
-                                    <td align="center"><%--<%= f.getFruitType() %>--%>TODO</td>
-                                    <td align="center"><%--<%= f.getFruitQuality() %>--%>TODO</td>
+                                    <td align="center"><%= plots.get(i).getFruit().getType().getName() %>TODO</td>
+                                    <td align="center"><%= plots.get(i).getFruit().getQuality().getName() %>TODO</td>
                                     <td align="center"><%--<%= market.getPriceOfFruit(f)%>--%>TODO</td>
                                     <td align="center"><%--<input type="radio" name="<%=f.getFruitId() %>"--%>TODO</td>
                                     <%
-                                //}
+                                }
                                 %>
                             </tr>
                         </table>
