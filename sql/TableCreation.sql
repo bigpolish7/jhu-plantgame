@@ -10,3 +10,9 @@ CREATE TABLE IF NOT EXISTS PlantGame.User (
   `username` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`));
 
+
+CREATE TABLE IF NOT EXISTS PlantGame.Market (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FruitName` VARCHAR(45) NULL ,
+  `Quantity` INT NULL ,
+  PRIMARY KEY (`id`));
