@@ -9,20 +9,21 @@ package plantgame.utils;
  * @author tyler
  */
 public enum FruitsEnum {
-  APPLE(1,Constants.APPLE, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
-  PEAR(1,Constants.PEAR, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
-  BANANA(1,Constants.BANANA, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
-  MANGO(1,Constants.MANGO, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
-  KIWI(1,Constants.KIWI, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT);
+  APPLE(Constants.APPLE_ID,1,Constants.APPLE, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  PEAR(Constants.PEAR_ID,1,Constants.PEAR, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  BANANA(Constants.BANANA_ID,1,Constants.BANANA, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  MANGO(Constants.MANGO_ID,1,Constants.MANGO, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT),
+  KIWI(Constants.KIWI_ID,1,Constants.KIWI, Constants.FRUIT_TIME_TO_GROW, Constants.FRUIT_TIME_TO_ROT);
   
-  
+  private final int id;
   private final int baseCost;
   private final String name;
   private final long timeToGrow; //in ms
   private final long timeToRot; //in ms
   
-  FruitsEnum(int cost, String newName, long newTime, long newRotTime){
-  
+  FruitsEnum(int fId, int cost, String newName, long newTime, long newRotTime){
+      
+    id = fId;  
     baseCost = cost;
     name = newName;
     timeToGrow = newTime;
@@ -44,5 +45,9 @@ public enum FruitsEnum {
   
   public long getTimeToRot(){
     return timeToRot;
+  }
+  
+  public int getId(){
+    return id;
   }
 }

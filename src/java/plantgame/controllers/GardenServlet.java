@@ -114,9 +114,8 @@ public class GardenServlet extends HttpServlet {
                             String fruitType = seedToPlant.replace(" Seed", "");
                             for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
                                 if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
-                                    // Fruits.java: Fruits() constructor: what id is for?
-                                    // set id = 1 for all fruits for now
-                                    Fruits fruit = new Fruits(fruitsEnumItem, 1);
+                                    
+                                    Fruits fruit = new Fruits(fruitsEnumItem);
                                     user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
                                     user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
                                     user.getGarden().getPlots().get(plotNumber).getFruit().setStartingTimeToGrow();

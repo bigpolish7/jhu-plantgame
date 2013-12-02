@@ -55,9 +55,10 @@
                             </tr>
                             <tr>
                                 <%
-                                int qty = 1; //TODO, get this from DB 
+                                int qty; 
                                 for(int i = 0; i<plots.size(); i++)
                                 {
+                                    qty = market.getMktFruitQnty(plots.get(i).getFruit().getType().getId()); 
                                     double tmpPrice =  market.getPriceOfFruit(plots.get(i).getFruit().getType().getBaseCost(),
                                             plots.get(i).getFruit().getQuality().getPriceCoefficient(),
                                             qty);

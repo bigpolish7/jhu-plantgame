@@ -17,7 +17,6 @@ import plantgame.utils.Constants;
 public class Fruits {
     
     private FruitsEnum fruitType = null;
-    private int fruitId;
     
     private int NumberOfTimesWater;
     private int NumberOfTimesFertilize;
@@ -25,9 +24,9 @@ public class Fruits {
     private boolean isGrown;
     private long startingTimeToGrow;
     
-    public Fruits(FruitsEnum type, int id)
+    public Fruits(FruitsEnum type)
     {
-        fruitId = id;
+       
         fruitType = type;
         
         //When fruits object is created it is not grown yet

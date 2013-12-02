@@ -38,6 +38,10 @@ public class Constants {
     // Fruit ID
     public static final int APPLE_ID = 1;
     public static final int ORANGE_ID = 2;
+    public static final int PEAR_ID = 3;
+    public static final int BANANA_ID = 4;
+    public static final int MANGO_ID = 5;
+    public static final int KIWI_ID = 6;
 
     public static final String NOT_ENOUGH_MONEY = "NEM";
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";

@@ -31,9 +31,9 @@ public class Market {
      * be sold on the market. It will pull this from 
      * the DB
      */
-    public List<Fruits> getUserFruits(int uid)
+    public int getMktFruitQnty(int uid)
     {
-        return pm.getUsersFruits(uid);
+        return pm.getQtyFruitsInMkt(uid);
     }
     
      /*

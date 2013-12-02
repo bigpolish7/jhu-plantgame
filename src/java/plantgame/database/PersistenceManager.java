@@ -169,41 +169,29 @@ public class PersistenceManager {
              return null;
         }
          
-        public List<Fruits> getUsersFruits(int uid) {
+        public int getQtyFruitsInMkt(int id) {
             
-            List<Fruits> fruits = new ArrayList<Fruits>();
-            Fruits tmp = new Fruits();
             String query ="SELECT * FROM FRUITS USERID=?";
             PreparedStatement statement;
-            
+            int result;
             //Connection should not be null at this point. If it is then there was
             //an issue with connecting to the database
             if (connection == null){
-              return null;
+              return -1; // error
             }
             
             try {
                 statement = connection.prepareStatement(query);
-                statement.setInt(1, uid);
+                statement.setInt(1, id);
                 ResultSet rs =  statement.executeQuery();
-             
+                
+                
                 if (rs.next()) {
                        
                     System.out.println("we got stuff...");
-                    rs.previous(); // move cursor back one position
-                    
-                    while(rs.next()){
-                        // pulpulate fruit
-                        //tmp.setFruitType(rs.getString("NAME"));
-                        //tmp.setFruitId(rs.getInt("ID"));
-                        tmp.setNumberOfTimesFertilize(rs.getInt("FERTILIZE_COUNT"));
-                        tmp.setNumberOfTimesWater(rs.getInt("WATER_COUNT"));
-                        // add fruit to fruit list to be returned.
-                        fruits.add(tmp);
-                    }
-                    
-                      
-                      return fruits;
+                    result = rs.getInt("Quantity");
+                                
+                    return result;
                   }
                 else {
                     System.out.println("got nothing....");
@@ -213,7 +201,7 @@ public class PersistenceManager {
                 Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-             return null;
+             return -1;
         } 
         
         
