@@ -41,11 +41,23 @@ public class Market {
      * its worth using market factors as well as the
      * quality of the Fruit. 
      */
-    public double getPriceOfFruit(Fruits fruit)
+    public double getPriceOfFruit(int baseCost, double priceCoaf, int MaketQty)
     {
         double price = 0;
-        
         // do calculation
+        int mktQty = MaketQty;
+        if (mktQty < 1)
+        {
+            mktQty = mktQty++;
+        }
+        
+        price = (baseCost * priceCoaf) / mktQty;
+        
+        // if the price is $2 or less round up to $2
+        if (price < 2.00)
+        {
+            price = 2.00;
+        }
         
         return price;
     }

@@ -55,15 +55,17 @@
                             </tr>
                             <tr>
                                 <%
-                                
+                                int qty = 1; //TODO, get this from DB 
                                 for(int i = 0; i<plots.size(); i++)
                                 {
-                                    
+                                    double tmpPrice =  market.getPriceOfFruit(plots.get(i).getFruit().getType().getBaseCost(),
+                                            plots.get(i).getFruit().getQuality().getPriceCoefficient(),
+                                            qty);
                                     %>
-                                    <td align="center"><%= plots.get(i).getFruit().getType().getName() %>TODO</td>
-                                    <td align="center"><%= plots.get(i).getFruit().getQuality().getName() %>TODO</td>
-                                    <td align="center"><%--<%= market.getPriceOfFruit(f)%>--%>TODO</td>
-                                    <td align="center"><%--<input type="radio" name="<%=f.getFruitId() %>"--%>TODO</td>
+                                    <td align="center"><%= plots.get(i).getFruit().getType().getName() %></td>
+                                    <td align="center"><%= plots.get(i).getFruit().getQuality().getName() %></td>
+                                    <td align="center"><%= tmpPrice %>TODO</td>
+                                    <td align="center"><input type="radio" name="<%=plots.get(i).getFruit().getType().getName() %>"</td>
                                     <%
                                 }
                                 %>
