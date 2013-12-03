@@ -61,6 +61,12 @@
               Fruit
             </th>
             <th>
+              Water
+            </th>
+            <th>
+              Fertilizer
+            </th>
+            <th>
               Fruit status
             </th>
             <th>
@@ -93,7 +99,11 @@
                     // Fruit fruit is null
                 %>
                 <td>
-                </td>     
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
                 <td>
                 </td>
                 <td>
@@ -105,7 +115,13 @@
                 %>
                 <td>
                     <%=thisPlot.getFruit().getType().getName()%>
-                </td>     
+                </td>
+                <td>
+                    <%=thisPlot.getFruit().getNumberOfTimesWater()%>
+                </td>
+                <td>
+                    <%=thisPlot.getFruit().getNumberOfTimesFertilize()%>
+                </td>
                 <td>
                     <%=thisPlot.getFruit().getStatus()%>
                 </td>
@@ -248,7 +264,6 @@
             }//for each plot
           %>
         </table>
-        
         <button name="actionAddOnePlot" type="submit">Add one plot</button>
         </form>
     </body>
