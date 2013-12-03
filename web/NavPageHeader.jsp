@@ -23,7 +23,10 @@
     </td>      
     <td class ="NavPageHeaderTableDataItem">
       <a href="<%=response.encodeURL(Constants.APPLICATION+Constants.STORE_JSP)%>">Store</a>
-    </td>     
+    </td>    
+    <td class ="NavPageHeaderTableLogout">
+      <a href="<%=response.encodeURL(Constants.FRONT_CONTROLLER+"?action="+Constants.LOGOUT_SERVLET) %>">Logout</a>
+    </td>
   </tr>
 </table>
 <table id="NavPageHeaderTable2" class="NavPageHeaderTable" style="background-color: lightgreen">  

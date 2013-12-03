@@ -47,6 +47,7 @@ public class Constants {
     public static final String NOT_ENOUGH_ITEMS_IN_STORE = "NEIIS";
     public static final String PURCHASE_COMPLETE = "PC";
     public static final String USER = "user";
+    
     public static final String ERROR_MESSAGE = "message";
     public static final String ERROR_NO_SPADE = "Error: You have no spades.";
     public static final String ERROR_PLOT_NO_FRUIT_TO_HARVEST = "Error: No grown fruit to harvest";
@@ -69,7 +70,12 @@ public class Constants {
     public static final String STORE_SERVLET = "Store";
     public static final String GARDEN_SERVLET = "Garden";
     public static final String FRONT_CONTROLLER = "FrontController";
+    public static final String LOGOUT_SERVLET = "Logout";    
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
+    public static final String LOGOUT_PAGE_JSP = "/LogoutPage.jsp";
+    
+    
+    
     public static final String PLOT_STATUS_NEED_PLOW = "Waiting for a plow";
     public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
     public static final String PLOT_STATUS_HAS_SEED = "A tree is growing";

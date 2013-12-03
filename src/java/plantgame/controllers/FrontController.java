@@ -39,6 +39,11 @@ public class FrontController extends HttpServlet {
         else if(action.equals(Constants.GARDEN_JSP)){
           url = Constants.GARDEN_JSP;
         }
+        else if(action.equals(Constants.LOGOUT_SERVLET)){
+          url = Constants.LOGOUT_SERVLET;
+          //DEBUG
+          System.out.println("Logging Out");
+        }
         else{
           url = action;
         }
