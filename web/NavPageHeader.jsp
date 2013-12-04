@@ -25,7 +25,7 @@
       <a href="<%=response.encodeURL(Constants.APPLICATION+Constants.STORE_JSP)%>">Store</a>
     </td>    
     <td class ="NavPageHeaderTableLogout">
-      <a href="<%=response.encodeURL(Constants.FRONT_CONTROLLER+"?action="+Constants.LOGOUT_SERVLET) %>">Logout</a>
+      <a href="<%=response.encodeURL(Constants.LOGOUT_SERVLET+"?action="+Constants.LOGOUT_SERVLET) %>">Logout</a>
     </td>
   </tr>
 </table>

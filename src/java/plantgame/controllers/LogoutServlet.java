@@ -43,7 +43,7 @@ public class LogoutServlet extends HttpServlet {
         }
         
         User user = (User)session.getAttribute(Constants.USER);
-        //session.invalidate();
+        session.invalidate();
         
         request.setAttribute("Message", user.getUserName()+" you have logged out.");
         
@@ -51,7 +51,8 @@ public class LogoutServlet extends HttpServlet {
         System.out.println(user.getUserName()+" you have logged out.");
 
         
-        RequestDispatcher requestDispatcher = getServletContext().getNamedDispatcher(Constants.LOGOUT_PAGE_JSP);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(Constants.LOGOUT_PAGE_JSP);
+        
         
         //DEBUG
         System.out.println("Logout.java got request dispatcher ="+requestDispatcher.toString());
