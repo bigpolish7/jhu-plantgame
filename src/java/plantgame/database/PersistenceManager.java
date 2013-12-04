@@ -108,7 +108,7 @@ public class PersistenceManager {
                     User user = new User();
                   //  String s1 = resultSetSelect.getString(1);
                     
-                    user.setId(resultSetSelect.getInt(1));
+                     user.setId(resultSetSelect.getInt(1));
                      user.setFirstName(resultSetSelect.getString(2));
                      user.setLastName(resultSetSelect.getString(3));
                      user.setDob(resultSetSelect.getString(4));

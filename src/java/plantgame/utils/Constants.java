@@ -103,8 +103,8 @@ public class Constants {
     public static final int MAX_NUMBER_OF_PLOTS = 10;
     public static final int USER_START_NUMBER_OF_PLOTS = 5;
     //testing
-    public static final int FRUIT_TIME_TO_GROW = 10000;
-    public static final int FRUIT_TIME_TO_ROT = 10000;
+    public static final int FRUIT_TIME_TO_GROW = 20000;
+    public static final int FRUIT_TIME_TO_ROT = 20000;
     //public static final int FRUIT_TIME_TO_ROT = 100000;
     
     public static String getVerbosePurchaseResult(String s){

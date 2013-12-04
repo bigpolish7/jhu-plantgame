@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="java.util.Hashtable"%>
+<%@page import="plantgame.utils.QualitiesEnum"%>
+<%@page import="plantgame.utils.FruitsEnum"%>
 <%@page import="plantgame.utils.Constants"%>
 <%@page import="plantgame.models.Fruits"%>
 <%@page import="plantgame.models.Plot"%>
@@ -264,7 +267,38 @@
             }//for each plot
           %>
         </table>
+
         <button name="actionAddOnePlot" type="submit">Add one plot</button>
+        <p>Harvested Fruits</p>
+        <table class="displayTable">
+          <tr>
+            <% 
+            // <fruit name, <quality type, quantity>>
+            Hashtable<String, Hashtable<String, Integer>> harvestedFruits = user.getHarvestedFruits();
+            for (FruitsEnum fruitItem : FruitsEnum.values()) {
+            %>
+            <th>
+                  <%=fruitItem.getName()%>
+            </th>
+            <%
+              }
+             %>
+          </tr>
+          <% for (QualitiesEnum qualityItem : QualitiesEnum.values()) {
+          %>
+          <tr>
+            <% for (FruitsEnum fruitsItem : FruitsEnum.values()) {
+                Hashtable<String, Integer> qualityQuantity = harvestedFruits.get(fruitsItem.getName());
+            %>
+            <td>
+                <%=qualityQuantity.get(qualityItem.getName())%> <%=qualityItem.getName()%>        
+            </td>
+            <% }
+            %>
+          </tr>
+          <% }
+          %>
+        </table>
         </form>
     </body>
 </html>
