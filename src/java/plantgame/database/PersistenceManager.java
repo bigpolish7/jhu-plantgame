@@ -171,9 +171,10 @@ public class PersistenceManager {
          
         public int getQtyFruitsInMkt(int id) {
             
-            String query ="SELECT * FROM FRUITS USERID=?";
+            String query ="SELECT Quantity FROM PlantGame.Market WHERE id=?";
+
             PreparedStatement statement;
-            int result;
+            int result = 0;
             //Connection should not be null at this point. If it is then there was
             //an issue with connecting to the database
             if (connection == null){
@@ -190,8 +191,7 @@ public class PersistenceManager {
                        
                     System.out.println("we got stuff...");
                     result = rs.getInt("Quantity");
-                                
-                    return result;
+                  
                   }
                 else {
                     System.out.println("got nothing....");
@@ -201,8 +201,81 @@ public class PersistenceManager {
                 Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-             return -1;
+             return result;
         } 
+        
+        public void incrementFruitsQtyInMkt(int id, String name ) throws SQLException {
+            
+            String query1 ="SELECT Quantity FROM PlantGame.Market WHERE id=?";
+            String query2 ="UPDATE PlantGame.Market SET Quantity=? WHERE id=?";
+            String query3 ="INSERT INTO PlantGame.Market (id, FruitName, Quantity) VALUES (?,?,?)";
+
+            PreparedStatement statement;
+            int count;
+            int result;
+            ResultSet rs = null;
+            
+            try {
+                
+                statement = connection.prepareStatement(query1);
+                statement.setInt(1, id);
+                rs =  statement.executeQuery();
+                
+                if (rs.next()) 
+                {
+                    // there is a record of this fruit id
+                    count = rs.getInt("Quantity"); 
+                    count ++; // increment by one and update the DB
+                    
+                    statement = connection.prepareStatement(query2);
+                    statement.setInt(1, id);
+                    statement.setInt(2, count);
+                    result = statement.executeUpdate();
+                    
+                    if ( result > 0) 
+                    {
+                        System.out.println("sucessful update of fruit Qty in Market!");
+  
+                    }
+                    else 
+                    {
+                       System.out.println("Faild to update fruit Qty in Market....");
+                       
+                    }
+                    
+                }
+                else // there is NO record of this fruit id, creat one
+                {
+                    statement = connection.prepareStatement(query3);
+                    statement.setInt(1, id);
+                    statement.setString(2, name);
+                    statement.setInt(3, 1);
+                    
+                    if (statement.execute()) 
+                    {
+                        System.out.println("sucessful creation of fruit in Market DB!");
+  
+                    }
+                    else 
+                    {
+                       System.out.println("Faild to creat fruit in Market DB....");
+                       
+                    }
+                }
+                      
+              
+            } catch (SQLException ex) {
+                
+                Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
+            }
+            finally
+            {
+                if (rs != null)
+                    rs.close();
+            }
+             
+        }
         
         
         

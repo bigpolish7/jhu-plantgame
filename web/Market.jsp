@@ -65,7 +65,7 @@
                                     %>
                                     <td align="center"><%= plots.get(i).getFruit().getType().getName() %></td>
                                     <td align="center"><%= plots.get(i).getFruit().getQuality().getName() %></td>
-                                    <td align="center"><%= tmpPrice %>TODO</td>
+                                    <td align="center"><%= tmpPrice %></td>
                                     <td align="center"><input type="radio" name="<%=plots.get(i).getFruit().getType().getName() %>"</td>
                                     <%
                                 }

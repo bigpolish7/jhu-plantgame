@@ -4,6 +4,7 @@
  */
 package plantgame.models;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import plantgame.database.PersistenceManager;
@@ -31,9 +32,26 @@ public class Market {
      * be sold on the market. It will pull this from 
      * the DB
      */
-    public int getMktFruitQnty(int uid)
+    public int getMktFruitQnty(int fid)
     {
-        return pm.getQtyFruitsInMkt(uid);
+        return pm.getQtyFruitsInMkt(fid);
+    }
+    
+     /*
+     * This API will increment the fruits in the
+     * market. 
+     */
+    public void setMktFruitQnty(int fid, String name) 
+    {
+        try
+        {
+            pm.incrementFruitsQtyInMkt(fid, name);
+        }
+        catch(SQLException se)
+        {
+           //TODO put code 
+        }
+        
     }
     
      /*
