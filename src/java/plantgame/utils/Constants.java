@@ -79,6 +79,12 @@ public class Constants {
     public static final String PLOT_STATUS_NEED_PLOW = "Waiting for a plow";
     public static final String PLOT_STATUS_NEED_SEED = "Waiting for a seed";
     public static final String PLOT_STATUS_HAS_SEED = "A tree is growing";
+    public static final String FRUIT_QUALITY_GROWING = "Growing";
+    public static final String FRUIT_QUALITY_ROTTEN = "Rotten";
+    public static final String FRUIT_QUALITY_POOR = "Poor";
+    public static final String FRUIT_QUALITY_FAIR = "Fair";
+    public static final String FRUIT_QUALITY_GOOD = "Good";
+    public static final String FRUIT_QUALITY_SUPER = "Super";
     //Delay from start of program to when store gets its first 
     //shipment of items in ms
     public static final long STORE_FIRST_DELIVERY_DELAY = 10000; 

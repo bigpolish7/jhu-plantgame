@@ -9,12 +9,12 @@ package plantgame.utils;
  * @author tyler
  */
 public enum QualitiesEnum {
-  GROWING(-1,-1,0.0,"Growing"),
-  ROTTEN(0,0,0.0,"Rotten"),
-  POOR(1,1,0.1,"Poor"),
-  FAIR(2,2,0.3,"Fair"),
-  GOOD(4,4,0.6,"Good"),
-  SUPER(8,8,1.0,"Super");
+  GROWING(-1,-1,0.0,Constants.FRUIT_QUALITY_GROWING),
+  ROTTEN(0,0,0.0,Constants.FRUIT_QUALITY_ROTTEN),
+  POOR(1,1,0.1,Constants.FRUIT_QUALITY_POOR),
+  FAIR(2,2,0.3,Constants.FRUIT_QUALITY_FAIR),
+  GOOD(4,4,0.6,Constants.FRUIT_QUALITY_GOOD),
+  SUPER(8,8,1.0,Constants.FRUIT_QUALITY_SUPER);
   
   private final int minWaterings;
   private final int minFertilizers;

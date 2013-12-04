@@ -284,7 +284,9 @@
               }
              %>
           </tr>
-          <% for (QualitiesEnum qualityItem : QualitiesEnum.values()) {
+          <% 
+          for (QualitiesEnum qualityItem : QualitiesEnum.values()) {
+            if (!(qualityItem.getName().equalsIgnoreCase(Constants.FRUIT_QUALITY_GROWING))) {
           %>
           <tr>
             <% for (FruitsEnum fruitsItem : FruitsEnum.values()) {
@@ -296,7 +298,9 @@
             <% }
             %>
           </tr>
-          <% }
+          <%
+            }
+          }
           %>
         </table>
         </form>
