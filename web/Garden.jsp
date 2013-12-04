@@ -29,7 +29,7 @@
     <body>
         
         <%@ include file="/NavPageHeader.jsp" %>
-        <label id="gardenHeading" class="pageHeading">Welcome to your garden, <jsp:getProperty name="user" property="userName"/> </label>
+        <h1 style="color: ghostwhite">Welcome to your garden, <%= user.getUserName() %> </h1>
         <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.GARDEN_SERVLET)%>" method="POST" style="background-color:lightgreen">
         
         <%

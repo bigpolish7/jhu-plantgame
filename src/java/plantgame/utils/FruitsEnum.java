@@ -42,7 +42,6 @@ public enum FruitsEnum {
     return timeToGrow;
   }
   
-  
   public long getTimeToRot(){
     return timeToRot;
   }
