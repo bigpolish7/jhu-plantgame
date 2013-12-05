@@ -15,6 +15,7 @@
 <%@page import="plantgame.models.Plot"%>
 <%@page import="plantgame.models.Garden"%>
 
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,7 +41,7 @@
                     }  
                 } 
 
-                String bt = request.getParameter("mktBt"); 
+                String bt = request.getParameter("mktBt");  //check if submit button was pressed
                 String[] selectedFruits;
                 if (bt != null)
                 {
@@ -55,13 +56,46 @@
             %>
             <div style="margin-top: 5em"></div>
             <div id="topsection"><div class="innertube"> <center><h1><p class="t1">Welcome to the Market</p></h1>
-                            <p> <%= user.getFirstName() %> +" "+<%= user.getLastName() %></p></center></div></div>
+                        <p style="color: black"> <%= user.getFirstName() %> +" "+<%= user.getLastName() %></p></center></div></div>
                 <div id="container3">
                     <div id="container2">
                         <div id="col2">
-                            <p id="tab"><b>Your Information</b></p>
-                            <p id="tab">Cash</p>
-                        
+                            <p id="tab"><b>Market Information</b></p>
+                            <div class="innertube">
+                                <center>  
+                                    <table class ="tableMkt" width="250" border="1">
+                                        <tr bgcolor="#99CCFF">
+                                            <td><div align="center"><b>Fruit</b></div></td>
+                                            <td><div align="center"><b>Quantity</b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.APPLE%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.APPLE_ID) %></b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.ORANGE%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.ORANGE_ID) %></b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.PEAR%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.PEAR_ID) %></b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.BANANA%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.BANANA_ID) %></b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.MANGO%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.MANGO_ID) %></b></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><div align="center"><b><%=Constants.KIWI%></b></div></td>
+                                            <td><div align="center"><b><%= market.getMktFruitQnty(Constants.KIWI_ID) %></b></div></td>
+                                        </tr>
+
+                                    </table>
+                              </center>        
+                            </div>
                         </div>
                         <div id="col3">
                         <div class="innertube">

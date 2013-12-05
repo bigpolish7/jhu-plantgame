@@ -74,7 +74,8 @@
   <body>
     <!--Page Header -->
     <%@ include file="/NavPageHeader.jsp" %>
-    <label id="storeHeading" class="pageHeading">Welcome to the Store, <jsp:getProperty name="user" property="userName"/> </label>
+    <center>  
+        <label id="storeHeading" class="pageHeading" style="color: white">Welcome to the Store, <jsp:getProperty name="user" property="userName"/> </label>  
      
     
     <!-- This will display the different items a user can purchase -->
@@ -126,5 +127,6 @@
       </table>
       
     </form>
+   </center>
   </body>
 </html>

@@ -10,6 +10,7 @@
 <%@page import="java.util.HashMap"%>
 
 <jsp:useBean id="user" scope="session" class="plantgame.models.User"/>
+<center>  
 <table id="NavPageHeaderTable" class="NavPageHeaderTable" style="background-color: lightgreen">
   <tr class="NavPageHeaderTableRow">
     <td class ="NavPageHeaderTableDataItem">
@@ -54,3 +55,4 @@
   </tr>
   
 </table>
+</center>  

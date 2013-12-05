@@ -220,7 +220,7 @@ public class PersistenceManager {
             //Connection should not be null at this point. If it is then there was
             //an issue with connecting to the database
             if (connection == null){
-              return -1; // error
+              return result; // error, just return 0
             }
             
             try {
