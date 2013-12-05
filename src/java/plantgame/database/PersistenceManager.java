@@ -6,10 +6,12 @@ package plantgame.database;
 
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +31,14 @@ import plantgame.models.Fruits;
 public class PersistenceManager {
     
         private static PersistenceManager instance = null;
-        
+        /*
+        private static final String USERNAME = "foo";
+        private static final String PASSWORD = "bar";
+        private static final String HOST = "localhost";
+        private static final String DB = "derby";
+        private static final int PORT = 1527;
+        private static final String DB_NAME = "MyFirstDatabase";
+        */
         private Connection connection;
         
         protected PersistenceManager() {
@@ -47,7 +56,7 @@ public class PersistenceManager {
         }
     
         private Connection getConnection() {
-        
+            
                 Connection connection = null;
                 
                 try {
@@ -62,13 +71,46 @@ public class PersistenceManager {
                 } catch (SQLException ex) {
                     System.out.println("Error with sql" + ex.getMessage());
                 }
-
+                /*
+                
+                   try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error loading driver " + cnfe.getMessage());
+        }
+        try {
+            String dbURL = "jdbc:" + DB + "://" + HOST + ":" + PORT + "/" + DB_NAME;
+            connection = DriverManager.getConnection(dbURL, USERNAME, PASSWORD);
+            //DatabaseMetaData meta = connection.getMetaData();
+            /*
+            System.out.println("Driver name: " + meta.getDriverName());
+            System.out.println("Driver version: " + meta.getDriverVersion());
+            
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            try {
+                ResultSet resultSet = statement.executeQuery("select * from APP.People");
+                System.out.println("People in the database are:");
+                while (resultSet.next()) {
+                    // first way...we'll use the column index
+                    String firstName = resultSet.getString(2);
+                    // second way...we'll use the column label
+                    String lastName = resultSet.getString("LAST_NAME");
+                    System.out.println("  " + firstName + " " + lastName);
+                }
+            } catch (SQLException sqle) {
+                System.err.println("error: " + sqle.getMessage());
+            }
+            
+        } catch (SQLException ex) {
+            
+        }
+*/
                 return connection;
         }
         
         public User authenticateUser(String userName, String password) {
             
-            String query ="SELECT * FROM USER where userName=? AND password=?";
+            String query ="SELECT * FROM PLAYER where userName=? AND password=?";
             PreparedStatement statement;
             
             //TODO: this should be removed. It's just here for testing
@@ -134,7 +176,7 @@ public class PersistenceManager {
         
          public User registerUser(User user) {
             
-            String query ="INSERT INTO PlantGame.User (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
+            String query ="INSERT INTO PlantGame.Player (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement statement;
             try {
                 statement = connection.prepareStatement(query);

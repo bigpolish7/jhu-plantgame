@@ -41,6 +41,7 @@ public class GardenServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    static int id_count = 0; // global count to be incremented as new fruits are created
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
@@ -114,8 +115,12 @@ public class GardenServlet extends HttpServlet {
                             String fruitType = seedToPlant.replace(" Seed", "");
                             for (FruitsEnum fruitsEnumItem:FruitsEnum.values()){
                                 if (fruitsEnumItem.getName().equalsIgnoreCase(fruitType)) {
+                                    synchronized(this)
+                                    {
+                                        id_count ++;
+                                    }
                                     
-                                    Fruits fruit = new Fruits(fruitsEnumItem);
+                                    Fruits fruit = new Fruits(fruitsEnumItem, id_count);
                                     user.getGarden().getPlots().get(plotNumber).setFruit(fruit);
                                     user.getGarden().getPlots().get(plotNumber).getFruit().startGrowing();
                                     user.getGarden().getPlots().get(plotNumber).getFruit().setStartingTimeToGrow();

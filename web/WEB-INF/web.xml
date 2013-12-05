@@ -24,6 +24,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>plantgame.controllers.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MarketController</servlet-name>
+        <servlet-class>plantgame.controllers.MarketController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/FrontController</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarketController</servlet-name>
+        <url-pattern>/MarketController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,14 +4,17 @@
     Author     : aadu
 --%>
 
+<%@page import="plantgame.utils.FruitsEnum"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:useBean id="market" class="plantgame.models.Market" scope="session" />
-<%@page import="plantgame.models.User"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="plantgame.models.Fruits"%>
 <%@page import="plantgame.models.Plot"%>
+<%@page import="plantgame.models.Garden"%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,14 +30,32 @@
                 
         -->
             <%
-                User user = (User) session.getAttribute("user"); 
-                ArrayList<Plot> plots = user.getGarden().getPlots();
+                ArrayList<Plot> plots = null;
+                if(user != null)
+                {
+                    Garden garden = user.getGarden();
+                    if(garden != null)
+                    {
+                        plots = garden.getPlots();
+                    }  
+                } 
+
+                String bt = request.getParameter("mktBt"); 
+                String[] selectedFruits;
+                if (bt != null)
+                {
+                    if (bt.equals("Sell")) // Fruit sell action was made
+                    {
+                        selectedFruits = request.getParameterValues("selectedFrts");
+                        market.removeUserFruit(plots, selectedFruits, user);
+                    }
+                }
                 
 
             %>
             <div style="margin-top: 5em"></div>
             <div id="topsection"><div class="innertube"> <center><h1><p class="t1">Welcome to the Market</p></h1>
-                            <p> <%--<%= user.getFirstName() %> +" "+<%= user.getLastName() %>--%></p></center></div></div>
+                            <p> <%= user.getFirstName() %> +" "+<%= user.getLastName() %></p></center></div></div>
                 <div id="container3">
                     <div id="container2">
                         <div id="col2">
@@ -45,7 +66,7 @@
                         <div id="col3">
                         <div class="innertube">
                         <%-- main content goes in this window --%>
-                        <form action="" method="get">
+                        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.MARKET_JSP)%>" method="POST">
                          <table class ="tableMkt" width="600" border="1">
                             <tr bgcolor="#99CCFF">
                                 <td><div align="center"><b>Fruit</b></div></td>
@@ -56,23 +77,37 @@
                             <tr>
                                 <%
                                 int qty; 
-                                for(int i = 0; i<plots.size(); i++)
+                                if (plots != null)
                                 {
-                                    qty = market.getMktFruitQnty(plots.get(i).getFruit().getType().getId()); 
-                                    double tmpPrice =  market.getPriceOfFruit(plots.get(i).getFruit().getType().getBaseCost(),
-                                            plots.get(i).getFruit().getQuality().getPriceCoefficient(),
-                                            qty);
-                                    %>
-                                    <td align="center"><%= plots.get(i).getFruit().getType().getName() %></td>
-                                    <td align="center"><%= plots.get(i).getFruit().getQuality().getName() %></td>
-                                    <td align="center"><%= tmpPrice %></td>
-                                    <td align="center"><input type="radio" name="<%=plots.get(i).getFruit().getType().getName() %>"</td>
-                                    <%
+                                    for(int i = 0; i<plots.size(); i++)
+                                    {
+                                        Fruits fruits = plots.get(i).getFruit();
+                                        if(fruits != null)
+                                        {
+                                            FruitsEnum type = fruits.getType();
+                                            if(type != null)
+                                            {
+                                                qty = market.getMktFruitQnty(type.getId()); 
+                                                double tmpPrice =  market.getPriceOfFruit(type.getBaseCost(),
+                                                        fruits.getQuality().getPriceCoefficient(),
+                                                        qty);
+                                                fruits.setPrice(tmpPrice);
+                                                %>
+                                                <td align="center"><%= type.getName() %></td>
+                                                <td align="center"><%= fruits.getQuality().getName() %></td>
+                                                <td align="center"><%= tmpPrice %></td>
+                                                <td align="center"><select multiple name="selectedFrts"> <option value="<%=fruits.getId() %>"></option></select></td>
+                                                
+                                                <%
+                                            }
+                                        }
+                                    }
                                 }
+                                
                                 %>
                             </tr>
                         </table>
-                            <input style="width: 10em; font-weight: bold" type="submit" value="Sell">
+                            <input style="width: 10em; font-weight: bold" type="submit" name="mktBt" value="Sell">
                       </form>
                         </div>        
                         </div>

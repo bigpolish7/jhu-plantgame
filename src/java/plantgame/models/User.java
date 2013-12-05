@@ -27,7 +27,7 @@ public class User {
     private String phone;
     private Integer id;
     private String userName;
-    private int money;
+    private double money;
     private HashMap <String, UserItem> items;
     private Garden garden;
     // <fruit name, <quality type, quantity>>
@@ -129,11 +129,15 @@ public class User {
         this.phone = phone;
     }
     
-    public void setMoney(int m){
+    public void setMoney(double m){
       money = m;
     }
     
-    public int getMoney(){
+    public void addMoney(double m){
+      money = money + m;
+    }
+    
+    public double getMoney(){
       return money;
     }
     

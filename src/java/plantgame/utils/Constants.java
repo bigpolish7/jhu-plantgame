@@ -73,6 +73,7 @@ public class Constants {
     public static final String LOGOUT_SERVLET = "Logout";    
     public static final String HOME_PAGE_JSP = "/Homepage.jsp";
     public static final String LOGOUT_PAGE_JSP = "/LogoutPage.jsp";
+    public static final String MARKET_CONTROLLER = "MarketController";
     
     
     
@@ -104,7 +105,7 @@ public class Constants {
     public static final int MAX_NUMBER_OF_ITEM_IN_STORE = 100;
     public static final int USER_START_NUMBER_OF_ITEMS = 50;
     // Each user can purchase extra plots of land for this amount of money
-    public static final int MONEY_FOR_ONE_PLOT = 10;
+    public static final double MONEY_FOR_ONE_PLOT = 10;
     // Each user can own up to a maximum number of plots of land
     public static final int MAX_NUMBER_OF_PLOTS = 10;
     public static final int USER_START_NUMBER_OF_PLOTS = 5;

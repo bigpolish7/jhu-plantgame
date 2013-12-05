@@ -12,7 +12,7 @@ package plantgame.models;
  */
 public class Plot {
     private String plotStatus;
-    private Fruits fruit;
+    private Fruits fruit = null;
     
     public Plot(String thisPlotStatus) {
         plotStatus = thisPlotStatus;

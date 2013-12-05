@@ -80,4 +80,23 @@ public class Market {
         return price;
     }
     
+    public void removeUserFruit(ArrayList<Plot> p, String[] s, User u)
+    {
+        ArrayList<Plot> plots = p;
+        User user = u;
+        
+        // this is expensive and inefficient...we should have used a DB to store fruits....
+        for(int i=0; i<plots.size(); i++)
+        {
+            for(int j=0; i<s.length; j++)
+            {
+                if (plots.get(i).getFruit().getId() == Integer.parseInt(s[j]) )
+                {
+                    user.addMoney(plots.get(i).getFruit().getPrice()); // add cost of fruit to users money
+                    plots.get(i).setFruit(null); // remove fruit from users plot.
+                }
+            }
+        }
+    }
+    
 }

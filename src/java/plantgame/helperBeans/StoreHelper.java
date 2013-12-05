@@ -32,7 +32,7 @@ public class StoreHelper {
   public static String doPurchase(User user, HttpServletRequest request){
     
     int selectedValue[] = new int[GameItemsEnum.values().length];
-    int total = 0;
+    double total = 0;
     int price;
     int index = 0;
     

@@ -23,12 +23,14 @@ public class Fruits {
     private QualitiesEnum quality;
     private boolean isGrown;
     private long startingTimeToGrow;
+    private int id; // we need id to track which fruits have be sold by the user
+    private double price = 0.0; // we need this to set the price of a fruit to be sold
     
-    public Fruits(FruitsEnum type)
+    public Fruits(FruitsEnum type, int id)
     {
        
         fruitType = type;
-        
+        this.id = id;
         //When fruits object is created it is not grown yet
         isGrown = false;
         quality = QualitiesEnum.GROWING;
@@ -85,6 +87,18 @@ public class Fruits {
     
     public QualitiesEnum getQuality(){
       return quality;
+    }
+    
+    public int getId(){
+      return id;
+    }
+    
+    public double getPrice(){
+      return price;
+    }
+    
+    public void setPrice(double p){
+      price = p;
     }
     
     public void startGrowing(){

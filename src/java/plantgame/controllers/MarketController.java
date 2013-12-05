@@ -1,62 +1,37 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package plantgame.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import plantgame.models.Store;
+import javax.servlet.http.HttpSession;
 
-import plantgame.utils.Constants;
+/**
+ *
+ * @author aadu
+ */
+public class MarketController extends HttpServlet {
 
-public class FrontController extends HttpServlet {
-
-
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        String action =  request.getParameter("action");        
-        String url = "";
-        
-        System.out.println("Front Controller action = " + action);
-        
-        if (action.equals(Constants.LOGIN)) {
-            url = Constants.LOGIN;
-        }
-        else if(action.equals(Constants.REGISTER)) {
-            url = Constants.REGISTER;
-        }
-        else if(action.equals(Constants.STORE_SERVLET)){
-          url = Constants.STORE_SERVLET;
-        }
-        else if(action.equals(Constants.GARDEN_SERVLET)){
-          url = Constants.GARDEN_SERVLET;
-        }
-        else if(action.equals(Constants.GARDEN_JSP)){
-          url = Constants.GARDEN_JSP;
-        }
-        else if(action.equals(Constants.MARKET_JSP)){
-          
-          url = Constants.MARKET_JSP;
-        }
-        else if(action.equals(Constants.MARKET_CONTROLLER)){
-          url = Constants.MARKET_CONTROLLER;
-        }
-        else if(action.equals(Constants.LOGOUT_SERVLET)){
-          url = Constants.LOGOUT_SERVLET;
-          //DEBUG
-          System.out.println("Logging Out");
-        }
-        else{
-          url = action;
-        }
-        
-        RequestDispatcher requestDispatcher = getServletContext().getNamedDispatcher(url);
-        requestDispatcher.forward(request, response);
+       HttpSession session = request.getSession();
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
