@@ -110,7 +110,7 @@ public class PersistenceManager {
         
         public User authenticateUser(String userName, String password) {
             
-            String query ="SELECT * FROM PLAYER where userName=? AND password=?";
+            String query ="SELECT * FROM User where userName=? AND password=?";
             PreparedStatement statement;
             
             //TODO: this should be removed. It's just here for testing
@@ -176,7 +176,7 @@ public class PersistenceManager {
         
          public User registerUser(User user) {
             
-            String query ="INSERT INTO PlantGame.Player (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
+            String query ="INSERT INTO PlantGame.User (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement statement;
             try {
                 statement = connection.prepareStatement(query);
