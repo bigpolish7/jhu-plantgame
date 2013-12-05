@@ -93,6 +93,7 @@ public class Market {
                 if (plots.get(i).getFruit().getId() == Integer.parseInt(s[j]) )
                 {
                     user.addMoney(plots.get(i).getFruit().getPrice()); // add cost of fruit to users money
+                    setMktFruitQnty(plots.get(i).getFruit().getId(), plots.get(i).getFruit().getType().getName()); //increment cont in db
                     plots.get(i).setFruit(null); // remove fruit from users plot.
                 }
             }
