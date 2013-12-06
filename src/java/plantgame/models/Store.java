@@ -154,13 +154,13 @@ public class Store implements Runnable{
     int index = 0;
     HashMap<String, StoreItem> storeItemsCopy = new HashMap<String,StoreItem>(this.storeItems);
     HashMap<String, UserItem> userItemsCopy = new HashMap<String, UserItem>(user.getItems());
-    int total = 0;
+    double total = 0;
     StoreItem storeItem;
     UserItem userItem;
     
     //Check that there are enough items in the store
     for (GameItemsEnum item: GameItemsEnum.values()){
-      total = total+selectedItems[index]*this.getItemPrice(item.getName());
+      total = total+(double)selectedItems[index]*this.getItemPrice(item.getName());
       
       if (this.getNumberOfItemInStock(item.getName()) < selectedItems[index]){
         return Constants.NOT_ENOUGH_ITEMS_IN_STORE;
