@@ -38,7 +38,7 @@
  </tr>
   <tr class="NavPageHeaderTableRow">
     <td>
-        <h2 style="color: blue">Store Item Info: </h2>
+        <h2 style="color: blue">User Item Info: </h2>
     </td>
     <%
       HashMap<String, UserItem> userItems = user.getItems();
