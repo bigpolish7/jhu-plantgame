@@ -6,11 +6,13 @@ package plantgame.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import plantgame.utils.Constants;
 
 /**
  *
@@ -31,6 +33,11 @@ public class MarketController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        HttpSession session = request.getSession();
+       RequestDispatcher rDispatcher;
+       
+        rDispatcher = getServletContext().getRequestDispatcher(Constants.MARKET_JSP);
+        
+        rDispatcher.forward(request, response);
        
     }
 

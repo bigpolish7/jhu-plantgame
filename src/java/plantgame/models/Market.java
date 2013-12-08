@@ -61,12 +61,13 @@ public class Market {
      */
     public double getPriceOfFruit(int baseCost, double priceCoaf, int MaketQty)
     {
+        System.out.println("baseCost is "+ baseCost + "priceCoaf is "+ priceCoaf + "MaketQty is " + MaketQty);
         double price = 0;
         // do calculation
         int mktQty = MaketQty;
         if (mktQty < 1)
         {
-            mktQty = mktQty++;
+            mktQty = 1;
         }
         
         price = (baseCost * priceCoaf) / mktQty;
@@ -80,21 +81,21 @@ public class Market {
         return price;
     }
     
-    public void removeUserFruit(ArrayList<Plot> p, String[] s, User u)
+    public void removeUserFruit(List<Fruits> f, String[] s, User u)
     {
-        ArrayList<Plot> plots = p;
+        List<Fruits> fruits = f;
         User user = u;
         
         // this is expensive and inefficient...we should have used a DB to store fruits....
-        for(int i=0; i<plots.size(); i++)
+        for(int i=0; i<fruits.size(); i++)
         {
-            for(int j=0; i<s.length; j++)
+            for(int j=0; j<s.length; j++)
             {
-                if (plots.get(i).getFruit().getId() == Integer.parseInt(s[j]) )
+                if (fruits.get(i).getId() == Integer.parseInt(s[j]) )
                 {
-                    user.addMoney(plots.get(i).getFruit().getPrice()); // add cost of fruit to users money
-                    setMktFruitQnty(plots.get(i).getFruit().getId(), plots.get(i).getFruit().getType().getName()); //increment cont in db
-                    plots.get(i).setFruit(null); // remove fruit from users plot.
+                    user.addMoney(fruits.get(i).getPrice()); // add cost of fruit to users money
+                    setMktFruitQnty(fruits.get(i).getId(),fruits.get(i).getType().getName()); //increment cont in db
+                    fruits.remove(i); // remove fruit from users plot.
                 }
             }
         }

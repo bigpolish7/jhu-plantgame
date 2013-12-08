@@ -198,6 +198,9 @@ public class GardenServlet extends HttpServlet {
                             qualityQuantity = user.getHarvestedFruits().get(fruitName);
                             qualityQuantity.put(fruitQuality, qualityQuantity.get(fruitQuality) + 1);
                             user.getHarvestedFruits().put(fruitName, qualityQuantity);
+                            // Add harvested fruit to user list
+                            user.addToHarvestedFruits(user.getGarden().getPlots().get(plotNumber).getFruit());
+                            
                             // set this plot to the initial status
                             Plot thisPlot = new Plot(Constants.PLOT_STATUS_NEED_PLOW);
                             user.getGarden().getPlots().set(plotNumber, thisPlot);

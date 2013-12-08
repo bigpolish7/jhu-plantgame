@@ -32,10 +32,12 @@ public class User {
     private Garden garden;
     // <fruit name, <quality type, quantity>>
     Hashtable<String, Hashtable<String, Integer>> harvestedFruits;
+    List<Fruits> harvestedFruitsList = null;
     
     public User(){
       items = new HashMap<String, UserItem>();
       UserItem userItem;
+      harvestedFruitsList = new ArrayList<Fruits>();
       
       //DEBUG
       System.out.println("User adding items");
@@ -159,4 +161,15 @@ public class User {
     public Hashtable<String, Hashtable<String, Integer>> getHarvestedFruits(){
         return harvestedFruits;
     }
+    
+    public void addToHarvestedFruits(Fruits hf)
+    {
+        harvestedFruitsList.add(hf);
+    }
+    
+    public List<Fruits> getHarvestedFruitsList()
+    {
+        return harvestedFruitsList;
+    }
+    
 }

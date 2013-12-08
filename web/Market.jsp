@@ -25,20 +25,12 @@
     <body>
      <%@ include file="/NavPageHeader.jsp" %>   
         <div id="maincontainer">
-       <!--
-            
-                // TODO: Reenable all cpmmented out code.
-                
-        -->
+    
             <%
-                ArrayList<Plot> plots = null;
+                List<Fruits> fruits = null;
                 if(user != null)
                 {
-                    Garden garden = user.getGarden();
-                    if(garden != null)
-                    {
-                        plots = garden.getPlots();
-                    }  
+                    fruits = user.getHarvestedFruitsList();   
                 } 
 
                 String bt = request.getParameter("mktBt");  //check if submit button was pressed
@@ -48,7 +40,7 @@
                     if (bt.equals("Sell")) // Fruit sell action was made
                     {
                         selectedFruits = request.getParameterValues("selectedFrts");
-                        market.removeUserFruit(plots, selectedFruits, user);
+                        market.removeUserFruit(fruits, selectedFruits, user);
                     }
                 }
                 
@@ -99,44 +91,42 @@
                         <div id="col3">
                         <div class="innertube">
                         <%-- main content goes in this window --%>
-                        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.MARKET_JSP)%>" method="POST">
+                        <form action="<%=response.encodeURL(Constants.FRONT_CONTROLLER + "?action="+Constants.MARKET_CONTROLLER)%>" method="POST">
                          <table class ="tableMkt" width="600" border="1">
                             <tr bgcolor="#99CCFF">
                                 <td><div align="center"><b>Fruit</b></div></td>
                                 <td><div align="center"><b>Quality</b></div></td>
-                                <td><div align="center"><b>Current Market Price</b></div></td>
+                                <td><div align="center"><b>Current Market Price $</b></div></td>
                                 <td><div align="center"><b>Select</b></div></td>
                             </tr>
                             
                                 <%
                                 int qty; 
-                                if (plots != null)
+                                if (fruits != null)
                                 {
-                                    for(int i = 0; i<plots.size(); i++)
+                                    for(int i = 0; i<fruits.size(); i++)
                                     {
-                                        Fruits fruits = plots.get(i).getFruit();
+                                        //Fruits fruits = plots.get(i).getFruit();
                                         if(fruits != null)
-                                        {
-                                            if(fruits.isGrown())
-                                            {
-                                                FruitsEnum type = fruits.getType();
+                                        {      
+                                                FruitsEnum type = fruits.get(i).getType();
                                                 if(type != null)
                                                 {
                                                     qty = market.getMktFruitQnty(type.getId()); 
                                                     double tmpPrice =  market.getPriceOfFruit(type.getBaseCost(),
-                                                            fruits.getQuality().getPriceCoefficient(),
+                                                            fruits.get(i).getQuality().getPriceCoefficient(),
                                                             qty);
-                                                    fruits.setPrice(tmpPrice);
+                                                    fruits.get(i).setPrice(tmpPrice);
                                                     %>
                                                     <tr>
                                                     <td align="center" ><%= type.getName() %></td>
-                                                    <td align="center"><%= fruits.getQuality().getName() %></td>
+                                                    <td align="center"><%= fruits.get(i).getQuality().getName() %></td>
                                                     <td align="center"><%= tmpPrice %></td>
-                                                    <td align="center"><select multiple name="selectedFrts"> <option value="<%=fruits.getId() %>"></option></select></td>
+                                                    <td align="center"><select multiple name="selectedFrts"> <option value="<%=fruits.get(i).getId() %>"></option></select></td>
                                                     </tr>                                                                 
                                                     <%
                                                 }
-                                            }
+                                           
                                         }
                                     }
                                 }
