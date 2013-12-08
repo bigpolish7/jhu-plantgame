@@ -112,7 +112,7 @@
                                 int qty; 
                                 if (plots != null)
                                 {
-                                    for(int i = 0; i<5; i++)
+                                    for(int i = 0; i<plots.size(); i++)
                                     {
                                         Fruits fruits = plots.get(i).getFruit();
                                         if(fruits != null)
