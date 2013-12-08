@@ -52,11 +52,10 @@
                     }
                 }
                 
-
             %>
             <div style="margin-top: 5em"></div>
             <div id="topsection"><div class="innertube"> <center><h1><p class="t1">Welcome to the Market</p></h1>
-                        <p style="color: black"> <%= user.getFirstName() %> +" "+<%= user.getLastName() %></p></center></div></div>
+                        <p style="color: black"> <%= user.getFirstName() %><%=  " "%><%= user.getLastName() %></p></center></div></div>
                 <div id="container3">
                     <div id="container2">
                         <div id="col2">
@@ -108,38 +107,42 @@
                                 <td><div align="center"><b>Current Market Price</b></div></td>
                                 <td><div align="center"><b>Select</b></div></td>
                             </tr>
-                            <tr>
+                            
                                 <%
                                 int qty; 
                                 if (plots != null)
                                 {
-                                    for(int i = 0; i<plots.size(); i++)
+                                    for(int i = 0; i<5; i++)
                                     {
                                         Fruits fruits = plots.get(i).getFruit();
                                         if(fruits != null)
                                         {
-                                            FruitsEnum type = fruits.getType();
-                                            if(type != null)
+                                            if(fruits.isGrown())
                                             {
-                                                qty = market.getMktFruitQnty(type.getId()); 
-                                                double tmpPrice =  market.getPriceOfFruit(type.getBaseCost(),
-                                                        fruits.getQuality().getPriceCoefficient(),
-                                                        qty);
-                                                fruits.setPrice(tmpPrice);
-                                                %>
-                                                <td align="center"><%= type.getName() %></td>
-                                                <td align="center"><%= fruits.getQuality().getName() %></td>
-                                                <td align="center"><%= tmpPrice %></td>
-                                                <td align="center"><select multiple name="selectedFrts"> <option value="<%=fruits.getId() %>"></option></select></td>
-                                                
-                                                <%
+                                                FruitsEnum type = fruits.getType();
+                                                if(type != null)
+                                                {
+                                                    qty = market.getMktFruitQnty(type.getId()); 
+                                                    double tmpPrice =  market.getPriceOfFruit(type.getBaseCost(),
+                                                            fruits.getQuality().getPriceCoefficient(),
+                                                            qty);
+                                                    fruits.setPrice(tmpPrice);
+                                                    %>
+                                                    <tr>
+                                                    <td align="center" ><%= type.getName() %></td>
+                                                    <td align="center"><%= fruits.getQuality().getName() %></td>
+                                                    <td align="center"><%= tmpPrice %></td>
+                                                    <td align="center"><select multiple name="selectedFrts"> <option value="<%=fruits.getId() %>"></option></select></td>
+                                                    </tr>                                                                 
+                                                    <%
+                                                }
                                             }
                                         }
                                     }
                                 }
                                 
                                 %>
-                            </tr>
+
                         </table>
                             <input style="width: 10em; font-weight: bold" type="submit" name="mktBt" value="Sell">
                       </form>

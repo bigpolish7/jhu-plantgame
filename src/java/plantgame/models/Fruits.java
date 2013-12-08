@@ -157,4 +157,9 @@ public class Fruits {
         this.quality = QualitiesEnum.getQuality(this.NumberOfTimesWater, this.NumberOfTimesFertilize);   
       }
     }
+    
+    public Boolean isGrown()
+    {
+        return isGrown;
+    }
 }
