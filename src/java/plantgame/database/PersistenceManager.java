@@ -31,14 +31,14 @@ import plantgame.models.Fruits;
 public class PersistenceManager {
     
         private static PersistenceManager instance = null;
-        
+        /*
         private static final String USERNAME = "foo";
         private static final String PASSWORD = "bar";
         private static final String HOST = "localhost";
         private static final String DB = "derby";
         private static final int PORT = 1527;
         private static final String DB_NAME = "MyFirstDatabase";
-        
+        */
         private Connection connection;
         
         protected PersistenceManager() {
@@ -58,7 +58,7 @@ public class PersistenceManager {
         private Connection getConnection() {
             
                 Connection connection = null;
-                /*
+                
                 try {
                     try {
                        Class.forName("com.mysql.jdbc.Driver");
@@ -71,8 +71,8 @@ public class PersistenceManager {
                 } catch (SQLException ex) {
                     System.out.println("Error with sql" + ex.getMessage());
                 }
-                */
                 
+                /*
                    try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -99,18 +99,18 @@ public class PersistenceManager {
                 }
             } catch (SQLException sqle) {
                 System.err.println("error: " + sqle.getMessage());
-            }*/
+            }
             
         } catch (SQLException ex) {
             
-        }
+        }*/
 
                 return connection;
         }
         
         public User authenticateUser(String userName, String password) {
             
-            String query ="SELECT * FROM Player where userName=? AND password=?";
+            String query ="SELECT * FROM User where userName=? AND password=?";
             PreparedStatement statement;
             
             //TODO: this should be removed. It's just here for testing
@@ -176,7 +176,7 @@ public class PersistenceManager {
         
          public User registerUser(User user) {
             
-            String query ="INSERT INTO PlantGame.Player (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
+            String query ="INSERT INTO PlantGame.User (FirstName, LastName, dob, email, phone, `password`, username) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement statement;
             try {
                 statement = connection.prepareStatement(query);
